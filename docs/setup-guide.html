@@ -426,58 +426,35 @@
     }
 
     /* Links card */
-    .links-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-top: 2rem;
-      transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    .footer-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
     }
 
-    @media (prefers-color-scheme: dark) {
-      .links-card { background: var(--surface); }
-    }
-
-    .links-card h2 {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--foreground);
-      margin-bottom: 1rem;
-      letter-spacing: -0.01em;
-    }
-
-    .links-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
-    }
-
-    .links-grid a {
-      display: block;
-      padding: 0.5rem 0.75rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
+    .footer-nav a {
       font-size: 0.875rem;
-      color: var(--ultra-orange);
-      text-decoration: none;
       font-weight: 500;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
     }
 
-    .links-grid a:hover {
-      border-color: var(--border-hover);
-      background: rgba(255, 82, 51, 0.04);
+    .footer-nav a:hover {
+      color: var(--ultra-orange);
     }
 
-    .links-grid a span {
-      display: block;
-      font-size: 0.75rem;
+    .footer-nav a:first-child {
+      margin-right: auto;
       color: var(--muted-light);
-      margin-top: 0.15rem;
-      font-weight: 400;
+    }
+
+    /* placeholder to keep indentation consistent */
+    ._unused {
+      display: none;
     }
 
     h3 {
@@ -514,7 +491,6 @@
     }
 
     @media (max-width: 600px) {
-      .links-grid { grid-template-columns: 1fr; }
       .nav-title { display: none; }
       .header h1 { font-size: 1.75rem; }
       .breadcrumb { font-size: 0.8125rem; }
@@ -998,20 +974,12 @@ openclaw cron delete JOB_ID</code></pre>
     </div>
   </div>
 
-  <!-- Links -->
-  <div class="links-card">
-    <h2>Quick links</h2>
-    <div class="links-grid">
-      <a href="index.html">← Back to guides <span>All starter pack docs</span></a>
-      <a href="config-guide.html">Config Guide <span>File-by-file walkthrough</span></a>
-      <a href="skills-helper.html">Skills Guide <span>Bundled skills and custom skills</span></a>
-      <a href="https://docs.openclaw.ai" target="_blank">docs.openclaw.ai <span>Official documentation</span></a>
-      <a href="https://console.anthropic.com" target="_blank">console.anthropic.com <span>Get your API key</span></a>
-      <a href="https://t.me/BotFather" target="_blank">@BotFather on Telegram <span>Create your bot</span></a>
-      <a href="https://brave.com/search/api" target="_blank">Brave Search API <span>Free web search for your assistant</span></a>
-      <a href="https://crontab.guru" target="_blank">crontab.guru <span>Build cron expressions</span></a>
-    </div>
-  </div>
+  <!-- Footer nav -->
+  <nav class="footer-nav">
+    <a href="index.html">← All guides</a>
+    <a href="config-guide.html">Config Guide</a>
+    <a href="skills-helper.html">Skills Guide</a>
+  </nav>
 
 </div>
 </body>
