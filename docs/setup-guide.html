@@ -3,18 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Setup Guide — OpenClaw Starter Pack">
+  <meta property="og:description" content="Step-by-step from zero to working assistant. Install OpenClaw, connect Telegram, configure your workspace, and run your first cron job.">
+  <meta property="og:url" content="https://vistawtf.github.io/openclaw-easy-setup/setup-guide.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Setup Guide — OpenClaw Starter Pack">
+  <meta name="twitter:description" content="Step-by-step from zero to working assistant. Install OpenClaw, connect Telegram, configure your workspace, and run your first cron job.">
+  <meta name="description" content="Step-by-step from zero to working assistant. Install OpenClaw, connect Telegram, configure your workspace, and run your first cron job.">
   <title>OpenClaw Setup Guide — From Zero to AI Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --background: #FAFAFA;
+      --foreground: #111111;
+      --surface: #F5F5F5;
+      --border: #E4E2D8;
+      --border-hover: #CCCCCC;
+      --muted: #666666;
+      --muted-light: #888888;
+      --ultra-orange: #FF5233;
+      --medium-orange: #FF7043;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #111111;
+        --foreground: #E4E2D8;
+        --surface: #161616;
+        --border: #2a2a2a;
+        --border-hover: #575757;
+      }
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      color: #2d2d2d;
-      background: #f7f7f5;
-      padding-top: 5rem;
+    ::selection {
+      background: rgba(255, 82, 51, 0.3);
     }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--foreground);
+      background: var(--background);
+      padding-top: 4rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
 
     .container {
       max-width: 860px;
@@ -26,10 +71,12 @@
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      background: #fff;
-      border-bottom: 1px solid #e5e5e0;
+      background: var(--background);
+      border-bottom: 1px solid var(--border);
       z-index: 100;
       padding: 0.6rem 1.5rem;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     .nav-inner {
@@ -37,16 +84,17 @@
       margin: 0 auto;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.35rem;
       flex-wrap: wrap;
     }
 
     .nav-title {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #888;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--muted-light);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.08em;
       margin-right: 0.5rem;
       white-space: nowrap;
     }
@@ -55,42 +103,43 @@
       display: inline-flex;
       align-items: center;
       gap: 0.25rem;
-      padding: 0.2rem 0.55rem;
-      border-radius: 20px;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
       font-size: 0.75rem;
       font-weight: 500;
-      color: #555;
+      color: var(--muted);
       text-decoration: none;
-      background: #f0f0ee;
+      background: transparent;
       border: 1px solid transparent;
       white-space: nowrap;
-      transition: all 0.15s;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .nav a:hover {
-      background: #eef4ff;
-      color: #3b5bdb;
-      border-color: #c5d4ff;
+      color: var(--ultra-orange);
+      background: rgba(255, 82, 51, 0.06);
     }
 
     /* Header */
     .header {
       text-align: center;
       padding: 2.5rem 0 2rem;
-      border-bottom: 2px solid #e5e5e0;
+      border-bottom: 1px solid var(--border);
       margin-bottom: 2.5rem;
     }
 
     .header h1 {
-      font-size: 1.9rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      letter-spacing: -0.5px;
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: var(--foreground);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
     }
 
     .header p {
       margin-top: 0.6rem;
-      color: #666;
+      color: var(--muted);
       font-size: 1rem;
     }
 
@@ -98,38 +147,77 @@
       margin-top: 1rem;
       display: flex;
       justify-content: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
     }
 
     .badge {
       display: inline-block;
       padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-weight: 500;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
-    .badge-blue { background: #eef4ff; color: #3b5bdb; }
-    .badge-green { background: #ebfbee; color: #2f9e44; }
-    .badge-gray { background: #f0f0ee; color: #555; }
+    .badge-orange { background: rgba(255, 82, 51, 0.1); color: var(--ultra-orange); }
+    .badge-green { background: rgba(47, 158, 68, 0.1); color: #2f9e44; }
+    .badge-gray { background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
+
+    /* Breadcrumb / series nav */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      font-size: 0.875rem;
+    }
+
+    .breadcrumb a {
+      color: var(--ultra-orange);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    .breadcrumb .sep { color: var(--border); }
+
+    .breadcrumb .label { color: var(--muted-light); }
+
+    .breadcrumb .sibling {
+      color: var(--ultra-orange);
+      text-decoration: none;
+    }
+
+    .breadcrumb .sibling:hover { text-decoration: underline; }
 
     /* Section cards */
     .section {
-      background: #fff;
-      border: 1px solid #e5e5e0;
-      border-radius: 12px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
       margin-bottom: 1.5rem;
       overflow: hidden;
+      transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .section { background: var(--surface); }
+    }
+
+    .section:hover {
+      border-color: var(--border-hover);
     }
 
     .section-header {
       display: flex;
       align-items: center;
       gap: 1rem;
-      padding: 1.1rem 1.5rem;
-      border-bottom: 1px solid #f0f0ee;
-      background: #fafaf8;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
     }
 
     .section-num {
@@ -138,7 +226,7 @@
       justify-content: center;
       width: 2rem;
       height: 2rem;
-      background: #3b5bdb;
+      background: var(--ultra-orange);
       color: #fff;
       border-radius: 50%;
       font-size: 0.8rem;
@@ -147,19 +235,24 @@
     }
 
     .section-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: var(--foreground);
       flex: 1;
+      letter-spacing: -0.01em;
     }
 
     .duration {
-      font-size: 0.78rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
       font-weight: 600;
-      color: #3b5bdb;
-      background: #eef4ff;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ultra-orange);
+      background: rgba(255, 82, 51, 0.08);
       padding: 0.2rem 0.6rem;
-      border-radius: 20px;
+      border-radius: 4px;
       white-space: nowrap;
     }
 
@@ -168,32 +261,34 @@
     }
 
     .section-summary {
-      color: #444;
+      color: var(--muted);
       margin-bottom: 1.1rem;
-      font-size: 0.97rem;
+      font-size: 0.9375rem;
     }
 
     /* Code blocks */
     pre {
-      background: #1e1e2e;
-      color: #cdd6f4;
+      background: #1a1a1a;
+      color: #e0e0e0;
       border-radius: 8px;
       padding: 1rem 1.25rem;
       margin: 0.75rem 0;
       overflow-x: auto;
-      font-size: 0.87rem;
-      line-height: 1.6;
-      font-family: "SF Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+      font-size: 0.8125rem;
+      line-height: 1.65;
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", Consolas, "Courier New", monospace;
       position: relative;
+      border: 1px solid #2a2a2a;
     }
 
     code {
-      font-family: "SF Mono", "Fira Code", Consolas, monospace;
-      font-size: 0.87em;
-      background: #f0f0ee;
-      padding: 0.1em 0.35em;
+      font-family: "SF Mono", "Fira Code", Consolas, "Courier New", monospace;
+      font-size: 0.85em;
+      background: var(--surface);
+      padding: 0.15em 0.4em;
       border-radius: 4px;
-      color: #c92a2a;
+      color: var(--ultra-orange);
+      border: 1px solid var(--border);
     }
 
     pre code {
@@ -201,14 +296,16 @@
       padding: 0;
       color: inherit;
       font-size: inherit;
+      border: none;
     }
 
     .code-label {
-      font-size: 0.72rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: #888;
+      letter-spacing: 0.08em;
+      color: var(--muted-light);
       margin-bottom: 0.3rem;
     }
 
@@ -217,52 +314,97 @@
       border-radius: 8px;
       padding: 0.85rem 1.1rem;
       margin: 0.75rem 0;
-      font-size: 0.93rem;
+      font-size: 0.9375rem;
+      border: 1px solid;
     }
 
     .callout-todo {
-      background: #ebfbee;
+      background: rgba(47, 158, 68, 0.05);
+      border-color: rgba(47, 158, 68, 0.2);
       border-left: 3px solid #2f9e44;
       color: #1a4a25;
     }
 
+    @media (prefers-color-scheme: dark) {
+      .callout-todo { color: #a3d9a5; background: rgba(47, 158, 68, 0.08); }
+    }
+
     .callout-todo strong {
       display: block;
-      font-size: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.08em;
       margin-bottom: 0.4rem;
       color: #2f9e44;
     }
 
     .callout-warn {
-      background: #fff9db;
+      background: rgba(245, 159, 0, 0.05);
+      border-color: rgba(245, 159, 0, 0.2);
       border-left: 3px solid #f59f00;
       color: #5c3c00;
     }
 
+    @media (prefers-color-scheme: dark) {
+      .callout-warn { color: #ffd97a; background: rgba(245, 159, 0, 0.08); }
+    }
+
     .callout-warn strong {
       display: block;
-      font-size: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.08em;
       margin-bottom: 0.4rem;
       color: #e67700;
     }
 
     .callout-info {
-      background: #eef4ff;
-      border-left: 3px solid #3b5bdb;
-      color: #1a2a6e;
+      background: rgba(59, 130, 246, 0.05);
+      border-color: rgba(59, 130, 246, 0.15);
+      border-left: 3px solid #3b82f6;
+      color: #1e3a5f;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .callout-info { color: #93c5fd; background: rgba(59, 130, 246, 0.08); }
     }
 
     .callout-info strong {
       display: block;
-      font-size: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.08em;
       margin-bottom: 0.4rem;
-      color: #3b5bdb;
+      color: #3b82f6;
+    }
+
+    /* Danger callout (for the VPS warning) */
+    .callout-danger {
+      background: rgba(201, 42, 42, 0.05);
+      border-color: rgba(201, 42, 42, 0.2);
+      border-left: 3px solid #c92a2a;
+      color: #7c1515;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .callout-danger { color: #fca5a5; background: rgba(201, 42, 42, 0.08); }
+    }
+
+    .callout-danger strong {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+      color: #c92a2a;
     }
 
     .todo-list {
@@ -288,18 +430,25 @@
 
     /* Links card */
     .links-card {
-      background: #fff;
-      border: 1px solid #e5e5e0;
-      border-radius: 12px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
       padding: 1.5rem;
       margin-top: 2rem;
+      transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .links-card { background: var(--surface); }
     }
 
     .links-card h2 {
+      font-family: 'Inter', sans-serif;
       font-size: 1rem;
-      font-weight: 600;
-      color: #1a1a1a;
+      font-weight: 500;
+      color: var(--foreground);
       margin-bottom: 1rem;
+      letter-spacing: -0.01em;
     }
 
     .links-grid {
@@ -311,37 +460,67 @@
     .links-grid a {
       display: block;
       padding: 0.5rem 0.75rem;
-      background: #f7f7f5;
-      border: 1px solid #e5e5e0;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 6px;
-      font-size: 0.87rem;
-      color: #3b5bdb;
+      font-size: 0.875rem;
+      color: var(--ultra-orange);
       text-decoration: none;
+      font-weight: 500;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .links-grid a:hover {
-      background: #eef4ff;
+      border-color: var(--border-hover);
+      background: rgba(255, 82, 51, 0.04);
     }
 
     .links-grid a span {
       display: block;
       font-size: 0.75rem;
-      color: #888;
-      margin-top: 0.1rem;
+      color: var(--muted-light);
+      margin-top: 0.15rem;
+      font-weight: 400;
     }
 
     h3 {
-      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
       font-weight: 600;
-      color: #555;
+      color: var(--muted);
       margin: 1rem 0 0.4rem;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.08em;
+    }
+
+    /* Tables inside sections */
+    .section-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.5rem 0;
+      font-size: 0.875rem;
+    }
+
+    .section-body table td {
+      padding: 0.35rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .section-body table td:first-child {
+      font-weight: 600;
+      color: var(--foreground);
+    }
+
+    .section-body table tr:last-child td {
+      border-bottom: none;
     }
 
     @media (max-width: 600px) {
       .links-grid { grid-template-columns: 1fr; }
       .nav-title { display: none; }
+      .header h1 { font-size: 1.75rem; }
+      .breadcrumb { font-size: 0.8125rem; }
     }
   </style>
 </head>
@@ -367,19 +546,19 @@
 
 <div class="container">
 
-  <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;font-size:0.87rem;">
-    <a href="index.html" style="color:#3b5bdb;text-decoration:none;font-weight:600;">← Back to index</a>
-    <span style="color:#ccc;">|</span>
-    <span style="color:#888;">Also in this series:</span>
-    <a href="config-guide.html" style="color:#3b5bdb;text-decoration:none;">Config Guide</a>
-    <a href="skills-helper.html" style="color:#3b5bdb;text-decoration:none;">Skills Guide</a>
+  <div class="breadcrumb">
+    <a href="index.html">← Back to index</a>
+    <span class="sep">|</span>
+    <span class="label">Also in this series:</span>
+    <a class="sibling" href="config-guide.html">Config Guide</a>
+    <a class="sibling" href="skills-helper.html">Skills Guide</a>
   </div>
 
   <div class="header">
     <h1>OpenClaw: from zero to AI assistant</h1>
     <p>Follow along during the workshop. Commands are ready to copy.</p>
     <div class="header-meta">
-      <span class="badge badge-blue">~57 minutes</span>
+      <span class="badge badge-orange">~57 minutes</span>
       <span class="badge badge-green">Ubuntu / macOS / WSL2</span>
       <span class="badge badge-gray">End state: AI in Telegram with memory + crons</span>
     </div>
@@ -420,39 +599,39 @@
         </ul>
       </div>
 
-      <div class="callout callout-warn" style="background:#fff0f0;border-left-color:#c92a2a;color:#7c1515;">
-        <strong style="color:#c92a2a;">Run OpenClaw on a dedicated machine</strong>
+      <div class="callout callout-danger">
+        <strong>Run OpenClaw on a dedicated machine</strong>
         Your AI assistant has access to files, shell, and network on whatever machine it runs on. For anything beyond casual testing, run it on a VPS or dedicated server, not your personal laptop. Three reasons:
         <ul style="margin-top:0.5rem;padding-left:1.25rem;line-height:1.8">
           <li><strong>Security</strong> — keep your personal files separate from your assistant's workspace</li>
           <li><strong>Availability</strong> — crons and heartbeats die when your laptop sleeps. A VPS runs 24/7.</li>
           <li><strong>Separation of concerns</strong> — a dedicated machine is easier to back up, harden, and manage</li>
         </ul>
-        <table style="width:100%;margin-top:0.75rem;border-collapse:collapse;font-size:0.87rem;">
-          <tr style="border-bottom:1px solid #e5c5c5;">
-            <td style="padding:0.3rem 0.5rem;font-weight:600;">Railway</td>
-            <td style="padding:0.3rem 0.5rem;">Free tier</td>
-            <td style="padding:0.3rem 0.5rem;">Easiest, no Linux knowledge needed</td>
-          </tr>
-          <tr style="border-bottom:1px solid #e5c5c5;">
-            <td style="padding:0.3rem 0.5rem;font-weight:600;">DigitalOcean</td>
-            <td style="padding:0.3rem 0.5rem;">$4-6/mo</td>
-            <td style="padding:0.3rem 0.5rem;">Beginner-friendly, great docs</td>
-          </tr>
-          <tr style="border-bottom:1px solid #e5c5c5;">
-            <td style="padding:0.3rem 0.5rem;font-weight:600;">Hetzner</td>
-            <td style="padding:0.3rem 0.5rem;">~€4/mo</td>
-            <td style="padding:0.3rem 0.5rem;">Cheapest in Europe, reliable</td>
-          </tr>
-          <tr style="border-bottom:1px solid #e5c5c5;">
-            <td style="padding:0.3rem 0.5rem;font-weight:600;">Vultr</td>
-            <td style="padding:0.3rem 0.5rem;">$2.50/mo</td>
-            <td style="padding:0.3rem 0.5rem;">Global locations</td>
+        <table>
+          <tr>
+            <td>Railway</td>
+            <td>Free tier</td>
+            <td>Easiest, no Linux knowledge needed</td>
           </tr>
           <tr>
-            <td style="padding:0.3rem 0.5rem;font-weight:600;">Linode/Akamai</td>
-            <td style="padding:0.3rem 0.5rem;">$5/mo</td>
-            <td style="padding:0.3rem 0.5rem;">Solid docs</td>
+            <td>DigitalOcean</td>
+            <td>$4-6/mo</td>
+            <td>Beginner-friendly, great docs</td>
+          </tr>
+          <tr>
+            <td>Hetzner</td>
+            <td>~€4/mo</td>
+            <td>Cheapest in Europe, reliable</td>
+          </tr>
+          <tr>
+            <td>Vultr</td>
+            <td>$2.50/mo</td>
+            <td>Global locations</td>
+          </tr>
+          <tr>
+            <td>Linode/Akamai</td>
+            <td>$5/mo</td>
+            <td>Solid docs</td>
           </tr>
         </table>
       </div>
@@ -474,7 +653,7 @@
 
       <h3>2. Check if Node.js is already installed</h3>
       <pre><code>node --version</code></pre>
-      <p style="font-size:0.9rem;color:#555;margin:0.4rem 0 0.75rem">If you see a version number (v18 or higher), skip the next step.</p>
+      <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">If you see a version number (v18 or higher), skip the next step.</p>
 
       <h3>3. Install Node.js (only if needed)</h3>
       <pre><code>curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
@@ -486,7 +665,7 @@ openclaw --version</code></pre>
 
       <h3>5. Run the setup wizard</h3>
       <pre><code>openclaw onboard</code></pre>
-      <p style="font-size:0.9rem;color:#555;margin:0.4rem 0 0.75rem">The wizard asks where to store your workspace, which AI provider to use, and your API key. Accept defaults unless you have a reason not to. Skip the channels step — we'll set up Telegram next.</p>
+      <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">The wizard asks where to store your workspace, which AI provider to use, and your API key. Accept defaults unless you have a reason not to. Skip the channels step — we'll set up Telegram next.</p>
 
       <h3>6. Start the gateway and verify</h3>
       <pre><code>openclaw gateway start
@@ -559,24 +738,24 @@ openclaw health</code></pre>
       <p class="section-summary">Create a Telegram bot and connect it to OpenClaw. After this, you'll be able to chat with your assistant from your phone.</p>
 
       <h3>1. Create your bot in Telegram</h3>
-      <p style="font-size:0.9rem;color:#555;margin:0.4rem 0 0.75rem">Open Telegram, search for <code>@BotFather</code>, and send:</p>
+      <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Open Telegram, search for <code>@BotFather</code>, and send:</p>
       <pre><code>/newbot</code></pre>
-      <p style="font-size:0.9rem;color:#555;margin:0.4rem 0 0.75rem">BotFather will ask for a display name and a username (must end in <code>bot</code>). Then it gives you an API token. Copy it.</p>
+      <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">BotFather will ask for a display name and a username (must end in <code>bot</code>). Then it gives you an API token. Copy it.</p>
 
       <h3>2. Connect to OpenClaw</h3>
       <pre><code>openclaw channels add --channel telegram --token YOUR_TOKEN_HERE</code></pre>
 
       <h3>3. Verify the connection</h3>
       <pre><code>openclaw channels status</code></pre>
-      <p style="font-size:0.9rem;color:#555;margin:0.4rem 0 0.75rem">Now open Telegram, find your bot, and send it a message. You should get a reply within a few seconds.</p>
+      <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Now open Telegram, find your bot, and send it a message. You should get a reply within a few seconds.</p>
 
       <h3>4. Get your chat ID</h3>
       <pre><code>openclaw directory self --channel telegram</code></pre>
-      <p style="font-size:0.9rem;color:#555;margin:0.4rem 0 0.75rem">Save this number. You'll need it for crons (scheduled tasks) later. Add it to TOOLS.md.</p>
+      <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Save this number. You'll need it for crons (scheduled tasks) later. Add it to TOOLS.md.</p>
 
       <h3>5. Set up the allowlist</h3>
       <pre><code>openclaw configure --section channels</code></pre>
-      <p style="font-size:0.9rem;color:#555;margin:0.4rem 0 0.75rem">Choose "pairing" for DM policy so only approved users can talk to your bot.</p>
+      <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Choose "pairing" for DM policy so only approved users can talk to your bot.</p>
 
       <div class="callout callout-todo">
         <strong>Your turn</strong>
@@ -681,7 +860,7 @@ openclaw health</code></pre>
 
       <div class="callout callout-info">
         <strong>Want the full breakdown?</strong>
-        For a detailed look at the bundled skills and how to create your own, see the <a href="skills-helper.html" style="color:#3b5bdb;">Skills Guide</a>.
+        For a detailed look at the bundled skills and how to create your own, see the <a href="skills-helper.html" style="color:var(--ultra-orange);">Skills Guide</a>.
       </div>
     </div>
   </div>
@@ -717,7 +896,7 @@ openclaw health</code></pre>
 
       <div class="callout callout-info">
         <strong>Time zones</strong>
-        Cron times are in UTC by default. If you're in UTC-4 (Eastern), <code>0 12 * * *</code> fires at 8am your time. Use <code>--tz America/New_York</code> to set your timezone explicitly. Use <a href="https://crontab.guru" target="_blank">crontab.guru</a> to build expressions.
+        Cron times are in UTC by default. If you're in UTC-4 (Eastern), <code>0 12 * * *</code> fires at 8am your time. Use <code>--tz America/New_York</code> to set your timezone explicitly. Use <a href="https://crontab.guru" target="_blank" style="color:var(--ultra-orange);">crontab.guru</a> to build expressions.
       </div>
 
       <h3>Manage your crons</h3>
@@ -811,13 +990,13 @@ openclaw cron delete JOB_ID</code></pre>
     <div class="section-body">
       <p class="section-summary">None of this is urgent today. But knowing it exists saves time later.</p>
 
-      <ul style="padding-left:1.25rem;color:#444;font-size:0.95rem;line-height:2">
-        <li><strong>More channels</strong> — Discord, WhatsApp, Slack. Same pattern as Telegram.</li>
-        <li><strong>Notion integration</strong> — create and manage tasks from Telegram.</li>
-        <li><strong>Brave Search API</strong> (free) — lets your assistant search the web.</li>
-        <li><strong>Custom skills</strong> — when you repeat the same instructions, write a SKILL.md file.</li>
-        <li><strong>Subagents</strong> — delegate long tasks while your main assistant stays free for urgent things.</li>
-        <li><strong>Security hardening</strong> — SECURITY.md in the starter pack. Run <code>openclaw security audit</code> when ready.</li>
+      <ul style="padding-left:1.25rem;color:var(--muted);font-size:0.9375rem;line-height:2">
+        <li><strong style="color:var(--foreground)">More channels</strong> — Discord, WhatsApp, Slack. Same pattern as Telegram.</li>
+        <li><strong style="color:var(--foreground)">Notion integration</strong> — create and manage tasks from Telegram.</li>
+        <li><strong style="color:var(--foreground)">Brave Search API</strong> (free) — lets your assistant search the web.</li>
+        <li><strong style="color:var(--foreground)">Custom skills</strong> — when you repeat the same instructions, write a SKILL.md file.</li>
+        <li><strong style="color:var(--foreground)">Subagents</strong> — delegate long tasks while your main assistant stays free for urgent things.</li>
+        <li><strong style="color:var(--foreground)">Security hardening</strong> — SECURITY.md in the starter pack. Run <code>openclaw security audit</code> when ready.</li>
       </ul>
     </div>
   </div>

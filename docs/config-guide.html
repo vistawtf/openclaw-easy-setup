@@ -3,71 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Config Guide — OpenClaw Starter Pack">
+  <meta property="og:description" content="File-by-file walkthrough of every workspace config file: IDENTITY.md, SOUL.md, USER.md, AGENTS.md, TOOLS.md, OPS.md, HEARTBEAT.md, and SECURITY.md.">
+  <meta property="og:url" content="https://vistawtf.github.io/openclaw-easy-setup/config-guide.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Config Guide — OpenClaw Starter Pack">
+  <meta name="twitter:description" content="File-by-file walkthrough of every workspace config file: IDENTITY.md, SOUL.md, USER.md, AGENTS.md, TOOLS.md, OPS.md, HEARTBEAT.md, and SECURITY.md.">
+  <meta name="description" content="File-by-file walkthrough of every workspace config file: IDENTITY.md, SOUL.md, USER.md, AGENTS.md, TOOLS.md, OPS.md, HEARTBEAT.md, and SECURITY.md.">
   <title>OpenClaw Starter Pack — Config Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --background: #FAFAFA;
+      --foreground: #111111;
+      --surface: #F5F5F5;
+      --border: #E4E2D8;
+      --border-hover: #CCCCCC;
+      --muted: #666666;
+      --muted-light: #888888;
+      --ultra-orange: #FF5233;
+      --medium-orange: #FF7043;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #111111;
+        --foreground: #E4E2D8;
+        --surface: #161616;
+        --border: #2a2a2a;
+        --border-hover: #575757;
+      }
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      color: #2d2d2d;
-      background: #f7f7f5;
-      padding: 2rem 1rem;
+    ::selection {
+      background: rgba(255, 82, 51, 0.3);
     }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--foreground);
+      background: var(--background);
+      padding: 2rem 1rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
 
     .container {
       max-width: 820px;
       margin: 0 auto;
     }
 
+    /* Breadcrumb / series nav */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      font-size: 0.875rem;
+    }
+
+    .breadcrumb a {
+      color: var(--ultra-orange);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb .sep { color: var(--border); }
+    .breadcrumb .label { color: var(--muted-light); }
+
+    .breadcrumb .sibling {
+      color: var(--ultra-orange);
+      text-decoration: none;
+    }
+
+    .breadcrumb .sibling:hover { text-decoration: underline; }
+
     /* Header */
     .header {
       text-align: center;
       margin-bottom: 3rem;
       padding-bottom: 2rem;
-      border-bottom: 2px solid #e5e5e0;
+      border-bottom: 1px solid var(--border);
     }
 
     .header h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      letter-spacing: -0.5px;
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: var(--foreground);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
     }
 
     .header p {
       margin-top: 0.75rem;
       font-size: 1.05rem;
-      color: #666;
+      color: var(--muted);
     }
 
     .badge {
       display: inline-block;
       margin-top: 1rem;
-      padding: 0.3rem 0.8rem;
-      background: #eef4ff;
-      color: #3b5bdb;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
+      padding: 0.25rem 0.75rem;
+      background: rgba(255, 82, 51, 0.1);
+      color: var(--ultra-orange);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
     /* Progress bar */
     .progress-bar {
-      background: #fff;
-      border: 1px solid #e5e5e0;
+      background: white;
+      border: 1px solid var(--border);
       border-radius: 10px;
       padding: 1.25rem 1.5rem;
       margin-bottom: 2.5rem;
+      transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .progress-bar { background: var(--surface); }
     }
 
     .progress-bar h3 {
-      font-size: 0.8rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: #888;
+      letter-spacing: 0.08em;
+      color: var(--muted-light);
       margin-bottom: 0.75rem;
     }
 
@@ -78,47 +159,56 @@
     }
 
     .step-pill {
-      padding: 0.3rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      background: #f0f0ee;
-      color: #666;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
     .step-pill.required {
-      background: #fff0f0;
+      background: rgba(201, 42, 42, 0.08);
       color: #c92a2a;
     }
 
     .step-pill.optional {
-      background: #f0f4ff;
-      color: #3b5bdb;
+      background: rgba(255, 82, 51, 0.08);
+      color: var(--ultra-orange);
     }
 
     /* Section card */
     .section {
-      background: #fff;
-      border: 1px solid #e5e5e0;
-      border-radius: 12px;
-      margin-bottom: 1.75rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
       overflow: hidden;
+      transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .section { background: var(--surface); }
+    }
+
+    .section:hover {
+      border-color: var(--border-hover);
     }
 
     .section-header {
-      padding: 1.25rem 1.75rem;
-      border-bottom: 1px solid #f0f0ee;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       gap: 1rem;
+      background: var(--surface);
     }
 
     .step-number {
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background: #1a1a1a;
-      color: #fff;
+      background: var(--foreground);
+      color: var(--background);
       font-size: 0.85rem;
       font-weight: 700;
       display: flex;
@@ -128,8 +218,8 @@
     }
 
     .step-number.optional-step {
-      background: #e5e5e0;
-      color: #888;
+      background: var(--border);
+      color: var(--muted);
     }
 
     .section-title {
@@ -137,38 +227,44 @@
     }
 
     .section-title h2 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: var(--foreground);
+      letter-spacing: -0.01em;
     }
 
     .section-title .meta {
-      font-size: 0.82rem;
-      color: #888;
+      font-size: 0.8125rem;
+      color: var(--muted-light);
       margin-top: 0.1rem;
     }
 
     .tag {
       padding: 0.2rem 0.6rem;
-      border-radius: 6px;
-      font-size: 0.75rem;
+      border-radius: 4px;
+      font-size: 0.6875rem;
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    .tag-required { background: #fff0f0; color: #c92a2a; }
-    .tag-optional { background: #f0f4ff; color: #3b5bdb; }
-    .tag-time { background: #f0fff4; color: #2f9e44; }
+    .tag-required { background: rgba(201, 42, 42, 0.08); color: #c92a2a; }
+    .tag-optional { background: rgba(255, 82, 51, 0.08); color: var(--ultra-orange); }
+    .tag-time { background: rgba(47, 158, 68, 0.08); color: #2f9e44; }
 
     .section-body {
       padding: 1.5rem 1.75rem;
     }
 
     .section-body h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--foreground);
       margin-top: 1.25rem;
       margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
     }
 
     .section-body h3:first-child {
@@ -176,47 +272,55 @@
     }
 
     .section-body p {
-      color: #444;
+      color: var(--muted);
       margin-bottom: 0.75rem;
+      font-size: 0.9375rem;
     }
 
     .section-body ul, .section-body ol {
       padding-left: 1.4rem;
-      color: #444;
+      color: var(--muted);
       margin-bottom: 0.75rem;
+      font-size: 0.9375rem;
     }
 
     .section-body li {
       margin-bottom: 0.3rem;
     }
 
+    .section-body li strong {
+      color: var(--foreground);
+    }
+
     /* Code blocks */
     pre {
-      background: #f5f5f3;
-      border: 1px solid #e8e8e4;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      border: 1px solid #2a2a2a;
       border-radius: 8px;
       padding: 1rem 1.25rem;
       overflow-x: auto;
-      font-family: "SF Mono", "Fira Mono", "Consolas", monospace;
-      font-size: 0.82rem;
-      line-height: 1.6;
+      font-family: "SF Mono", "Fira Code", Consolas, "Courier New", monospace;
+      font-size: 0.8125rem;
+      line-height: 1.65;
       margin: 0.75rem 0 1rem;
-      color: #1a1a1a;
     }
 
     code {
-      font-family: "SF Mono", "Fira Mono", "Consolas", monospace;
+      font-family: "SF Mono", "Fira Code", Consolas, "Courier New", monospace;
       font-size: 0.85em;
-      background: #f0f0ee;
-      padding: 0.1em 0.4em;
+      background: var(--surface);
+      padding: 0.15em 0.4em;
       border-radius: 4px;
-      color: #c92a2a;
+      color: var(--ultra-orange);
+      border: 1px solid var(--border);
     }
 
     pre code {
       background: none;
       padding: 0;
       color: inherit;
+      border: none;
     }
 
     /* Callout boxes */
@@ -224,31 +328,43 @@
       border-radius: 8px;
       padding: 1rem 1.25rem;
       margin: 0.75rem 0 1rem;
-      font-size: 0.92rem;
+      font-size: 0.9375rem;
+      border: 1px solid;
     }
 
     .callout-tip {
-      background: #f0fff4;
+      background: rgba(47, 158, 68, 0.05);
+      border-color: rgba(47, 158, 68, 0.2);
       border-left: 3px solid #2f9e44;
       color: #2d6a4f;
     }
 
     .callout-warning {
-      background: #fff9f0;
+      background: rgba(245, 159, 0, 0.05);
+      border-color: rgba(245, 159, 0, 0.2);
       border-left: 3px solid #e67700;
       color: #7c4a00;
     }
 
     .callout-danger {
-      background: #fff0f0;
+      background: rgba(201, 42, 42, 0.05);
+      border-color: rgba(201, 42, 42, 0.2);
       border-left: 3px solid #c92a2a;
       color: #7c1515;
     }
 
     .callout-info {
-      background: #f0f4ff;
-      border-left: 3px solid #3b5bdb;
-      color: #1e3a8a;
+      background: rgba(59, 130, 246, 0.05);
+      border-color: rgba(59, 130, 246, 0.15);
+      border-left: 3px solid #3b82f6;
+      color: #1e3a5f;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .callout-tip { color: #a3d9a5; background: rgba(47, 158, 68, 0.08); }
+      .callout-warning { color: #ffd97a; background: rgba(245, 159, 0, 0.08); }
+      .callout-danger { color: #fca5a5; background: rgba(201, 42, 42, 0.08); }
+      .callout-info { color: #93c5fd; background: rgba(59, 130, 246, 0.08); }
     }
 
     .callout strong {
@@ -261,27 +377,29 @@
       width: 100%;
       border-collapse: collapse;
       margin: 0.75rem 0 1rem;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
     }
 
     th {
-      background: #f5f5f3;
+      background: var(--surface);
       text-align: left;
       padding: 0.6rem 0.9rem;
       font-weight: 600;
-      font-size: 0.82rem;
-      color: #555;
+      font-size: 0.6875rem;
+      color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.3px;
-      border-bottom: 1px solid #e5e5e0;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid var(--border);
     }
 
     td {
       padding: 0.6rem 0.9rem;
-      border-bottom: 1px solid #f0f0ee;
-      color: #444;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
       vertical-align: top;
     }
+
+    td strong { color: var(--foreground); }
 
     tr:last-child td { border-bottom: none; }
 
@@ -296,21 +414,24 @@
       align-items: flex-start;
       gap: 0.6rem;
       padding: 0.35rem 0;
-      color: #444;
+      color: var(--muted);
+      font-size: 0.9375rem;
     }
 
     .checklist li::before {
       content: "☐";
       font-size: 1.1rem;
-      color: #bbb;
+      color: var(--border-hover);
       flex-shrink: 0;
       margin-top: -1px;
     }
 
+    .checklist li strong { color: var(--foreground); }
+
     /* Divider */
     hr {
       border: none;
-      border-top: 1px solid #f0f0ee;
+      border-top: 1px solid var(--border);
       margin: 1.25rem 0;
     }
 
@@ -319,12 +440,12 @@
       text-align: center;
       margin-top: 3rem;
       padding-top: 2rem;
-      border-top: 1px solid #e5e5e0;
-      color: #888;
-      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted-light);
+      font-size: 0.8125rem;
     }
 
-    .footer a { color: #3b5bdb; text-decoration: none; }
+    .footer a { color: var(--ultra-orange); text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
 
     /* Responsive */
@@ -332,18 +453,20 @@
       body { padding: 1rem 0.75rem; }
       .section-header { padding: 1rem 1.25rem; }
       .section-body { padding: 1.25rem; }
+      .header h1 { font-size: 1.75rem; }
+      .breadcrumb { font-size: 0.8125rem; }
     }
   </style>
 </head>
 <body>
 <div class="container">
 
-  <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;font-size:0.87rem;">
-    <a href="index.html" style="color:#3b5bdb;text-decoration:none;font-weight:600;">← Back to index</a>
-    <span style="color:#ccc;">|</span>
-    <span style="color:#888;">Also in this series:</span>
-    <a href="setup-guide.html" style="color:#3b5bdb;text-decoration:none;">Setup Guide</a>
-    <a href="skills-helper.html" style="color:#3b5bdb;text-decoration:none;">Skills Guide</a>
+  <div class="breadcrumb">
+    <a href="index.html">← Back to index</a>
+    <span class="sep">|</span>
+    <span class="label">Also in this series:</span>
+    <a class="sibling" href="setup-guide.html">Setup Guide</a>
+    <a class="sibling" href="skills-helper.html">Skills Guide</a>
   </div>
 
   <!-- Header -->
@@ -463,18 +586,18 @@
       <h3>What to customize</h3>
 
       <p>How you talk — add your style preferences after the existing rules. Examples:</p>
-      <pre>"Be concise but warm — like texting a smart friend"
+      <pre><code>"Be concise but warm — like texting a smart friend"
 "Use analogies from sports to explain complex ideas"
 "Challenge my assumptions when you see weak logic"
-"Default to bullet points over paragraphs"</pre>
+"Default to bullet points over paragraphs"</code></pre>
 
       <p>Opinions — decide how direct you want the AI to be:</p>
-      <pre>"Sugar-coat nothing — treat me like a peer"
+      <pre><code>"Sugar-coat nothing — treat me like a peer"
 "Be diplomatic but honest — I'm sensitive to bluntness"
-"Challenge me on strategy, be gentle on personal stuff"</pre>
+"Challenge me on strategy, be gentle on personal stuff"</code></pre>
 
       <p>Language — set your language rules clearly:</p>
-      <pre># English only:
+      <pre><code># English only:
 "Always respond in English."
 
 # Bilingual:
@@ -483,12 +606,12 @@
 # Regional Spanish (important!):
 "Use Argentine voseo: tenés, querés, podés."
 "Use Mexican tuteo. Occasional 'güey' is fine."
-"Use Colombian tuteo with usted for formal contexts."</pre>
+"Use Colombian tuteo with usted for formal contexts."</code></pre>
 
       <p>Vibe — the overall character in one line:</p>
-      <pre>"Like a smart coworker who respects my time"
+      <pre><code>"Like a smart coworker who respects my time"
 "The engineer friend who always has a better way"
-"Calm advisor, not an eager intern"</pre>
+"Calm advisor, not an eager intern"</code></pre>
 
       <h3>What not to touch</h3>
       <p>The <strong>Linguistic patterns to avoid</strong> section — keep it exactly as-is. These rules suppress the most common AI writing artifacts (em dashes, rule-of-three, significance inflation, etc.). They work universally and improve every response.</p>
@@ -525,8 +648,8 @@
       <h3>What to review and customize</h3>
 
       <p>Section 2, Memory Routing: the table defines where different types of information get saved. The defaults work well. You can add rows as you add projects. Example:</p>
-      <pre>| Project notes | myproject/CONTEXT.md |
-| Code patterns | memory/solutions/code/ |</pre>
+      <pre><code>| Project notes | myproject/CONTEXT.md |
+| Code patterns | memory/solutions/code/ |</code></pre>
 
       <p>Section 3, Task Management: if you use Notion, fill in your database ID and uncomment the section. If you don't use Notion, delete it — simpler is better.</p>
 
@@ -565,9 +688,9 @@
 
       <h3>API key storage</h3>
       <p>Store credentials in <code>~/.config/&lt;service&gt;/</code>, not in this file. TOOLS.md only documents <em>where</em> keys live and how to use them.</p>
-      <pre>mkdir -p ~/.config/notion
+      <pre><code>mkdir -p ~/.config/notion
 echo "YOUR_API_KEY" > ~/.config/notion/api_key
-chmod 600 ~/.config/notion/api_key</pre>
+chmod 600 ~/.config/notion/api_key</code></pre>
 
       <h3>What to add here</h3>
       <ul>
@@ -663,26 +786,26 @@ chmod 600 ~/.config/notion/api_key</pre>
 
       <h3>What to customize</h3>
       <p>The "When to Alert Me" and "When to Stay Quiet" sections are sensible defaults. The part you'll want to configure is "What to Check" — add the specific things you want your AI to monitor:</p>
-      <pre>- Email — any urgent unread messages?
+      <pre><code>- Email — any urgent unread messages?
 - Calendar — upcoming events in next 24-48h?
 - GitHub — any failing CI or PR reviews waiting?
-- Services — is my app responding to health checks?</pre>
+- Services — is my app responding to health checks?</code></pre>
 
       <h3>When to set this up</h3>
       <p>Skip it for week 1. Once you're comfortable with the basics, set up a heartbeat cron via:</p>
-      <pre>openclaw cron create \
+      <pre><code>openclaw cron create \
   --name "Heartbeat" \
   --cron "*/15 * * * *" \
   --message "Run heartbeat check per HEARTBEAT.md" \
   --to telegram:YOUR_CHAT_ID \
   --announce \
-  --wake now</pre>
+  --wake now</code></pre>
     </div>
   </div>
 
   <!-- ===================== STEP 8: SECURITY ===================== -->
-  <div class="section" style="border-color: #ffd8d8;">
-    <div class="section-header" style="background: #fffafa;">
+  <div class="section" style="border-color: rgba(201, 42, 42, 0.25);">
+    <div class="section-header" style="background: rgba(201, 42, 42, 0.03);">
       <div class="step-number" style="background: #c92a2a;">8</div>
       <div class="section-title">
         <h2>Security — SECURITY.md</h2>
@@ -706,7 +829,7 @@ chmod 600 ~/.config/notion/api_key</pre>
 
       <h3>Quick secret scan</h3>
       <p>Run this before committing or sharing anything:</p>
-      <pre>grep -rn "sk-ant\|sk-or\|sk-proj\|ghp_\|gsk_\|xoxb-\|xoxp-" ~/clawd/</pre>
+      <pre><code>grep -rn "sk-ant\|sk-or\|sk-proj\|ghp_\|gsk_\|xoxb-\|xoxp-" ~/clawd/</code></pre>
       <p>If this returns anything, you have a key in the wrong place.</p>
 
       <h3>If a key is ever exposed</h3>
@@ -717,13 +840,13 @@ chmod 600 ~/.config/notion/api_key</pre>
 
       <h3>Tool access restriction</h3>
       <p>By default, the AI has broad access. You can restrict it in <code>~/.openclaw/openclaw.json</code>:</p>
-      <pre>{
+      <pre><code>{
   tools: {
     fs: { workspaceOnly: true },      // limit file access to workspace only
     exec: { security: "allowlist" },  // restrict shell commands
     elevated: { enabled: false },     // no host-level execution
   }
-}</pre>
+}</code></pre>
 
       <h3>For teams</h3>
       <p>OpenClaw is designed as a personal assistant tool with one trust boundary per gateway. If multiple people need access:</p>
@@ -817,7 +940,7 @@ chmod 600 ~/.config/notion/api_key</pre>
       <ul class="checklist">
         <li>Add rules to AGENTS.md as you discover what you need</li>
         <li>Set up your first cron (e.g., daily summary at 9am)</li>
-        <li>Install 2-3 skills from the <a href="https://clawhub.com">marketplace</a></li>
+        <li>Install 2-3 skills from the <a href="https://clawhub.com" style="color:var(--ultra-orange);">marketplace</a></li>
         <li>Configure HEARTBEAT.md if you want proactive checks</li>
       </ul>
 
@@ -860,7 +983,7 @@ chmod 600 ~/.config/notion/api_key</pre>
 
       <div class="callout callout-tip">
         <strong>Skills extend what your AI can do</strong>
-        For a deeper look at the bundled skills and how to create your own, see the <a href="skills-helper.html">Skills Guide</a>.
+        For a deeper look at the bundled skills and how to create your own, see the <a href="skills-helper.html" style="color:var(--ultra-orange);">Skills Guide</a>.
       </div>
 
       <div class="callout callout-tip">
@@ -882,8 +1005,8 @@ chmod 600 ~/.config/notion/api_key</pre>
       <a href="https://docs.openclaw.ai/gateway/security">Security Docs</a> ·
       <a href="https://docs.openclaw.ai/concepts/agent-workspace">Agent Workspace</a>
     </p>
-    <p style="margin-top: 0.75rem; color: #bbb;">
-      OpenClaw Starter Pack &mdash; <a href="https://vistawtf.github.io/openclaw-easy-setup">vistawtf.github.io/openclaw-easy-setup</a>
+    <p style="margin-top: 0.75rem; color: var(--muted-light);">
+      OpenClaw Starter Pack — <a href="https://vistawtf.github.io/openclaw-easy-setup">vistawtf.github.io/openclaw-easy-setup</a>
     </p>
   </div>
 

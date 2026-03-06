@@ -3,77 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Skills Guide — OpenClaw Starter Pack">
+  <meta property="og:description" content="What skills are bundled, how to find more on ClawhHub, and how to build your own custom skills for OpenClaw.">
+  <meta property="og:url" content="https://vistawtf.github.io/openclaw-easy-setup/skills-helper.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Skills Guide — OpenClaw Starter Pack">
+  <meta name="twitter:description" content="What skills are bundled, how to find more on ClawhHub, and how to build your own custom skills for OpenClaw.">
+  <meta name="description" content="What skills are bundled, how to find more on ClawhHub, and how to build your own custom skills for OpenClaw.">
   <title>OpenClaw Starter Pack — Skills Helper</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --background: #FAFAFA;
+      --foreground: #111111;
+      --surface: #F5F5F5;
+      --border: #E4E2D8;
+      --border-hover: #CCCCCC;
+      --muted: #666666;
+      --muted-light: #888888;
+      --ultra-orange: #FF5233;
+      --medium-orange: #FF7043;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #111111;
+        --foreground: #E4E2D8;
+        --surface: #161616;
+        --border: #2a2a2a;
+        --border-hover: #575757;
+      }
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      color: #2d2d2d;
-      background: #f7f7f5;
-      padding: 2rem 1rem;
+    ::selection {
+      background: rgba(255, 82, 51, 0.3);
     }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--foreground);
+      background: var(--background);
+      padding: 2rem 1rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
 
     .container {
       max-width: 820px;
       margin: 0 auto;
     }
 
+    /* Breadcrumb / series nav */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      font-size: 0.875rem;
+    }
+
+    .breadcrumb a {
+      color: var(--ultra-orange);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb .sep { color: var(--border); }
+    .breadcrumb .label { color: var(--muted-light); }
+
+    .breadcrumb .sibling {
+      color: var(--ultra-orange);
+      text-decoration: none;
+    }
+
+    .breadcrumb .sibling:hover { text-decoration: underline; }
+
     .header {
       text-align: center;
       margin-bottom: 3rem;
       padding-bottom: 2rem;
-      border-bottom: 2px solid #e5e5e0;
+      border-bottom: 1px solid var(--border);
     }
 
     .header h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      letter-spacing: -0.5px;
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: var(--foreground);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
     }
 
     .header p {
       margin-top: 0.75rem;
       font-size: 1.05rem;
-      color: #666;
+      color: var(--muted);
     }
 
     .badge {
       display: inline-block;
       margin-top: 1rem;
-      padding: 0.3rem 0.8rem;
-      background: #eef4ff;
-      color: #3b5bdb;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
+      padding: 0.25rem 0.75rem;
+      background: rgba(255, 82, 51, 0.1);
+      color: var(--ultra-orange);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
     .section {
-      background: #fff;
-      border: 1px solid #e5e5e0;
-      border-radius: 12px;
-      margin-bottom: 1.75rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
       overflow: hidden;
+      transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .section { background: var(--surface); }
+    }
+
+    .section:hover {
+      border-color: var(--border-hover);
     }
 
     .section-header {
-      padding: 1.25rem 1.75rem;
-      border-bottom: 1px solid #f0f0ee;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       gap: 1rem;
+      background: var(--surface);
     }
 
     .step-number {
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background: #1a1a1a;
-      color: #fff;
+      background: var(--foreground);
+      color: var(--background);
       font-size: 0.85rem;
       font-weight: 700;
       display: flex;
@@ -83,8 +168,8 @@
     }
 
     .step-number.optional-step {
-      background: #e5e5e0;
-      color: #888;
+      background: var(--border);
+      color: var(--muted);
     }
 
     .section-title {
@@ -92,37 +177,43 @@
     }
 
     .section-title h2 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: var(--foreground);
+      letter-spacing: -0.01em;
     }
 
     .section-title .meta {
-      font-size: 0.82rem;
-      color: #888;
+      font-size: 0.8125rem;
+      color: var(--muted-light);
       margin-top: 0.1rem;
     }
 
     .tag {
       padding: 0.2rem 0.6rem;
-      border-radius: 6px;
-      font-size: 0.75rem;
+      border-radius: 4px;
+      font-size: 0.6875rem;
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    .tag-bundled { background: #f0fff4; color: #2f9e44; }
-    .tag-optional { background: #f0f4ff; color: #3b5bdb; }
+    .tag-bundled { background: rgba(47, 158, 68, 0.08); color: #2f9e44; }
+    .tag-optional { background: rgba(255, 82, 51, 0.08); color: var(--ultra-orange); }
 
     .section-body {
       padding: 1.5rem 1.75rem;
     }
 
     .section-body h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--foreground);
       margin-top: 1.25rem;
       margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
     }
 
     .section-body h3:first-child {
@@ -130,65 +221,81 @@
     }
 
     .section-body p {
-      color: #444;
+      color: var(--muted);
       margin-bottom: 0.75rem;
+      font-size: 0.9375rem;
     }
 
     .section-body ul, .section-body ol {
       padding-left: 1.4rem;
-      color: #444;
+      color: var(--muted);
       margin-bottom: 0.75rem;
+      font-size: 0.9375rem;
     }
 
     .section-body li {
       margin-bottom: 0.3rem;
     }
 
+    .section-body li strong {
+      color: var(--foreground);
+    }
+
     pre {
-      background: #f5f5f3;
-      border: 1px solid #e8e8e4;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      border: 1px solid #2a2a2a;
       border-radius: 8px;
       padding: 1rem 1.25rem;
       overflow-x: auto;
-      font-family: "SF Mono", "Fira Mono", "Consolas", monospace;
-      font-size: 0.82rem;
-      line-height: 1.6;
+      font-family: "SF Mono", "Fira Code", Consolas, "Courier New", monospace;
+      font-size: 0.8125rem;
+      line-height: 1.65;
       margin: 0.75rem 0 1rem;
-      color: #1a1a1a;
     }
 
     code {
-      font-family: "SF Mono", "Fira Mono", "Consolas", monospace;
+      font-family: "SF Mono", "Fira Code", Consolas, "Courier New", monospace;
       font-size: 0.85em;
-      background: #f0f0ee;
-      padding: 0.1em 0.4em;
+      background: var(--surface);
+      padding: 0.15em 0.4em;
       border-radius: 4px;
-      color: #c92a2a;
+      color: var(--ultra-orange);
+      border: 1px solid var(--border);
     }
 
     pre code {
       background: none;
       padding: 0;
       color: inherit;
+      border: none;
     }
 
     .callout {
       border-radius: 8px;
       padding: 1rem 1.25rem;
       margin: 0.75rem 0 1rem;
-      font-size: 0.92rem;
+      font-size: 0.9375rem;
+      border: 1px solid;
     }
 
     .callout-tip {
-      background: #f0fff4;
+      background: rgba(47, 158, 68, 0.05);
+      border-color: rgba(47, 158, 68, 0.2);
       border-left: 3px solid #2f9e44;
       color: #2d6a4f;
     }
 
     .callout-info {
-      background: #f0f4ff;
-      border-left: 3px solid #3b5bdb;
-      color: #1e3a8a;
+      background: rgba(59, 130, 246, 0.05);
+      border-color: rgba(59, 130, 246, 0.15);
+      border-left: 3px solid #3b82f6;
+      color: #1e3a5f;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .callout-tip { color: #a3d9a5; background: rgba(47, 158, 68, 0.08); }
+      .callout-info { color: #93c5fd; background: rgba(59, 130, 246, 0.08); }
     }
 
     .callout strong {
@@ -200,27 +307,29 @@
       width: 100%;
       border-collapse: collapse;
       margin: 0.75rem 0 1rem;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
     }
 
     th {
-      background: #f5f5f3;
+      background: var(--surface);
       text-align: left;
       padding: 0.6rem 0.9rem;
       font-weight: 600;
-      font-size: 0.82rem;
-      color: #555;
+      font-size: 0.6875rem;
+      color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.3px;
-      border-bottom: 1px solid #e5e5e0;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid var(--border);
     }
 
     td {
       padding: 0.6rem 0.9rem;
-      border-bottom: 1px solid #f0f0ee;
-      color: #444;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
       vertical-align: top;
     }
+
+    td strong { color: var(--foreground); }
 
     tr:last-child td { border-bottom: none; }
 
@@ -228,40 +337,32 @@
       text-align: center;
       margin-top: 3rem;
       padding-top: 2rem;
-      border-top: 1px solid #e5e5e0;
-      color: #888;
-      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted-light);
+      font-size: 0.8125rem;
     }
 
-    .footer a { color: #3b5bdb; text-decoration: none; }
+    .footer a { color: var(--ultra-orange); text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
-
-    .nav-link {
-      display: inline-block;
-      margin-bottom: 2rem;
-      font-size: 0.9rem;
-      color: #3b5bdb;
-      text-decoration: none;
-    }
-
-    .nav-link:hover { text-decoration: underline; }
 
     @media (max-width: 600px) {
       body { padding: 1rem 0.75rem; }
       .section-header { padding: 1rem 1.25rem; }
       .section-body { padding: 1.25rem; }
+      .header h1 { font-size: 1.75rem; }
+      .breadcrumb { font-size: 0.8125rem; }
     }
   </style>
 </head>
 <body>
 <div class="container">
 
-  <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;font-size:0.87rem;">
-    <a href="index.html" style="color:#3b5bdb;text-decoration:none;font-weight:600;">← Back to index</a>
-    <span style="color:#ccc;">|</span>
-    <span style="color:#888;">Also in this series:</span>
-    <a href="setup-guide.html" style="color:#3b5bdb;text-decoration:none;">Setup Guide</a>
-    <a href="config-guide.html" style="color:#3b5bdb;text-decoration:none;">Config Guide</a>
+  <div class="breadcrumb">
+    <a href="index.html">← Back to index</a>
+    <span class="sep">|</span>
+    <span class="label">Also in this series:</span>
+    <a class="sibling" href="setup-guide.html">Setup Guide</a>
+    <a class="sibling" href="config-guide.html">Config Guide</a>
   </div>
 
   <!-- Header -->
@@ -347,7 +448,7 @@
       <div class="callout callout-info">
         <strong>Skill directory structure</strong>
         Each skill lives in its own folder under <code>skills/</code>:
-        <pre style="margin-top: 0.5rem; margin-bottom: 0; border: none; background: transparent; color: inherit; padding: 0;">skills/
+        <pre style="margin-top: 0.5rem; margin-bottom: 0; border: none; background: transparent; color: inherit; padding: 0; font-size: 0.8125rem;">skills/
 ├── auto-improve/
 │   └── SKILL.md
 ├── humanizer/
@@ -368,7 +469,7 @@
       </div>
     </div>
     <div class="section-body">
-      <p>The <a href="https://clawhub.com" style="color:#3b5bdb;">ClawhHub marketplace</a> is where the community shares skills. Browse by category or search for what you need.</p>
+      <p>The <a href="https://clawhub.com" style="color:var(--ultra-orange);">ClawhHub marketplace</a> is where the community shares skills. Browse by category or search for what you need.</p>
 
       <h3>Installing a skill from ClawhHub</h3>
       <p>The easiest way: tell your assistant what you need. For example:</p>
@@ -433,7 +534,7 @@
       </ol>
 
       <h3>Minimal example</h3>
-      <pre>---
+      <pre><code>---
 name: daily-standup
 description: Generate a daily standup update from recent work logs and git activity. Use when the user asks for a standup, daily update, or status report.
 ---
@@ -446,7 +547,7 @@ Format as:
 - **Today:** what's planned
 - **Blockers:** anything stuck
 
-Keep it under 5 lines total.</pre>
+Keep it under 5 lines total.</code></pre>
 
       <p>The bundled <strong>skill-creator</strong> skill walks you through the full process with best practices for structure, progressive disclosure, and testing. Just tell your AI: "I want to create a new skill."</p>
 
@@ -468,8 +569,8 @@ Keep it under 5 lines total.</pre>
       <a href="https://clawhub.com">ClawhHub Marketplace</a> ·
       <a href="https://docs.openclaw.ai">OpenClaw Docs</a>
     </p>
-    <p style="margin-top: 0.75rem; color: #bbb;">
-      OpenClaw Starter Pack &mdash; <a href="https://vistawtf.github.io/openclaw-easy-setup">vistawtf.github.io/openclaw-easy-setup</a>
+    <p style="margin-top: 0.75rem; color: var(--muted-light);">
+      OpenClaw Starter Pack — <a href="https://vistawtf.github.io/openclaw-easy-setup">vistawtf.github.io/openclaw-easy-setup</a>
     </p>
   </div>
 
