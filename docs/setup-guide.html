@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw Starter Pack — Setup Guide</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: #2d2d2d;
+      background: #f7f7f5;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid #e5e5e0;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+    }
+
+    .header p {
+      margin-top: 0.75rem;
+      font-size: 1.05rem;
+      color: #666;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.3rem 0.8rem;
+      background: #eef4ff;
+      color: #3b5bdb;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      background: #fff;
+      border: 1px solid #e5e5e0;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .progress-bar h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #888;
+      margin-bottom: 0.75rem;
+    }
+
+    .progress-steps {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .step-pill {
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      background: #f0f0ee;
+      color: #666;
+    }
+
+    .step-pill.required {
+      background: #fff0f0;
+      color: #c92a2a;
+    }
+
+    .step-pill.optional {
+      background: #f0f4ff;
+      color: #3b5bdb;
+    }
+
+    /* Section card */
+    .section {
+      background: #fff;
+      border: 1px solid #e5e5e0;
+      border-radius: 12px;
+      margin-bottom: 1.75rem;
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 1.25rem 1.75rem;
+      border-bottom: 1px solid #f0f0ee;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-number.optional-step {
+      background: #e5e5e0;
+      color: #888;
+    }
+
+    .section-title {
+      flex: 1;
+    }
+
+    .section-title h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .section-title .meta {
+      font-size: 0.82rem;
+      color: #888;
+      margin-top: 0.1rem;
+    }
+
+    .tag {
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .tag-required { background: #fff0f0; color: #c92a2a; }
+    .tag-optional { background: #f0f4ff; color: #3b5bdb; }
+    .tag-time { background: #f0fff4; color: #2f9e44; }
+
+    .section-body {
+      padding: 1.5rem 1.75rem;
+    }
+
+    .section-body h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .section-body p {
+      color: #444;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-body ul, .section-body ol {
+      padding-left: 1.4rem;
+      color: #444;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-body li {
+      margin-bottom: 0.3rem;
+    }
+
+    /* Code blocks */
+    pre {
+      background: #f5f5f3;
+      border: 1px solid #e8e8e4;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      font-family: "SF Mono", "Fira Mono", "Consolas", monospace;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      margin: 0.75rem 0 1rem;
+      color: #1a1a1a;
+    }
+
+    code {
+      font-family: "SF Mono", "Fira Mono", "Consolas", monospace;
+      font-size: 0.85em;
+      background: #f0f0ee;
+      padding: 0.1em 0.4em;
+      border-radius: 4px;
+      color: #c92a2a;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+
+    /* Callout boxes */
+    .callout {
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 0.75rem 0 1rem;
+      font-size: 0.92rem;
+    }
+
+    .callout-tip {
+      background: #f0fff4;
+      border-left: 3px solid #2f9e44;
+      color: #2d6a4f;
+    }
+
+    .callout-warning {
+      background: #fff9f0;
+      border-left: 3px solid #e67700;
+      color: #7c4a00;
+    }
+
+    .callout-danger {
+      background: #fff0f0;
+      border-left: 3px solid #c92a2a;
+      color: #7c1515;
+    }
+
+    .callout-info {
+      background: #f0f4ff;
+      border-left: 3px solid #3b5bdb;
+      color: #1e3a8a;
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.75rem 0 1rem;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: #f5f5f3;
+      text-align: left;
+      padding: 0.6rem 0.9rem;
+      font-weight: 600;
+      font-size: 0.82rem;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      border-bottom: 1px solid #e5e5e0;
+    }
+
+    td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid #f0f0ee;
+      color: #444;
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    /* Checklist */
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.35rem 0;
+      color: #444;
+    }
+
+    .checklist li::before {
+      content: "☐";
+      font-size: 1.1rem;
+      color: #bbb;
+      flex-shrink: 0;
+      margin-top: -1px;
+    }
+
+    /* Divider */
+    hr {
+      border: none;
+      border-top: 1px solid #f0f0ee;
+      margin: 1.25rem 0;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e5e5e0;
+      color: #888;
+      font-size: 0.85rem;
+    }
+
+    .footer a { color: #3b5bdb; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      .section-header { padding: 1rem 1.25rem; }
+      .section-body { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>OpenClaw Starter Pack</h1>
+    <p>Configure your AI assistant step by step. Open this guide alongside your editor.</p>
+    <span class="badge">Setup Guide — ~30 minutes total</span>
+  </div>
+
+  <!-- Overview -->
+  <div class="progress-bar">
+    <h3>Configuration order</h3>
+    <div class="progress-steps">
+      <span class="step-pill required">1 · IDENTITY.md (required)</span>
+      <span class="step-pill required">2 · USER.md (required)</span>
+      <span class="step-pill required">3 · SOUL.md (required)</span>
+      <span class="step-pill required">4 · AGENTS.md (required)</span>
+      <span class="step-pill optional">5 · TOOLS.md (as needed)</span>
+      <span class="step-pill optional">6 · OPS.md (later)</span>
+      <span class="step-pill optional">7 · HEARTBEAT.md (later)</span>
+      <span class="step-pill optional">8 · Security (before sharing)</span>
+    </div>
+  </div>
+
+  <!-- ===================== DEDICATED SERVER ===================== -->
+  <div class="section" style="border-color: #ffd8d8;">
+    <div class="section-header" style="background: #fffafa;">
+      <div class="step-number" style="background: #c92a2a;">!</div>
+      <div class="section-title">
+        <h2>Run OpenClaw on a dedicated machine</h2>
+        <div class="meta">Not your personal laptop — a server or VPS</div>
+      </div>
+      <span class="tag tag-required">Important</span>
+    </div>
+    <div class="section-body">
+      <div class="callout callout-danger">
+        <strong>Do not run OpenClaw on your personal work laptop.</strong>
+        The agent has access to the machine it runs on — files, shell, network. Running it on a dedicated server gives you three things:
+        <ul style="margin-top: 0.5rem; margin-bottom: 0;">
+          <li><strong>Security</strong> — your personal files, work accounts, and browser sessions aren't exposed to the agent</li>
+          <li><strong>Availability</strong> — your laptop sleeps, a server doesn't. Crons, heartbeats, and overnight tasks need uptime</li>
+          <li><strong>Separation of concerns</strong> — the agent's workspace is isolated from everything else you do</li>
+        </ul>
+      </div>
+
+      <p>A spare machine you repurpose (old laptop, Raspberry Pi, home server) works great. If you don't have one, a VPS costs less than a coffee subscription:</p>
+
+      <table>
+        <tr>
+          <th>Provider</th>
+          <th>Starting at</th>
+          <th>Notes</th>
+        </tr>
+        <tr>
+          <td><strong><a href="https://railway.app" style="color:#3b5bdb;text-decoration:none;">Railway</a></strong></td>
+          <td>Free tier</td>
+          <td>Easiest deployment, no Linux knowledge needed</td>
+        </tr>
+        <tr>
+          <td><strong><a href="https://www.digitalocean.com" style="color:#3b5bdb;text-decoration:none;">DigitalOcean</a></strong></td>
+          <td>$4-6/mo</td>
+          <td>Beginner-friendly, great docs</td>
+        </tr>
+        <tr>
+          <td><strong><a href="https://www.hetzner.com" style="color:#3b5bdb;text-decoration:none;">Hetzner</a></strong></td>
+          <td>~€4/mo</td>
+          <td>Cheapest option in Europe, very reliable</td>
+        </tr>
+        <tr>
+          <td><strong><a href="https://www.vultr.com" style="color:#3b5bdb;text-decoration:none;">Vultr</a></strong></td>
+          <td>$2.50/mo</td>
+          <td>Global locations, low entry tier</td>
+        </tr>
+        <tr>
+          <td><strong><a href="https://www.linode.com" style="color:#3b5bdb;text-decoration:none;">Linode / Akamai</a></strong></td>
+          <td>$5/mo</td>
+          <td>Solid docs and tutorials</td>
+        </tr>
+      </table>
+
+      <div class="callout callout-info">
+        <strong>Minimum specs</strong>
+        OpenClaw itself is lightweight. 1 CPU, 1GB RAM, and 10GB disk is enough. The AI models run remotely (Anthropic, OpenAI), so your server just needs to stay connected. Install the same way: <code>npm install -g openclaw</code>. See <a href="https://docs.openclaw.ai">docs.openclaw.ai</a> for deployment details.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== STEP 1: IDENTITY ===================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">1</div>
+      <div class="section-title">
+        <h2>IDENTITY.md</h2>
+        <div class="meta">Give your AI a name and personality base</div>
+      </div>
+      <span class="tag tag-required">Required</span>
+      <span class="tag tag-time">~2 min</span>
+    </div>
+    <div class="section-body">
+      <h3>What this file does</h3>
+      <p>This defines the basic identity of your AI: its name, vibe, and visual representation. It's small but the name especially matters — it gives coherence to every interaction and makes the assistant feel like someone rather than something.</p>
+
+      <h3>What to fill in</h3>
+      <ul>
+        <li><strong>Name</strong> — Pick something you'd naturally say: "Hey Nova, ..." or "Atlas, can you check...". Examples: Jarvis, Atlas, Nova, Max, Sage, Echo.</li>
+        <li><strong>Vibe</strong> — One sentence describing the character. Examples: "Direct and practical, with dry humor" / "Calm and thorough, like a senior engineer"</li>
+        <li><strong>Emoji</strong> (optional) — A visual shorthand. 🤖 ⚡ 🧠 🦉</li>
+        <li><strong>Avatar</strong> (optional) — A URL or local path to an image, used in some UIs.</li>
+      </ul>
+
+      <h3>Leave as-is</h3>
+      <p>The <code>Creature: AI assistant</code> line — don't overthink it.</p>
+
+      <div class="callout callout-tip">
+        <strong>Tip</strong>
+        Choose a name you'll use consistently. Some users name it after a character they like (Jarvis, HAL, Friday). Others pick something neutral (Sage, Pilot). Either works — just pick one.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== STEP 2: USER ===================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">2</div>
+      <div class="section-title">
+        <h2>USER.md</h2>
+        <div class="meta">Tell your AI who you are</div>
+      </div>
+      <span class="tag tag-required">Required</span>
+      <span class="tag tag-time">~5 min</span>
+    </div>
+    <div class="section-body">
+      <h3>What this file does</h3>
+      <p>Without this file, your AI asks you the same questions every session. With it, it already knows your context from the first message. Think of it as a one-time briefing that stays loaded.</p>
+
+      <h3>What to fill in</h3>
+      <ul>
+        <li><strong>Name</strong> — How you want to be addressed.</li>
+        <li><strong>Timezone</strong> — Needed for crons and scheduling. Use a format like <code>UTC-4</code> or <code>America/New_York</code>.</li>
+        <li><strong>Work Hours</strong> — Helps the AI avoid alerting you at 2am.</li>
+        <li><strong>Language</strong> — Your preferred language. If you have a regional dialect (Mexican Spanish, Brazilian Portuguese), specify it — AI models default to generic forms otherwise.</li>
+        <li><strong>What I Do</strong> — A short paragraph about your work context. This makes the AI's answers much more relevant.</li>
+        <li><strong>Current Priorities</strong> — What you're focused on right now. The AI uses this to prioritize when tasks conflict.</li>
+        <li><strong>Active Projects</strong> — List them with a one-liner each.</li>
+        <li><strong>Preferences</strong> — How you like to work. "Give critical feedback", "keep things organized", "don't over-explain".</li>
+      </ul>
+
+      <h3>What not to put here</h3>
+      <p>Don't put API keys, passwords, or sensitive credentials here. This file is loaded into the AI's context, so anything here is visible in the conversation. Keys belong in <code>~/.config/</code>.</p>
+
+      <div class="callout callout-tip">
+        <strong>Tip</strong>
+        You don't need to fill everything on day 1. Start with Name, Timezone, Language, and What I Do. Add more as you discover what context makes the AI more useful for you.
+      </div>
+
+      <h3>Common mistake</h3>
+      <div class="callout callout-warning">
+        <strong>Timezone matters more than you think</strong>
+        If you skip timezone, scheduled tasks (crons) will run at the wrong time, often UTC instead of your local time. Set it explicitly.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== STEP 3: SOUL ===================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">3</div>
+      <div class="section-title">
+        <h2>SOUL.md</h2>
+        <div class="meta">The most important file — define how your AI talks and thinks</div>
+      </div>
+      <span class="tag tag-required">Required</span>
+      <span class="tag tag-time">~10 min</span>
+    </div>
+    <div class="section-body">
+      <h3>What this file does</h3>
+      <p>This is the personality layer. Without it, you have a generic chatbot. With a well-configured SOUL.md, you have an assistant that matches your style, challenges you when you're wrong, and communicates the way you want.</p>
+
+      <h3>What to customize</h3>
+
+      <p>How you talk — add your style preferences after the existing rules. Examples:</p>
+      <pre>"Be concise but warm — like texting a smart friend"
+"Use analogies from sports to explain complex ideas"
+"Challenge my assumptions when you see weak logic"
+"Default to bullet points over paragraphs"</pre>
+
+      <p>Opinions — decide how direct you want the AI to be:</p>
+      <pre>"Sugar-coat nothing — treat me like a peer"
+"Be diplomatic but honest — I'm sensitive to bluntness"
+"Challenge me on strategy, be gentle on personal stuff"</pre>
+
+      <p>Language — set your language rules clearly:</p>
+      <pre># English only:
+"Always respond in English."
+
+# Bilingual:
+"Match whatever language I use."
+
+# Regional Spanish (important!):
+"Use Argentine voseo: tenés, querés, podés."
+"Use Mexican tuteo. Occasional 'güey' is fine."
+"Use Colombian tuteo with usted for formal contexts."</pre>
+
+      <p>Vibe — the overall character in one line:</p>
+      <pre>"Like a smart coworker who respects my time"
+"The engineer friend who always has a better way"
+"Calm advisor, not an eager intern"</pre>
+
+      <h3>What not to touch</h3>
+      <p>The <strong>Linguistic patterns to avoid</strong> section — keep it exactly as-is. These rules suppress the most common AI writing artifacts (em dashes, rule-of-three, significance inflation, etc.). They work universally and improve every response.</p>
+
+      <p>The <strong>Communication Rules</strong> section (No Leaked Reasoning, No Double Messages) — these are operational safeguards, not style preferences. Keep them.</p>
+
+      <div class="callout callout-tip">
+        <strong>SOUL.md is a living document</strong>
+        Whenever the AI's behavior bugs you, the fix is here. Add a rule, save the file, done. You'll refine it over time — everyone does.
+      </div>
+
+      <div class="callout callout-warning">
+        <strong>If you use a regional language</strong>
+        Be specific. "Spanish" defaults to generic Castilian. If you're Argentine, Mexican, Colombian, or from another region, say so. The difference between tuteo and voseo in a conversation is jarring.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== STEP 4: AGENTS ===================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">4</div>
+      <div class="section-title">
+        <h2>AGENTS.md</h2>
+        <div class="meta">Execution rules — what your AI does and how</div>
+      </div>
+      <span class="tag tag-required">Required</span>
+      <span class="tag tag-time">~5 min</span>
+    </div>
+    <div class="section-body">
+      <h3>What this file does</h3>
+      <p>This is the operating system of your assistant. While SOUL.md defines personality, AGENTS.md defines behavior. It tells the AI how to handle tasks, where to save things, when to act independently vs. ask you, and what the quality bar is before saying "done".</p>
+
+      <h3>What to review and customize</h3>
+
+      <p>Section 2, Memory Routing: the table defines where different types of information get saved. The defaults work well. You can add rows as you add projects. Example:</p>
+      <pre>| Project notes | myproject/CONTEXT.md |
+| Code patterns | memory/solutions/code/ |</pre>
+
+      <p>Section 3, Task Management: if you use Notion, fill in your database ID and uncomment the section. If you don't use Notion, delete it — simpler is better.</p>
+
+      <p>Section 4, The 2-3 Minute Rule: this tells the AI when to spawn a subagent vs. work directly. The defaults are sensible. Adjust based on how much you care about main session availability.</p>
+
+      <h3>What not to touch</h3>
+      <ul>
+        <li>Section 1, Session Startup: don't modify this. It's the boot sequence.</li>
+        <li>Section 5, Quality Gate: keep these rules — they prevent false "done" reports.</li>
+        <li>Section 6, Date/Time Verification: keep it. AI models hallucinate dates without this.</li>
+        <li>Section 7, Safety Baseline: keep it. These are guardrails.</li>
+        <li>Section 8, Communication Rules: keep it. These prevent annoying behaviors.</li>
+      </ul>
+
+      <div class="callout callout-info">
+        <strong>Start minimal</strong>
+        Don't add rules you don't need yet. AGENTS.md grows over time as you discover what behaviors you want. The defaults handle 80% of cases for most users.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== STEP 5: TOOLS ===================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">5</div>
+      <div class="section-title">
+        <h2>TOOLS.md</h2>
+        <div class="meta">Document your APIs, services, and setup notes</div>
+      </div>
+      <span class="tag tag-optional">Optional at first</span>
+      <span class="tag tag-time">Ongoing</span>
+    </div>
+    <div class="section-body">
+      <h3>What this file does</h3>
+      <p>Your AI reads this every session. Anything you document here, it knows automatically — no need to re-explain your setup every conversation. Think of it as your personal cheat sheet for infrastructure: API key locations, channel IDs, device names, useful patterns.</p>
+
+      <h3>API key storage</h3>
+      <p>Store credentials in <code>~/.config/&lt;service&gt;/</code>, not in this file. TOOLS.md only documents <em>where</em> keys live and how to use them.</p>
+      <pre>mkdir -p ~/.config/notion
+echo "YOUR_API_KEY" > ~/.config/notion/api_key
+chmod 600 ~/.config/notion/api_key</pre>
+
+      <h3>What to add here</h3>
+      <ul>
+        <li>Your Telegram chat_id (needed for crons to message you)</li>
+        <li>Notion database ID and property names</li>
+        <li>SSH host aliases</li>
+        <li>Any "never forget this about my setup" notes</li>
+        <li>API services you've connected and their status</li>
+      </ul>
+
+      <h3>When to fill it</h3>
+      <p>Fill it progressively. When you connect a new service, document it here. When you discover a useful pattern or a "never do X" lesson, add it. After a month of use it becomes invaluable context.</p>
+
+      <div class="callout callout-warning">
+        <strong>Never put API keys directly in this file</strong>
+        TOOLS.md is loaded into AI context. A key in this file could be exposed in conversation logs. Always store keys in <code>~/.config/</code> and only reference their location here.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== STEP 6: OPS ===================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number optional-step">6</div>
+      <div class="section-title">
+        <h2>OPS.md</h2>
+        <div class="meta">Operational playbook — crons, quality, workflows</div>
+      </div>
+      <span class="tag tag-optional">Optional</span>
+      <span class="tag tag-time">Add as needed</span>
+    </div>
+    <div class="section-body">
+      <h3>What this file does</h3>
+      <p>OPS.md is the detailed operational reference. AGENTS.md has the rules that always apply. OPS.md has the how-to details that only matter in specific situations. Think of AGENTS.md as the constitution and OPS.md as the implementation guide.</p>
+
+      <h3>What's already there</h3>
+      <ul>
+        <li>Cron Golden Defaults — the exact flags required for crons to actually work. This section is pre-configured with patterns that prevent the most common cron failures (silent failures, wrong timing).</li>
+        <li>Quality Gate — checklist the AI runs before saying any task is done.</li>
+        <li>Subagent Spawn Rules — when to spawn vs. work directly.</li>
+        <li>Handoff Protocol — how completed work gets documented in daily logs.</li>
+      </ul>
+
+      <h3>When to touch it</h3>
+      <p>You don't need to customize OPS.md on day 1. It's most useful when:</p>
+      <ul>
+        <li>You set up your first cron — read the Cron Golden Defaults section carefully</li>
+        <li>You have a repeating workflow you want to standardize</li>
+        <li>You're building with code and want repo hygiene rules</li>
+      </ul>
+
+      <div class="callout callout-danger">
+        <strong>Cron failures are silent by default</strong>
+        Without <code>--wake now</code> and <code>--announce</code>, crons may run but you'll never see output. The defaults in OPS.md prevent this. Read that section before creating your first scheduled task.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== STEP 7: HEARTBEAT ===================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number optional-step">7</div>
+      <div class="section-title">
+        <h2>HEARTBEAT.md</h2>
+        <div class="meta">Instructions for periodic background checks</div>
+      </div>
+      <span class="tag tag-optional">Optional</span>
+      <span class="tag tag-time">Set up later</span>
+    </div>
+    <div class="section-body">
+      <h3>What this file does</h3>
+      <p>The heartbeat is a periodic check your AI does on its own, independent of your messages. Every X minutes, it wakes up, reads this file, and decides whether to alert you or stay quiet. It's what makes your AI proactive instead of purely reactive.</p>
+
+      <h3>Without vs. with heartbeat</h3>
+      <table>
+        <tr>
+          <th>Without heartbeat</th>
+          <th>With heartbeat</th>
+        </tr>
+        <tr>
+          <td>AI only responds when you message it</td>
+          <td>AI proactively surfaces things that need attention</td>
+        </tr>
+        <tr>
+          <td>You have to manually check everything</td>
+          <td>AI alerts you to failing services, calendar events, etc.</td>
+        </tr>
+        <tr>
+          <td>Memory maintenance is manual</td>
+          <td>AI organizes memory files during quiet heartbeats</td>
+        </tr>
+      </table>
+
+      <h3>What to customize</h3>
+      <p>The "When to Alert Me" and "When to Stay Quiet" sections are sensible defaults. The part you'll want to configure is "What to Check" — add the specific things you want your AI to monitor:</p>
+      <pre>- Email — any urgent unread messages?
+- Calendar — upcoming events in next 24-48h?
+- GitHub — any failing CI or PR reviews waiting?
+- Services — is my app responding to health checks?</pre>
+
+      <h3>When to set this up</h3>
+      <p>Skip it for week 1. Once you're comfortable with the basics, set up a heartbeat cron via:</p>
+      <pre>openclaw cron create \
+  --name "Heartbeat" \
+  --schedule "*/15 * * * *" \
+  --prompt "Run heartbeat check per HEARTBEAT.md" \
+  --to telegram:YOUR_CHAT_ID \
+  --announce \
+  --wake now</pre>
+    </div>
+  </div>
+
+  <!-- ===================== STEP 8: SECURITY ===================== -->
+  <div class="section" style="border-color: #ffd8d8;">
+    <div class="section-header" style="background: #fffafa;">
+      <div class="step-number" style="background: #c92a2a;">8</div>
+      <div class="section-title">
+        <h2>Security — SECURITY.md</h2>
+        <div class="meta">Run through this before publishing or sharing your workspace</div>
+      </div>
+      <span class="tag tag-required">Before sharing</span>
+    </div>
+    <div class="section-body">
+      <h3>Why this matters</h3>
+      <p>OpenClaw gives your AI broad access to your system: files, shell, network. Most users configure this for personal use on a trusted machine, and the risk is low. But if you ever share your workspace, publish it to git, or run OpenClaw on a server others can access, the attack surface changes significantly.</p>
+
+      <h3>The most important rules</h3>
+
+      <ul class="checklist">
+        <li>No API keys in any workspace file — store them in <code>~/.config/&lt;service&gt;/</code> with <code>chmod 600</code></li>
+        <li>Run <code>openclaw secrets audit --check</code> — clean before sharing</li>
+        <li>Create a <code>.gitignore</code> before your first commit (template is in SECURITY.md)</li>
+        <li>Run the hardening script (in SECURITY.md) after initial setup</li>
+        <li>Review <code>openclaw security audit</code> output — fix any critical findings</li>
+      </ul>
+
+      <h3>Quick secret scan</h3>
+      <p>Run this before committing or sharing anything:</p>
+      <pre>grep -rn "sk-ant\|sk-or\|sk-proj\|ghp_\|gsk_\|xoxb-\|xoxp-" ~/clawd/</pre>
+      <p>If this returns anything, you have a key in the wrong place.</p>
+
+      <h3>If a key is ever exposed</h3>
+      <div class="callout callout-danger">
+        <strong>Revoke first, clean later</strong>
+        If a key ends up in a public git repo, revocation is the only thing that matters. Cleaning the git history without revoking does nothing — bots scrape GitHub for keys within minutes of a push. See the Token Revocation Quick Reference table in SECURITY.md.
+      </div>
+
+      <h3>Tool access restriction</h3>
+      <p>By default, the AI has broad access. You can restrict it in <code>~/.openclaw/openclaw.json</code>:</p>
+      <pre>{
+  tools: {
+    fs: { workspaceOnly: true },      // limit file access to workspace only
+    exec: { security: "allowlist" },  // restrict shell commands
+    elevated: { enabled: false },     // no host-level execution
+  }
+}</pre>
+
+      <h3>For teams</h3>
+      <p>OpenClaw is designed as a personal assistant tool with one trust boundary per gateway. If multiple people need access:</p>
+      <ul>
+        <li>Run separate gateways per person (recommended)</li>
+        <li>Or use a dedicated machine with sandboxing enabled and no personal accounts signed in</li>
+        <li>Never share a gateway where one person can see another's conversation history</li>
+      </ul>
+
+      <div class="callout callout-info">
+        <strong>Key rotation schedule</strong>
+        Model API keys (Anthropic, OpenAI): every 90 days. Bot tokens (Telegram, Discord): every 180 days. Integration tokens (Notion, etc.): every 180 days.
+        See the full table in SECURITY.md.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MEMORY SECTION ===================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number optional-step">✦</div>
+      <div class="section-title">
+        <h2>memory/MEMORY.md</h2>
+        <div class="meta">Long-term memory — starts empty, fills itself</div>
+      </div>
+      <span class="tag tag-optional">Auto-managed</span>
+    </div>
+    <div class="section-body">
+      <h3>What this file does</h3>
+      <p>This is where your AI stores long-term learnings: decisions you made, lessons from mistakes, preferences it discovered. You don't manage it manually — the AI writes to it automatically when it learns something worth keeping.</p>
+
+      <h3>What goes here vs. daily logs</h3>
+      <table>
+        <tr>
+          <th>memory/MEMORY.md</th>
+          <th>memory/YYYY-MM-DD.md</th>
+        </tr>
+        <tr>
+          <td>Curated long-term knowledge</td>
+          <td>Raw daily events and logs</td>
+        </tr>
+        <tr>
+          <td>Strategic decisions and rationale</td>
+          <td>What happened today</td>
+        </tr>
+        <tr>
+          <td>Lessons learned from past mistakes</td>
+          <td>Task completions and notes</td>
+        </tr>
+        <tr>
+          <td>Preferences discovered over time</td>
+          <td>Context from today's sessions</td>
+        </tr>
+      </table>
+
+      <h3>Maintenance</h3>
+      <p>Every 2-3 weeks, open MEMORY.md and do a quick curation pass:</p>
+      <ul>
+        <li>Delete entries that no longer apply</li>
+        <li>Consolidate repeated patterns into one rule</li>
+        <li>Keep it under ~150 lines — beyond that it's noise, not signal</li>
+      </ul>
+
+      <div class="callout callout-tip">
+        <strong>You don't need to touch this file on day 1</strong>
+        MEMORY.md ships empty. Your assistant fills it automatically as you work together. You don't need to write anything there manually. Just know it exists and review it occasionally.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== NEXT STEPS ===================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number" style="background: #2f9e44;">✓</div>
+      <div class="section-title">
+        <h2>After setup — what's next</h2>
+        <div class="meta">How your setup grows over time</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <h3>Week 1 checklist</h3>
+      <ul class="checklist">
+        <li>Fill in IDENTITY.md, USER.md, SOUL.md, AGENTS.md</li>
+        <li>Connect a messaging channel (Telegram recommended)</li>
+        <li>Send your AI a message — verify it reads your files on startup</li>
+        <li>Add your first service to TOOLS.md</li>
+        <li>Run the security hardening script</li>
+      </ul>
+
+      <h3>Weeks 2-3</h3>
+      <ul class="checklist">
+        <li>Add rules to AGENTS.md as you discover what you need</li>
+        <li>Set up your first cron (e.g., daily summary at 9am)</li>
+        <li>Install 2-3 skills from the <a href="https://clawhub.com">marketplace</a></li>
+        <li>Configure HEARTBEAT.md if you want proactive checks</li>
+      </ul>
+
+      <h3>Month 2+</h3>
+      <ul class="checklist">
+        <li>Create custom skills for your specific domain or workflow</li>
+        <li>Connect more services (Notion, GitHub, Brave Search)</li>
+        <li>Set up model escalation rules in SOUL.md (Haiku for light tasks, Opus for deep analysis)</li>
+        <li>Review and curate memory/MEMORY.md</li>
+      </ul>
+
+      <h3>Recommended integrations to add first</h3>
+      <table>
+        <tr>
+          <th>Service</th>
+          <th>What it unlocks</th>
+          <th>Time to set up</th>
+        </tr>
+        <tr>
+          <td><strong>Telegram</strong></td>
+          <td>Main communication channel — message your AI from anywhere</td>
+          <td>5 min</td>
+        </tr>
+        <tr>
+          <td><strong>Brave Search</strong></td>
+          <td>Your AI can search the web in real time</td>
+          <td>2 min</td>
+        </tr>
+        <tr>
+          <td><strong>Notion</strong></td>
+          <td>Automated task management from chat</td>
+          <td>10 min</td>
+        </tr>
+        <tr>
+          <td><strong>GitHub</strong></td>
+          <td>Issues, PRs, CI status from chat</td>
+          <td>5 min</td>
+        </tr>
+      </table>
+
+      <div class="callout callout-tip">
+        <strong>Skills extend what your AI can do</strong>
+        For a deeper look at the bundled skills and how to create your own, see the <a href="skills-helper.html">Skills Guide</a>.
+      </div>
+
+      <div class="callout callout-tip">
+        <strong>The best thing you can do</strong>
+        Use your AI daily for the first week. The more you interact, the faster it learns your patterns (via MEMORY.md) and the better it gets. Daily use in the first week matters more than occasional use over a month.
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>OpenClaw Starter Pack — Setup Guide</p>
+    <p style="margin-top: 0.5rem;">
+      <a href="skills-helper.html">Skills Helper</a> ·
+      <a href="https://docs.openclaw.ai">docs.openclaw.ai</a> ·
+      <a href="https://docs.openclaw.ai/gateway/security">Security Docs</a> ·
+      <a href="https://docs.openclaw.ai/concepts/agent-workspace">Agent Workspace</a>
+    </p>
+    <p style="margin-top: 0.75rem; color: #bbb;">
+      OpenClaw Starter Pack &mdash; <a href="https://vistawtf.github.io/openclaw-easy-setup">vistawtf.github.io/openclaw-easy-setup</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
