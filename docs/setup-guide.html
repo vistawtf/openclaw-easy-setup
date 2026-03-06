@@ -1075,24 +1075,25 @@ openclaw cron delete &lt;id&gt;  # remove auto-improve if you want to pause it</
       <div class="section-body">
         <p class="section-summary">Skills are specialized instruction files your assistant loads automatically when a task matches. Ask it to summarize a video, it loads <code>summarize</code>. Ask it to review a pull request, it loads <code>github</code>. You don't manage this manually.</p>
 
+        <h3>What's already active</h3>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.5rem">The starter pack ships with three skills already installed. No setup needed — they're live from the moment BOOTSTRAP finishes.</p>
+        <ul style="margin:0.25rem 0 1rem;padding-left:1.25rem;line-height:1.9;font-size:0.9rem;color:var(--muted)">
+          <li><code>auto-improve</code> — nightly self-improvement loop (covered in the previous section)</li>
+          <li><code>humanizer</code> — rewrites AI-sounding text to sound like a person. Useful for public-facing content.</li>
+          <li><code>skill-creator</code> — guides you through building your own skills for specific workflows.</li>
+        </ul>
+
         <h3>See what's installed</h3>
         <div class="code-block">
     <pre><code>openclaw skills list</code></pre>
     <button class="copy-btn" aria-label="Copy code">Copy</button>
   </div>
 
-        <h3>Get details on a specific skill</h3>
-        <div class="code-block">
-    <pre><code>openclaw skills info summarize</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
-
-        <h3>Good ones to start with</h3>
+        <h3>Good ones to add next</h3>
         <ul style="margin:0.25rem 0 1rem;padding-left:1.25rem;line-height:1.9;font-size:0.9rem;color:var(--muted)">
           <li><code>summarize</code> — paste a URL, get a summary</li>
           <li><code>github</code> — issues, PRs, CI status (if you write code)</li>
           <li><code>weather</code> — useful for morning briefing crons</li>
-          <li><code>humanizer</code> — makes AI-sounding text more natural</li>
         </ul>
 
         <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0">For a detailed look at the bundled skills and how to create your own, see the <a href="skills-helper.html" style="color:var(--ultra-orange);">Skills Guide</a>.</p>
