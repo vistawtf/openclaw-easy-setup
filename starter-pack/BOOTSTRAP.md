@@ -132,7 +132,7 @@ Explain:
 
 If yes:
 
-Run this command to create the cron:
+Use the `exec` tool to create the cron directly — do not ask the user to run anything:
 
 ```bash
 openclaw cron create \
@@ -144,7 +144,7 @@ openclaw cron create \
 ```
 
 Then confirm:
-> "Auto-Improve is set up. It'll run tonight. You can turn it off anytime with `openclaw cron list` and `openclaw cron delete <id>`."
+> "Auto-Improve is set up. It'll run tonight. You can turn it off anytime — just ask me."
 
 If no — note it in TOOLS.md and move on.
 

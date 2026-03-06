@@ -931,21 +931,12 @@ openclaw --version</code></pre>
 
         <div class="code-block">
 <pre><code>cd ~ && git clone https://github.com/vistawtf/openclaw-easy-setup.git
+mkdir -p ~/.openclaw/workspace/
 cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/</code></pre>
 <button class="copy-btn" aria-label="Copy code">Copy</button>
 </div>
 
-        <div class="callout callout-warn">
-          <strong>Back up first if you have existing files</strong>
-          <code>cp -r ~/.openclaw/workspace/ ~/.openclaw/workspace-backup/</code> before copying — the starter pack overwrites files with the same names.
-        </div>
 
-        <div class="callout callout-todo">
-          <strong>End state</strong>
-          <ul class="todo-list">
-            <li>Starter pack files are in <code>~/.openclaw/workspace/</code></li>
-          </ul>
-        </div>
       </div>
     </div>
 
@@ -1013,7 +1004,18 @@ cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/</code></pre>
         <div class="duration">5 min</div>
       </div>
       <div class="section-body">
-        <p class="section-summary">Open Telegram and send your bot any message. Because BOOTSTRAP.md is in your workspace, your assistant will kick off a short onboarding conversation before doing anything else.</p>
+        <p class="section-summary">Almost there. First, approve the Telegram pairing request — then send your bot a message and the onboarding begins.</p>
+
+        <h3>1. Approve the pairing request</h3>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">After the wizard finishes, your terminal will show a pairing code. Run this to approve it:</p>
+        <div class="code-block">
+<pre><code>openclaw pairing approve telegram XXXXXXXX</code></pre>
+<button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Replace <code>XXXXXXXX</code> with the code shown in your terminal.</p>
+
+        <h3>2. Send your bot a message</h3>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Open Telegram, find your bot, and send it any message. Because BOOTSTRAP.md is in your workspace, your assistant will kick off a short onboarding conversation before doing anything else.</p>
 
         <h3>What happens</h3>
         <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Your assistant reads BOOTSTRAP.md and guides you through personalizing your workspace. It asks one question at a time:</p>
