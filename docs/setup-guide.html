@@ -507,20 +507,23 @@
 
     /* Theme toggle button */
     .theme-toggle {
-      background: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      background: transparent;
       border: 1px solid var(--border);
       border-radius: 6px;
+      color: var(--muted);
       cursor: pointer;
-      padding: 0.25rem 0.5rem;
-      font-size: 1rem;
-      line-height: 1;
-      color: var(--foreground);
-      transition: border-color 0.25s, background 0.25s;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       flex-shrink: 0;
       margin-left: auto;
     }
     .theme-toggle:hover {
       border-color: var(--border-hover);
+      color: var(--foreground);
       background: var(--surface);
     }
 
@@ -548,6 +551,7 @@
     <a href="#s10">10 · First day</a>
     <a href="#s11">11 · What's next</a>
     <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    <button class="theme-toggle" aria-label="Switch to dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   </div>
 </nav>
 

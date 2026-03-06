@@ -468,20 +468,26 @@
 
     /* Theme toggle button */
     .theme-toggle {
-      background: none;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      background: var(--background);
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 8px;
+      color: var(--muted);
       cursor: pointer;
-      padding: 0.25rem 0.5rem;
-      font-size: 1rem;
-      line-height: 1;
-      color: var(--foreground);
-      transition: border-color 0.25s, background 0.25s;
-      flex-shrink: 0;
-      margin-left: auto;
+      z-index: 200;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     }
     .theme-toggle:hover {
       border-color: var(--border-hover);
+      color: var(--foreground);
       background: var(--surface);
     }
 
@@ -492,9 +498,8 @@
   </style>
 </head>
 <body>
+<button class="theme-toggle" aria-label="Switch to dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
 <div class="container">
-
-  <div style="display:flex;justify-content:flex-end;margin-bottom:0.5rem;"><button class="theme-toggle" aria-label="Toggle dark mode">🌙</button></div>
 
   <div class="breadcrumb">
     <a href="index.html">← Back to index</a>
