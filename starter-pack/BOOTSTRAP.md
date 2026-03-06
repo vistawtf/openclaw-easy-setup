@@ -110,17 +110,19 @@ If they say "none": respond "No problem — TOOLS.md is there whenever you're re
 
 ### 9. Skills
 
-> "I can load specialized skills for specific tasks — writing, coding, summarizing content, working with spreadsheets, and more. What kinds of tasks do you do most?
+> "Your starter pack already includes three skills out of the box:
+> - `auto-improve` — nightly self-improvement loop (we'll set this up in the next step)
+> - `humanizer` — rewrites AI-sounding text to be more natural
+> - `skill-creator` — helps you build new skills for specific workflows
 >
-> A few useful ones to start with:
+> Beyond those, I can load specialized skills for writing, coding, summarizing content, working with spreadsheets, and more. A few popular ones:
 > - `summarize` — paste a URL, get a summary
 > - `github` — issues, PRs, CI status
 > - `weather` — for morning briefings
-> - `humanizer` — makes AI-sounding text more natural
 >
-> If there's a specific skill you want, tell me what you need and I'll help you find and install it. You can also browse the marketplace at clawhub.com."
+> What kinds of tasks do you do most? I'll suggest what fits, or you can browse the full marketplace at clawhub.com."
 
-On answer: Help the user find and install skills they want. The `auto-improve` skill is already bundled in this pack under `skills/auto-improve/`. For other skills, browse clawhub.com or help them describe what they need.
+On answer: Help the user find and install additional skills they want. Remind them the three bundled skills (auto-improve, humanizer, skill-creator) are already active — no install needed. For other skills, browse clawhub.com or help them describe what they need.
 
 ---
 
