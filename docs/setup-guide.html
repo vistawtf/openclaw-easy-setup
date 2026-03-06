@@ -772,16 +772,17 @@
     <a href="#s0" data-section="s0"><span class="nav-num">0</span> Why</a>
     <a href="#s1" data-section="s1"><span class="nav-num">1</span> Environment</a>
     <a href="#s2" data-section="s2"><span class="nav-num">2</span> Prerequisites</a>
-    <a href="#s3" data-section="s3"><span class="nav-num">3</span> Install + Telegram</a>
-    <a href="#s4" data-section="s4"><span class="nav-num">4</span> Workspace</a>
-    <a href="#s5" data-section="s5"><span class="nav-num">5</span> Starter pack</a>
-    <a href="#s6" data-section="s6"><span class="nav-num">6</span> First chat</a>
-    <a href="#s7" data-section="s7"><span class="nav-num">7</span> Memory</a>
-    <a href="#s8" data-section="s8"><span class="nav-num">8</span> Skills</a>
-    <a href="#s9" data-section="s9"><span class="nav-num">9</span> Crons</a>
-    <a href="#s10" data-section="s10"><span class="nav-num">10</span> Security</a>
-    <a href="#s11" data-section="s11"><span class="nav-num">11</span> First day</a>
-    <a href="#s12" data-section="s12"><span class="nav-num">12</span> What's next</a>
+    <a href="#s3" data-section="s3"><span class="nav-num">3</span> Install</a>
+    <a href="#s4" data-section="s4"><span class="nav-num">4</span> Starter pack</a>
+    <a href="#s5" data-section="s5"><span class="nav-num">5</span> Setup wizard</a>
+    <a href="#s6" data-section="s6"><span class="nav-num">6</span> Meet assistant</a>
+    <a href="#s7" data-section="s7"><span class="nav-num">7</span> Auto-improve</a>
+    <a href="#s8" data-section="s8"><span class="nav-num">8</span> Memory</a>
+    <a href="#s9" data-section="s9"><span class="nav-num">9</span> Skills</a>
+    <a href="#s10" data-section="s10"><span class="nav-num">10</span> Crons</a>
+    <a href="#s11" data-section="s11"><span class="nav-num">11</span> Security</a>
+    <a href="#s12" data-section="s12"><span class="nav-num">12</span> First day</a>
+    <a href="#s13" data-section="s13"><span class="nav-num">13</span> What's next</a>
   </nav>
   <div class="sidebar-footer">
     <div class="footer-label">Also in this series</div>
@@ -886,145 +887,53 @@
     <div class="section" id="s3">
       <div class="section-header">
         <div class="section-num">3</div>
-        <div class="section-title">Install OpenClaw and connect Telegram</div>
-        <div class="duration">12 min</div>
+        <div class="section-title">Install OpenClaw</div>
+        <div class="duration">4 min</div>
       </div>
       <div class="section-body">
-        <p class="section-summary">Install OpenClaw, create your Telegram bot, and run the setup wizard. By the end of this section, your assistant will be live on Telegram.</p>
+        <p class="section-summary">Install system dependencies and OpenClaw itself. The starter pack comes next — install it before running the setup wizard.</p>
 
-        <h3>1. Install system dependencies (Ubuntu/WSL2 only)</h3>
+        <h3>1. Install system dependencies (Ubuntu/Debian only)</h3>
         <div class="code-block">
-    <pre><code>sudo apt-get update && sudo apt-get install -y curl git build-essential</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
+<pre><code>sudo apt-get update && sudo apt-get install -y curl git build-essential</code></pre>
+<button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
         <h3>2. Install Node.js (if needed)</h3>
         <div class="code-block">
-    <pre><code>node --version</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
+<pre><code>node --version</code></pre>
+<button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
         <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">If you see v18 or higher, skip the next command.</p>
         <div class="code-block">
-    <pre><code>curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+<pre><code>curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt-get install -y nodejs</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
+<button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
         <h3>3. Install OpenClaw</h3>
         <div class="code-block">
-    <pre><code>npm install -g openclaw
+<pre><code>npm install -g openclaw
 openclaw --version</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
-
-        <h3>4. Create your Telegram bot</h3>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Do this before running the wizard — you'll need the token in the next step.</p>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Open Telegram, go to <a href="https://t.me/BotFather" target="_blank" style="color:var(--ultra-orange);text-decoration:none;font-weight:500;">@BotFather</a>, and send:</p>
-        <div class="code-block">
-    <pre><code>/newbot</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">BotFather asks for a display name and a username (must end in <code>bot</code>). It then gives you an API token — copy it, you'll paste it in the wizard.</p>
-
-        <h3>5. Run the setup wizard</h3>
-        <div class="code-block">
-    <pre><code>openclaw onboard</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">The wizard walks you through everything. Here's what it asks:</p>
-        <ul style="font-size:0.9rem;color:var(--muted);margin:0.25rem 0 0.75rem;padding-left:1.25rem;line-height:1.9">
-          <li><strong>Acknowledge</strong> that OpenClaw is a personal tool with broad system access</li>
-          <li><strong>Quickstart or manual</strong> — quickstart is fine</li>
-          <li><strong>AI provider</strong> — pick one from the list (Claude is a good starting point)</li>
-          <li><strong>Auth method</strong> — follow the on-screen instructions for your chosen provider</li>
-          <li><strong>Model</strong> — pick the default or Claude Sonnet if you went with Anthropic</li>
-          <li><strong>Channel</strong> — select Telegram, paste the bot token from BotFather</li>
-          <li><strong>Skills and hooks</strong> — skip both</li>
-        </ul>
-
-        <h3>6. Verify the gateway is running</h3>
-        <div class="code-block">
-    <pre><code>openclaw health</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">If the gateway isn't running (health shows an error), start it manually:</p>
-        <div class="code-block">
-    <pre><code>nohup openclaw gateway &</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.4rem">This is common on VPS setups where systemd user services aren't available.</p>
-
-        <h3>7. Send your first message and pair your account</h3>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Open Telegram, find your bot, and send it any message. The bot will reply with a pairing command — something like:</p>
-        <div class="code-block">
-    <pre><code>openclaw pairing approve telegram 123456789</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Copy that exact command from Telegram and run it in your terminal. Then send another message — you should get a real reply from your assistant.</p>
-
-        <div class="callout callout-todo">
-          <strong>End state</strong>
-          <ul class="todo-list">
-            <li>OpenClaw installed (<code>openclaw --version</code> shows a number)</li>
-            <li>Gateway running (<code>openclaw health</code> is green)</li>
-            <li>Bot created in Telegram</li>
-            <li>Sent a test message and got a reply from your assistant</li>
-          </ul>
-        </div>
-
-        <div class="callout callout-warn">
-          <strong>If something breaks</strong>
-          Run <code>openclaw doctor</code> — it checks and fixes common issues. If the bot doesn't respond, verify the gateway is running with <code>openclaw health</code>.
-        </div>
+<button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
       </div>
     </div>
     <!-- Section 4 -->
     <div class="section" id="s4">
       <div class="section-header">
         <div class="section-num">4</div>
-        <div class="section-title">How your workspace works</div>
-        <div class="duration">4 min</div>
-      </div>
-      <div class="section-body">
-        <p class="section-summary">OpenClaw reads a folder of plain text files at the start of every conversation. These files are your assistant's memory, personality, and context about you. In the next step you'll install the starter pack — a set of pre-built files to get you started fast.</p>
-
-        <div class="code-block">
-    <pre><code>~/.openclaw/workspace/
-├── IDENTITY.md   ← Your assistant's name and vibe
-├── SOUL.md       ← Personality, tone, and how it communicates
-├── USER.md       ← About you: timezone, language, priorities
-├── AGENTS.md     ← Rules: what it does and how
-├── TOOLS.md      ← Your configured services and API keys
-└── memory/
-    └── MEMORY.md ← Long-term memory (grows over time)</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
-
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.5rem 0 0">These are just text files — you can open and edit them directly anytime. The <a href="config-guide.html" style="color:var(--ultra-orange);text-decoration:none;">Config Guide</a> walks through each one in detail when you're ready.</p>
-      </div>
-    </div>
-
-    <!-- Section 6 -->
-    <div class="section" id="s5">
-      <div class="section-header">
-        <div class="section-num">5</div>
         <div class="section-title">Install the starter pack</div>
-        <div class="duration">5 min</div>
+        <div class="duration">3 min</div>
       </div>
       <div class="section-body">
-        <p class="section-summary">The starter pack gives you a complete, ready-to-use workspace: personality, memory system, rules, and a nightly self-improvement loop. Two ways to install it.</p>
+        <p class="section-summary">Install the starter pack before running the setup wizard — OpenClaw will detect it and use it as your workspace automatically.</p>
 
         <div class="code-block">
-    <pre><code>cd ~ && git clone https://github.com/vistawtf/openclaw-easy-setup.git
+<pre><code>cd ~ && git clone https://github.com/vistawtf/openclaw-easy-setup.git
 cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Then restart the gateway so the new files take effect:</p>
-        <div class="code-block">
-    <pre><code>pkill -f "openclaw gateway" && nohup openclaw gateway &</code></pre>
-    <button class="copy-btn" aria-label="Copy code">Copy</button>
-  </div>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">After a few seconds, message your bot in Telegram — it should respond with the new personality and start the onboarding chat.</p>
+<button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
         <div class="callout callout-warn">
           <strong>Back up first if you have existing files</strong>
@@ -1035,9 +944,63 @@ cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/</code></pre>
           <strong>End state</strong>
           <ul class="todo-list">
             <li>Starter pack files are in <code>~/.openclaw/workspace/</code></li>
-            <li>Gateway restarted</li>
-            <li>Assistant responded in Telegram with the new personality</li>
           </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section" id="s5">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <div class="section-title">Run the setup wizard</div>
+        <div class="duration">8 min</div>
+      </div>
+      <div class="section-body">
+        <p class="section-summary">The wizard configures your AI provider, connects Telegram, and starts the gateway. Run it now that the starter pack is in place.</p>
+
+        <h3>1. Create your Telegram bot first</h3>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Open Telegram, go to <a href="https://t.me/BotFather" target="_blank" style="color:var(--ultra-orange);text-decoration:none;font-weight:500;">@BotFather</a>, and send <code>/newbot</code>. It will ask for a display name and a username (must end in <code>bot</code>). Copy the token it gives you — you'll paste it in the wizard.</p>
+
+        <h3>2. Run the wizard</h3>
+        <div class="code-block">
+<pre><code>openclaw onboard</code></pre>
+<button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">What it asks:</p>
+        <ul style="font-size:0.9rem;color:var(--muted);margin:0.25rem 0 0.75rem;padding-left:1.25rem;line-height:1.9">
+          <li><strong>Acknowledge</strong> that OpenClaw is a personal tool with broad system access</li>
+          <li><strong>Quickstart or manual</strong> — quickstart is fine</li>
+          <li><strong>AI provider</strong> — pick one from the list (Claude is a good starting point)</li>
+          <li><strong>Auth method</strong> — follow the on-screen instructions for your chosen provider</li>
+          <li><strong>Model</strong> — pick the default or Claude Sonnet if you went with Anthropic</li>
+          <li><strong>Channel</strong> — select Telegram, paste the bot token from BotFather</li>
+          <li><strong>Skills and hooks</strong> — skip both</li>
+        </ul>
+
+        <h3>3. Verify the gateway is running</h3>
+        <div class="code-block">
+<pre><code>openclaw health</code></pre>
+<button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">If the gateway isn't running, start it manually:</p>
+        <div class="code-block">
+<pre><code>nohup openclaw gateway &</code></pre>
+<button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.4rem">This is common on VPS setups where systemd user services aren't available.</p>
+
+        <div class="callout callout-todo">
+          <strong>End state</strong>
+          <ul class="todo-list">
+            <li>Gateway running (<code>openclaw health</code> is green)</li>
+            <li>Bot created in Telegram</li>
+          </ul>
+        </div>
+
+        <div class="callout callout-warn">
+          <strong>If something breaks</strong>
+          Run <code>openclaw doctor</code> — it checks and fixes common issues automatically.
         </div>
       </div>
     </div>
@@ -1045,26 +1008,39 @@ cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/</code></pre>
     <!-- Section 6 -->
     <div class="section" id="s6">
       <div class="section-header">
-        <div class="section-num">5</div>
-        <div class="section-title">Your first conversation: make sure it works</div>
-        <div class="duration">3 min</div>
+        <div class="section-num">6</div>
+        <div class="section-title">Meet your assistant</div>
+        <div class="duration">5 min</div>
       </div>
       <div class="section-body">
-        <p class="section-summary">Before going further, verify the whole pipeline works. Send these four messages to your bot in Telegram.</p>
+        <p class="section-summary">Open Telegram and send your bot any message. Because BOOTSTRAP.md is in your workspace, your assistant will kick off a short onboarding conversation before doing anything else.</p>
 
-        <div class="callout callout-todo">
-          <strong>Send these in Telegram</strong>
-          <ul class="todo-list">
-            <li>"What's your name?" — should match IDENTITY.md</li>
-            <li>"What timezone am I in?" — should match USER.md</li>
-            <li>"Give me your honest opinion: is it worth learning to code in 2026?" — should have a real take, not "it depends"</li>
-            <li>"Remember this: I prefer bullet points over paragraphs." Then: "What do you know about my preferences?"</li>
-          </ul>
-        </div>
+        <h3>What happens</h3>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Your assistant reads BOOTSTRAP.md and guides you through personalizing your workspace. It asks one question at a time:</p>
+        <ul style="font-size:0.9rem;color:var(--muted);margin:0.25rem 0 0.75rem;padding-left:1.25rem;line-height:1.9">
+          <li><strong>What to call it</strong> — give it a name</li>
+          <li><strong>Your name and role</strong> — so it knows who it's helping</li>
+          <li><strong>Timezone and working hours</strong> — so it doesn't ping you at 3am</li>
+          <li><strong>Your language</strong> — it will match you going forward</li>
+          <li><strong>Your current priorities</strong> — what's taking up your headspace</li>
+          <li><strong>Feedback style</strong> — blunt or collaborative?</li>
+          <li><strong>Hard rules</strong> — anything it should never do</li>
+          <li><strong>Services</strong> — Notion, GitHub, or others you use</li>
+        </ul>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">At the end it sets up the Auto-Improve loop (see next section) and restarts itself with your new config.</p>
 
         <div class="callout callout-info">
-          <strong>If the personality feels generic</strong>
-          Go back to SOUL.md and strengthen the tone instructions. The defaults are a starting point, meant to be edited.
+          <strong>Security note</strong>
+          Your assistant will remind you at the start: never send API keys or passwords through chat. If it needs you to connect a service, it will give you a terminal command to run — not ask you to paste secrets in the conversation.
+        </div>
+
+        <div class="callout callout-todo">
+          <strong>End state</strong>
+          <ul class="todo-list">
+            <li>Onboarding conversation complete</li>
+            <li>Assistant responded with your chosen name and personality</li>
+            <li>Auto-Improve cron is running</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1072,7 +1048,41 @@ cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/</code></pre>
     <!-- Section 7 -->
     <div class="section" id="s7">
       <div class="section-header">
-        <div class="section-num">5</div>
+        <div class="section-num">7</div>
+        <div class="section-title">Auto-improve: it gets better while you sleep</div>
+        <div class="duration">3 min</div>
+      </div>
+      <div class="section-body">
+        <p class="section-summary">The starter pack includes a nightly self-improvement loop. Every night at 4am UTC, your assistant picks one friction point from the day, fixes it, and logs what it did.</p>
+
+        <h3>What it does each night</h3>
+        <ul style="font-size:0.9rem;color:var(--muted);margin:0.25rem 0 0.75rem;padding-left:1.25rem;line-height:1.9">
+          <li>Picks one small friction point and fixes it autonomously</li>
+          <li>Cleans up stale files, empty docs, scattered notes</li>
+          <li>Logs what it did in <code>memory/auto-improve-log.md</code></li>
+        </ul>
+
+        <h3>Weekly report (every Sunday)</h3>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">On Sundays it reads the week's memory files, finds patterns in how you work, and generates a short report in <code>memory/auto-improve-reports/</code>. You'll get it in Telegram.</p>
+
+        <h3>Managing the cron</h3>
+        <div class="code-block">
+<pre><code>openclaw cron list          # see all scheduled tasks
+openclaw cron delete &lt;id&gt;  # remove auto-improve if you want to pause it</code></pre>
+<button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
+
+        <div class="callout callout-info">
+          <strong>Nothing to configure</strong>
+          Auto-Improve was set up during the BOOTSTRAP conversation. It runs automatically. You can adjust the schedule or prompt anytime by editing the cron via <code>openclaw cron list</code>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="section" id="s8">
+      <div class="section-header">
+        <div class="section-num">8</div>
         <div class="section-title">Memory: how your AI remembers</div>
         <div class="duration">5 min</div>
       </div>
@@ -1100,9 +1110,9 @@ cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/</code></pre>
     </div>
 
     <!-- Section 8 -->
-    <div class="section" id="s8">
+    <div class="section" id="s9">
       <div class="section-header">
-        <div class="section-num">5</div>
+        <div class="section-num">9</div>
         <div class="section-title">Skills: ready-made capabilities</div>
         <div class="duration">4 min</div>
       </div>
@@ -1139,9 +1149,9 @@ cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/</code></pre>
     </div>
 
     <!-- Section 9 -->
-    <div class="section" id="s9">
+    <div class="section" id="s10">
       <div class="section-header">
-        <div class="section-num">5</div>
+        <div class="section-num">10</div>
         <div class="section-title">Crons: your AI works while you sleep</div>
         <div class="duration">6 min</div>
       </div>
@@ -1202,9 +1212,9 @@ openclaw cron delete JOB_ID</code></pre>
     </div>
 
     <!-- Section 10 -->
-    <div class="section" id="s10">
+    <div class="section" id="s11">
       <div class="section-header">
-        <div class="section-num">5</div>
+        <div class="section-num">11</div>
         <div class="section-title">Security basics: two things to get right</div>
         <div class="duration">3 min</div>
       </div>
@@ -1244,9 +1254,9 @@ openclaw cron delete JOB_ID</code></pre>
     </div>
 
     <!-- Section 11 -->
-    <div class="section" id="s11">
+    <div class="section" id="s12">
       <div class="section-header">
-        <div class="section-num">5</div>
+        <div class="section-num">12</div>
         <div class="section-title">Your first real day: putting it to work</div>
         <div class="duration">4 min</div>
       </div>
@@ -1270,9 +1280,9 @@ openclaw cron delete JOB_ID</code></pre>
     </div>
 
     <!-- Section 12 -->
-    <div class="section" id="s12">
+    <div class="section" id="s13">
       <div class="section-header">
-        <div class="section-num">5</div>
+        <div class="section-num">13</div>
         <div class="section-title">What comes next</div>
         <div class="duration">2 min</div>
       </div>
@@ -1347,7 +1357,7 @@ openclaw cron delete JOB_ID</code></pre>
   }
 
   // IntersectionObserver for active section tracking
-  var sectionIds = ['s0','s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12'];
+  var sectionIds = ['s0','s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13'];
   var navLinks = document.querySelectorAll('#sidebarNav a');
   var currentActive = null;
 
