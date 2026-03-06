@@ -367,6 +367,14 @@
 
 <div class="container">
 
+  <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;font-size:0.87rem;">
+    <a href="index.html" style="color:#3b5bdb;text-decoration:none;font-weight:600;">← Back to index</a>
+    <span style="color:#ccc;">|</span>
+    <span style="color:#888;">Also in this series:</span>
+    <a href="config-guide.html" style="color:#3b5bdb;text-decoration:none;">Config Guide</a>
+    <a href="skills-helper.html" style="color:#3b5bdb;text-decoration:none;">Skills Guide</a>
+  </div>
+
   <div class="header">
     <h1>OpenClaw: from zero to AI assistant</h1>
     <p>Follow along during the workshop. Commands are ready to copy.</p>
@@ -410,6 +418,43 @@
           <li>A Telegram account (phone + desktop)</li>
           <li>Node.js 18+ (we'll install it in the next section if you don't have it)</li>
         </ul>
+      </div>
+
+      <div class="callout callout-warn" style="background:#fff0f0;border-left-color:#c92a2a;color:#7c1515;">
+        <strong style="color:#c92a2a;">Run OpenClaw on a dedicated machine</strong>
+        Your AI assistant has access to files, shell, and network on whatever machine it runs on. For anything beyond casual testing, run it on a VPS or dedicated server, not your personal laptop. Three reasons:
+        <ul style="margin-top:0.5rem;padding-left:1.25rem;line-height:1.8">
+          <li><strong>Security</strong> — keep your personal files separate from your assistant's workspace</li>
+          <li><strong>Availability</strong> — crons and heartbeats die when your laptop sleeps. A VPS runs 24/7.</li>
+          <li><strong>Separation of concerns</strong> — a dedicated machine is easier to back up, harden, and manage</li>
+        </ul>
+        <table style="width:100%;margin-top:0.75rem;border-collapse:collapse;font-size:0.87rem;">
+          <tr style="border-bottom:1px solid #e5c5c5;">
+            <td style="padding:0.3rem 0.5rem;font-weight:600;">Railway</td>
+            <td style="padding:0.3rem 0.5rem;">Free tier</td>
+            <td style="padding:0.3rem 0.5rem;">Easiest, no Linux knowledge needed</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e5c5c5;">
+            <td style="padding:0.3rem 0.5rem;font-weight:600;">DigitalOcean</td>
+            <td style="padding:0.3rem 0.5rem;">$4-6/mo</td>
+            <td style="padding:0.3rem 0.5rem;">Beginner-friendly, great docs</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e5c5c5;">
+            <td style="padding:0.3rem 0.5rem;font-weight:600;">Hetzner</td>
+            <td style="padding:0.3rem 0.5rem;">~€4/mo</td>
+            <td style="padding:0.3rem 0.5rem;">Cheapest in Europe, reliable</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e5c5c5;">
+            <td style="padding:0.3rem 0.5rem;font-weight:600;">Vultr</td>
+            <td style="padding:0.3rem 0.5rem;">$2.50/mo</td>
+            <td style="padding:0.3rem 0.5rem;">Global locations</td>
+          </tr>
+          <tr>
+            <td style="padding:0.3rem 0.5rem;font-weight:600;">Linode/Akamai</td>
+            <td style="padding:0.3rem 0.5rem;">$5/mo</td>
+            <td style="padding:0.3rem 0.5rem;">Solid docs</td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
@@ -471,6 +516,11 @@ openclaw health</code></pre>
     </div>
     <div class="section-body">
       <p class="section-summary">Your workspace is a folder (usually <code>~/clawd/</code>) containing plain text files. Your assistant reads them at the start of every conversation. This is what gives it memory, personality, and context about you.</p>
+
+      <div class="callout callout-warn">
+        <strong>Back up first</strong>
+        If you already have files in <code>~/clawd/</code>, copying the starter pack will overwrite any files with the same names. Back up first: <code>cp -r ~/clawd/ ~/clawd-backup/</code>
+      </div>
 
       <pre><code>clawd/
 ├── IDENTITY.md   ← Name and vibe (6 lines)
@@ -628,6 +678,11 @@ openclaw health</code></pre>
           <li><code>humanizer</code> — makes AI-sounding text more natural</li>
         </ul>
       </div>
+
+      <div class="callout callout-info">
+        <strong>Want the full breakdown?</strong>
+        For a detailed look at the bundled skills and how to create your own, see the <a href="skills-helper.html" style="color:#3b5bdb;">Skills Guide</a>.
+      </div>
     </div>
   </div>
 
@@ -771,12 +826,14 @@ openclaw cron delete JOB_ID</code></pre>
   <div class="links-card">
     <h2>Quick links</h2>
     <div class="links-grid">
+      <a href="index.html">← Back to guides <span>All starter pack docs</span></a>
+      <a href="config-guide.html">Config Guide <span>File-by-file walkthrough</span></a>
+      <a href="skills-helper.html">Skills Guide <span>Bundled skills and custom skills</span></a>
       <a href="https://docs.openclaw.ai" target="_blank">docs.openclaw.ai <span>Official documentation</span></a>
       <a href="https://console.anthropic.com" target="_blank">console.anthropic.com <span>Get your API key</span></a>
       <a href="https://t.me/BotFather" target="_blank">@BotFather on Telegram <span>Create your bot</span></a>
       <a href="https://brave.com/search/api" target="_blank">Brave Search API <span>Free web search for your assistant</span></a>
       <a href="https://crontab.guru" target="_blank">crontab.guru <span>Build cron expressions</span></a>
-      <a href="https://learn.microsoft.com/en-us/windows/wsl/install" target="_blank">WSL2 setup guide <span>For Windows users</span></a>
     </div>
   </div>
 

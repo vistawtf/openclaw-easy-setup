@@ -2,6 +2,12 @@
 
 A ready-to-use workspace for a personal AI assistant that runs on your infrastructure, remembers context across sessions, works through Telegram, runs scheduled tasks, and improves itself overnight. Built on [OpenClaw](https://docs.openclaw.ai).
 
+## Guides
+
+- **[Setup Guide](https://vistawtf.github.io/openclaw-easy-setup/setup-guide.html)** — step-by-step from zero to working assistant
+- **[Config Guide](https://vistawtf.github.io/openclaw-easy-setup/config-guide.html)** — file-by-file walkthrough of every workspace file
+- **[Skills Guide](https://vistawtf.github.io/openclaw-easy-setup/skills-helper.html)** — how skills work, what's bundled, how to create your own
+
 ## What's in the pack
 
 | File | Purpose |
@@ -29,6 +35,8 @@ A ready-to-use workspace for a personal AI assistant that runs on your infrastru
 ### Option A: Already have OpenClaw running
 
 If you already have OpenClaw installed and connected to Telegram:
+
+> **Heads up:** This will overwrite any existing files in `~/clawd/` with the same names. If you have a custom `SOUL.md`, `AGENTS.md`, or other config files you want to keep, back them up first: `cp -r ~/clawd/ ~/clawd-backup/`
 
 1. Copy the `starter-pack/` files to your `~/clawd/` workspace
 2. Message your bot: **"set me up"**
@@ -59,12 +67,6 @@ Then message your bot on Telegram — it will walk you through the rest.
 Three skills are bundled: **auto-improve** (overnight self-improvement), **humanizer** (removes AI writing patterns), **skill-creator** (build your own skills).
 
 Browse more at [clawhub.com](https://clawhub.com). To install one, tell your assistant what you need or paste the skill link in chat.
-
-## Guides
-
-- **[Setup Guide](https://vistawtf.github.io/openclaw-easy-setup/setup-guide.html)** — step-by-step from zero to working assistant
-- **[Config Guide](https://vistawtf.github.io/openclaw-easy-setup/config-guide.html)** — file-by-file walkthrough of every workspace file
-- **[Skills Guide](https://vistawtf.github.io/openclaw-easy-setup/skills-helper.html)** — how skills work, what's bundled, how to create your own
 
 ## Resources
 

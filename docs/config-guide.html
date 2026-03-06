@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenClaw Starter Pack — Setup Guide</title>
+  <title>OpenClaw Starter Pack — Config Guide</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -338,6 +338,14 @@
 <body>
 <div class="container">
 
+  <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;font-size:0.87rem;">
+    <a href="index.html" style="color:#3b5bdb;text-decoration:none;font-weight:600;">← Back to index</a>
+    <span style="color:#ccc;">|</span>
+    <span style="color:#888;">Also in this series:</span>
+    <a href="setup-guide.html" style="color:#3b5bdb;text-decoration:none;">Setup Guide</a>
+    <a href="skills-helper.html" style="color:#3b5bdb;text-decoration:none;">Skills Guide</a>
+  </div>
+
   <!-- Header -->
   <div class="header">
     <h1>OpenClaw Starter Pack</h1>
@@ -664,8 +672,8 @@ chmod 600 ~/.config/notion/api_key</pre>
       <p>Skip it for week 1. Once you're comfortable with the basics, set up a heartbeat cron via:</p>
       <pre>openclaw cron create \
   --name "Heartbeat" \
-  --schedule "*/15 * * * *" \
-  --prompt "Run heartbeat check per HEARTBEAT.md" \
+  --cron "*/15 * * * *" \
+  --message "Run heartbeat check per HEARTBEAT.md" \
   --to telegram:YOUR_CHAT_ID \
   --announce \
   --wake now</pre>
@@ -864,9 +872,12 @@ chmod 600 ~/.config/notion/api_key</pre>
 
   <!-- Footer -->
   <div class="footer">
-    <p>OpenClaw Starter Pack — Setup Guide</p>
+    <p>
+      <a href="index.html">← Back to index</a> ·
+      <a href="setup-guide.html">Setup Guide</a> ·
+      <a href="skills-helper.html">Skills Guide</a>
+    </p>
     <p style="margin-top: 0.5rem;">
-      <a href="skills-helper.html">Skills Helper</a> ·
       <a href="https://docs.openclaw.ai">docs.openclaw.ai</a> ·
       <a href="https://docs.openclaw.ai/gateway/security">Security Docs</a> ·
       <a href="https://docs.openclaw.ai/concepts/agent-workspace">Agent Workspace</a>

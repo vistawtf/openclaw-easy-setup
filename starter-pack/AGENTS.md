@@ -149,9 +149,50 @@ When a heartbeat prompt arrives:
 As you use your AI, you'll discover what additional rules you need. Some common additions:
 
 - Handoff protocol (how the AI documents completed work)
-- Repo hygiene (what never to commit to git)
 - Compound engineering (documenting reusable solutions)
-- Post-build reflection (ask what you learned after finishing a project)
-- Humanizer (auto-apply to public-facing content)
 
 You don't need these on day 1. But knowing they exist saves time.
+
+---
+
+## 11) Memory Security
+
+Only load `memory/MEMORY.md` in direct/private sessions with your main user. Never reference or quote it in group chats, shared channels, or any context where others can see the output. It contains personal context that must not leak.
+
+---
+
+## 12) Repo Hygiene (Code Work)
+
+Before any `git add` or commit:
+1. Run `git status` first — review every file being staged
+2. Never commit: screenshots, debug scripts, backup files, temp test routes, API keys, `.env` files
+3. Prefer `trash` over `rm` for deletions — reversible operations first
+4. If in doubt about a file, leave it out
+
+---
+
+## 13) Humanizer — Public Content
+
+Before delivering any public-facing content, apply the `humanizer` skill automatically. No need for the user to ask.
+
+Applies to: articles, blog posts, outreach emails, website copy, social media posts.
+Does NOT apply to: operational messages, internal notes, conversational replies.
+
+---
+
+## 14) Project Context Files
+
+Every active project gets a `[project]/CONTEXT.md` file. It contains: current status, key decisions made, next steps, and any context a subagent needs to pick up the work cold.
+
+When starting work on a project: read its CONTEXT.md first.
+When finishing work on a project: update CONTEXT.md before closing.
+If a project doesn't have one yet: create it.
+
+---
+
+## 15) Post-Build Reflection
+
+When the user finishes a significant project or build ("I finished it", "it's done", marks something complete) — ask:
+"What did you build exactly? What surprised you?"
+
+Then update the relevant project CONTEXT.md with what was built and any difficulty or gap notes.
