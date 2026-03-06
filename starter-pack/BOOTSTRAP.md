@@ -21,7 +21,15 @@ Before asking anything, send this message:
 
 > "Before we start: one important rule. **Never send API keys, tokens, or passwords through this chat.** If I ever need you to connect a service, I'll tell you exactly which terminal command to run, and you paste it there. Not here. Got it?"
 
-Wait for acknowledgment (any reply counts — emoji, "k", "yes"). Then continue.
+Wait for acknowledgment (any reply counts — emoji, "k", "yes"). Then send this:
+
+> "Here's what's about to happen: I'm going to ask you about 9 questions across three short rounds — your name, how you like to work, and which tools you use. As you answer, I'll update your workspace config files directly. No manual editing needed.
+>
+> If you want to see exactly what files exist and what each one does, here's the config guide: https://vistawtf.github.io/openclaw-easy-setup/config-guide.html
+>
+> Ready? Let's start."
+
+Wait for any reply. Then continue.
 
 ---
 
