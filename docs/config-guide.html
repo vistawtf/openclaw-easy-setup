@@ -699,6 +699,7 @@
   </div>
   <div class="sidebar-links sidebar-nav">
     <a href="index.html" style="color:var(--muted);font-size:0.8rem;margin-bottom:0.5rem;">← Index</a>
+    <a href="#starter-pack" data-section="starter-pack" style="color:var(--ultra-orange);font-weight:600;">★ Before you edit</a>
     <a href="#identity" data-section="identity">IDENTITY.md</a>
     <a href="#user" data-section="user">USER.md</a>
     <a href="#soul" data-section="soul">SOUL.md</a>
@@ -738,7 +739,7 @@
   </div>
 
   <!-- ===================== STARTER PACK CALLOUT ===================== -->
-  <div class="section" style="border-color: rgba(255, 82, 51, 0.3); margin-bottom: 2rem;">
+  <div class="section" id="starter-pack" style="border-color: rgba(255, 82, 51, 0.3); margin-bottom: 2rem;">
     <div class="section-header" style="background: rgba(255, 82, 51, 0.04);">
       <div class="step-number" style="background: var(--ultra-orange); font-size: 1rem;">★</div>
       <div class="section-title">
@@ -758,6 +759,8 @@
       </ul>
 
       <p>This guide is about understanding what's already there and adjusting the parts specific to you — your name, timezone, projects, preferred tone. The universal behaviors are already handled.</p>
+
+      <p style="font-size:0.9rem;color:var(--muted);">Haven't installed yet? Start with the <a href="setup-guide.html" style="color:var(--ultra-orange);font-weight:500;">Setup Guide</a>.</p>
     </div>
   </div>
 
@@ -1362,7 +1365,7 @@ document.querySelectorAll('.copy-btn').forEach(function(btn) {
     })();
 
     // IntersectionObserver for active section tracking in sidebar
-    var sectionIds = ['identity','user','soul','agents','tools','ops','heartbeat','security','memory','next-steps'];
+    var sectionIds = ['starter-pack','identity','user','soul','agents','tools','ops','heartbeat','security','memory','next-steps'];
     var navLinks = document.querySelectorAll('.sidebar-nav a[data-section]');
     function setActive(id) {
       navLinks.forEach(function(link) {
