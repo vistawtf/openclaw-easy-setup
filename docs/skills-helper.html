@@ -365,22 +365,18 @@
 
     /* Theme toggle button */
     .theme-toggle {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 34px;
-      height: 34px;
-      background: var(--background);
+      width: 30px;
+      height: 30px;
+      background: transparent;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 6px;
       color: var(--muted);
       cursor: pointer;
-      z-index: 200;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      flex-shrink: 0;
     }
     .theme-toggle:hover {
       border-color: var(--border-hover);
@@ -390,7 +386,7 @@
 
     /* Scroll margin for sticky nav / anchor offset */
     [id] {
-      scroll-margin-top: 60px;
+      scroll-margin-top: 1.5rem;
     }
 
     .vista-footer {
@@ -410,18 +406,6 @@
     .vista-footer a:hover { text-decoration: underline; }
 
     /* ===== RESPONSIVE — must come after base styles ===== */
-    @media (max-width: 768px) {
-      /* Theme toggle: move into page flow on mobile */
-      .theme-toggle {
-        position: static;
-        margin: 1rem 1rem 0 auto;
-        display: block;
-        box-shadow: none;
-        min-height: 44px;
-        min-width: 44px;
-      }
-    }
-
     @media (max-width: 600px) {
       body { padding: 1rem 0.75rem; }
       .section-header { padding: 1rem 1.25rem; }
@@ -479,7 +463,7 @@
   border-color: rgba(47, 158, 68, 0.2);
 }
 
-    :root { --sidebar-width: 200px; }
+    :root { --sidebar-width: 220px; }
     body { margin: 0; }
     .sidebar {
       position: fixed;
@@ -491,6 +475,7 @@
       z-index: 200;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
     .sidebar-header {
       padding: 1.25rem 1rem 0.75rem;
@@ -508,7 +493,16 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
-    .sidebar-links { flex: 1; padding: 0.75rem 0; }
+    .sidebar-links {
+      flex: 1;
+      padding: 0.75rem 0;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    .sidebar-links::-webkit-scrollbar { width: 4px; }
+    .sidebar-links::-webkit-scrollbar-track { background: transparent; }
+    .sidebar-links::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
     .sidebar-links a {
       display: block;
       padding: 0.45rem 1rem;
@@ -521,9 +515,66 @@
     .sidebar-links a:hover { color: var(--foreground); background: rgba(255,82,51,0.04); }
     .sidebar-links a.active { color: var(--foreground); font-weight: 600; border-left-color: var(--ultra-orange); background: rgba(255,82,51,0.06); }
     .main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
+
+    /* Mobile top bar */
+    .mobile-topbar {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3rem;
+      background: var(--background);
+      border-bottom: 1px solid var(--border);
+      z-index: 150;
+      align-items: center;
+      padding: 0 1rem;
+      gap: 0.75rem;
+    }
+    .hamburger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--foreground);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .hamburger:hover { background: var(--surface); border-color: var(--border-hover); }
+    .mobile-topbar-title {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--muted-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 190;
+    }
+    .sidebar-overlay.visible { display: block; }
+
     @media (max-width: 768px) {
-      .sidebar { display: none; }
-      .main-content { margin-left: 0; }
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 300;
+        width: 260px;
+      }
+      .sidebar.open { transform: translateX(0); }
+      .mobile-topbar { display: flex; }
+      .main-content { margin-left: 0; padding-top: 3rem; }
+      [id] { scroll-margin-top: 4rem; }
     }
 
     /* ===== TYPOGRAPHY HIERARCHY ===== */
@@ -542,12 +593,29 @@
     <span class="sidebar-brand">Skills Guide</span>
     <button class="theme-toggle" aria-label="Toggle"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   </div>
-  <div class="sidebar-links">
-    <a href="index.html">← Index</a>
-    <a href="setup-guide.html">Setup Guide</a>
-    <a href="config-guide.html">Config Guide</a>
+  <div class="sidebar-links sidebar-nav">
+    <a href="#what-are-skills" data-section="what-are-skills">What are skills?</a>
+    <a href="#bundled-skills" data-section="bundled-skills">Bundled skills</a>
+    <a href="#finding-more" data-section="finding-more">Finding more</a>
+    <a href="#creating-skills" data-section="creating-skills">Creating skills</a>
+    <hr style="border:none;border-top:1px solid var(--border);margin:0.75rem 0;">
+    <a href="index.html" style="color:var(--muted);font-size:0.8rem;">← Index</a>
+    <a href="setup-guide.html" style="color:var(--muted);font-size:0.8rem;">Setup Guide</a>
+    <a href="config-guide.html" style="color:var(--muted);font-size:0.8rem;">Config Guide</a>
   </div>
 </aside>
+
+<!-- Mobile top bar -->
+<div class="mobile-topbar" id="mobileTopbar">
+  <button class="hamburger" id="hamburgerBtn" aria-label="Open navigation">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <span class="mobile-topbar-title">Skills Guide</span>
+</div>
+
+<!-- Overlay for mobile drawer -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <div class="main-content">
 
 
@@ -561,7 +629,7 @@
   </div>
 
   <!-- ===================== WHAT ARE SKILLS ===================== -->
-  <div class="section">
+  <div class="section" id="what-are-skills">
     <div class="section-header">
       <div class="step-number">1</div>
       <div class="section-title">
@@ -590,7 +658,7 @@
   </div>
 
   <!-- ===================== BUNDLED SKILLS ===================== -->
-  <div class="section">
+  <div class="section" id="bundled-skills">
     <div class="section-header">
       <div class="step-number">2</div>
       <div class="section-title">
@@ -657,7 +725,7 @@
   </div>
 
   <!-- ===================== FINDING MORE ===================== -->
-  <div class="section">
+  <div class="section" id="finding-more">
     <div class="section-header">
       <div class="step-number">3</div>
       <div class="section-title">
@@ -712,7 +780,7 @@
   </div>
 
   <!-- ===================== CREATING YOUR OWN ===================== -->
-  <div class="section">
+  <div class="section" id="creating-skills">
     <div class="section-header">
       <div class="step-number">4</div>
       <div class="section-title">
@@ -836,6 +904,56 @@ document.querySelectorAll('.copy-btn').forEach(function(btn) {
         });
       });
     })();
+  </script>
+  <script>
+    // Mobile drawer
+    (function() {
+      var sidebar = document.querySelector('.sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      var hamburger = document.getElementById('hamburgerBtn');
+      if (!sidebar || !overlay || !hamburger) return;
+
+      function openDrawer() {
+        sidebar.classList.add('open');
+        overlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeDrawer() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('visible');
+        document.body.style.overflow = '';
+      }
+
+      hamburger.addEventListener('click', openDrawer);
+      overlay.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeDrawer();
+      });
+
+      document.querySelectorAll('.sidebar-links a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          if (window.innerWidth <= 768) closeDrawer();
+        });
+      });
+    })();
+
+    // IntersectionObserver for active section tracking
+    var sectionIds = ['what-are-skills','bundled-skills','finding-more','creating-skills'];
+    var navLinks = document.querySelectorAll('.sidebar-nav a[data-section]');
+    function setActive(id) {
+      navLinks.forEach(function(link) {
+        link.classList.toggle('active', link.getAttribute('data-section') === id);
+      });
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+    sectionIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
   </script>
 </body>
 </html>
