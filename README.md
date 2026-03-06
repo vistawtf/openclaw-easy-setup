@@ -26,10 +26,18 @@ A ready-to-use workspace for a personal AI assistant that runs on your infrastru
 
 ## Quickstart
 
-### Option A: Terminal setup
+### Option A: Already have OpenClaw running
+
+If you already have OpenClaw installed and connected to Telegram:
+
+1. Copy the `starter-pack/` files to your `~/clawd/` workspace
+2. Message your bot: **"set me up"**
+3. The assistant reads `BOOTSTRAP.md` and guides you through setup via conversation — no terminal needed
+
+### Option B: Starting from scratch
 
 ```bash
-# 1. Install OpenClaw (if you haven't already)
+# 1. Install OpenClaw
 npm install -g openclaw
 
 # 2. Clone this repo and copy the starter pack
@@ -45,14 +53,6 @@ openclaw channels add --channel telegram --token YOUR_BOT_TOKEN
 ```
 
 Then message your bot on Telegram — it will walk you through the rest.
-
-### Option B: No terminal after install
-
-If you already have OpenClaw running and connected to Telegram:
-
-1. Copy the `starter-pack/` files to your `~/clawd/` workspace
-2. Message your bot: **"set me up"**
-3. The assistant reads `BOOTSTRAP.md` and guides you through setup via conversation — no more terminal needed
 
 ## Skills
 
