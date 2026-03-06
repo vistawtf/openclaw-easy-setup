@@ -614,25 +614,61 @@
       font-weight: 500;
     }
     .vista-footer a:hover { text-decoration: underline; }
-  </style>
+  
+/* Code block wrapper */
+.code-block {
+  position: relative;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(255, 82, 51, 0.08);
+  color: var(--ultra-orange);
+  border: 1px solid rgba(255, 82, 51, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.code-block:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn.copied {
+  background: rgba(47, 158, 68, 0.08);
+  color: #2f9e44;
+  border-color: rgba(47, 158, 68, 0.2);
+}
+</style>
 </head>
 <body>
 
 <nav class="nav">
   <div class="nav-inner">
     <span class="nav-title">Sections</span>
-    <a href="#s0">0 · Intro</a>
-    <a href="#s1">1 · Prerequisites</a>
-    <a href="#s2">2 · Install</a>
-    <a href="#s3">3 · Workspace</a>
-    <a href="#s4">4 · Telegram</a>
-    <a href="#s5">5 · First chat</a>
-    <a href="#s6">6 · Memory</a>
-    <a href="#s7">7 · Skills</a>
-    <a href="#s8">8 · Crons</a>
-    <a href="#s9">9 · Security</a>
-    <a href="#s10">10 · First day</a>
-    <a href="#s11">11 · What's next</a>
+    <a href="#s0">0 · Why</a>
+    <a href="#s1">1 · Environment</a>
+    <a href="#s2">2 · Prerequisites</a>
+    <a href="#s3">3 · Install</a>
+    <a href="#s4">4 · Workspace</a>
+    <a href="#s5">5 · Telegram</a>
+    <a href="#s6">6 · First chat</a>
+    <a href="#s7">7 · Memory</a>
+    <a href="#s8">8 · Skills</a>
+    <a href="#s9">9 · Crons</a>
+    <a href="#s10">10 · Security</a>
+    <a href="#s11">11 · First day</a>
+    <a href="#s12">12 · What's next</a>
     <button class="theme-toggle" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
     <button class="theme-toggle" aria-label="Switch to dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   </div>
@@ -662,51 +698,14 @@
   <div class="section" id="s0">
     <div class="section-header">
       <div class="section-num">0</div>
-      <div class="section-title">Intro: what is OpenClaw and why it matters</div>
+      <div class="section-title">Why: what OpenClaw is and what you'll build</div>
       <div class="duration">3 min</div>
     </div>
     <div class="section-body">
-      <p class="section-summary">ChatGPT forgets you after every conversation. OpenClaw gives a model persistent memory, tools, and communication channels, turning a chatbot into an assistant that actually knows you. By the end of this workshop, you'll have one running on Telegram.</p>
+      <p class="section-summary">ChatGPT forgets you after every conversation. OpenClaw gives a model persistent memory, tools, and communication channels — turning a chatbot into an assistant that actually knows you. By the end of this workshop, you'll have one running on Telegram.</p>
       <div class="callout callout-info">
         <strong>Cost heads up</strong>
         OpenClaw itself is free and open source. The AI models behind it (Anthropic, OpenAI) cost money. For moderate personal use, expect roughly $10–30/month.
-      </div>
-
-      <div class="callout callout-danger">
-        <strong>Run OpenClaw on a dedicated machine</strong>
-        Your AI assistant has access to files, shell, and network on whatever machine it runs on. For anything beyond casual testing, run it on a VPS or dedicated server, not your personal laptop. Three reasons:
-        <ul style="margin-top:0.5rem;padding-left:1.25rem;line-height:1.8">
-          <li><strong>Security</strong> — keep your personal files separate from your assistant's workspace</li>
-          <li><strong>Availability</strong> — crons and heartbeats die when your laptop sleeps. A VPS runs 24/7.</li>
-          <li><strong>Separation of concerns</strong> — a dedicated machine is easier to back up, harden, and manage</li>
-        </ul>
-        <table>
-          <tr>
-            <td>Railway</td>
-            <td>Free tier</td>
-            <td>Easiest, no Linux knowledge needed</td>
-          </tr>
-          <tr>
-            <td>DigitalOcean</td>
-            <td>$4-6/mo</td>
-            <td>Beginner-friendly, great docs</td>
-          </tr>
-          <tr>
-            <td>Hetzner</td>
-            <td>~€4/mo</td>
-            <td>Cheapest in Europe, reliable</td>
-          </tr>
-          <tr>
-            <td>Vultr</td>
-            <td>$2.50/mo</td>
-            <td>Global locations</td>
-          </tr>
-          <tr>
-            <td>Linode/Akamai</td>
-            <td>$5/mo</td>
-            <td>Solid docs</td>
-          </tr>
-        </table>
       </div>
     </div>
   </div>
@@ -715,21 +714,30 @@
   <div class="section" id="s1">
     <div class="section-header">
       <div class="section-num">1</div>
-      <div class="section-title">Prerequisites: what you need before starting</div>
-      <div class="duration">2 min</div>
+      <div class="section-title">Your environment: where to run OpenClaw</div>
+      <div class="duration">3 min</div>
     </div>
     <div class="section-body">
-      <p class="section-summary">Make sure you have these before running anything.</p>
-      <div class="callout callout-todo">
-        <strong>You need</strong>
-        <ul class="todo-list">
-          <li>Ubuntu, macOS, or Windows with WSL2</li>
-          <li>An Anthropic account with an API key (console.anthropic.com)</li>
-          <li>A Telegram account (phone + desktop)</li>
-          <li>Node.js 18+ (we'll install it in the next section if you don't have it)</li>
-        </ul>
-      </div>
-
+      <p class="section-summary">OpenClaw runs as a persistent process — it needs a machine that stays on. Your AI assistant has access to files, shell, and network on whatever machine it runs on, so where you run it matters.</p>
+      <p>For professional use, a dedicated VPS is the right call. Three reasons:</p>
+      <ul style="margin:0.75rem 0 1rem;padding-left:1.25rem;line-height:1.9">
+        <li><strong>Security</strong> — your personal files, work accounts, and browser sessions stay separate from your assistant's workspace</li>
+        <li><strong>Availability</strong> — crons and heartbeats stop when your laptop sleeps. A server runs 24/7.</li>
+        <li><strong>Separation of concerns</strong> — the agent's workspace is isolated and easier to back up and harden</li>
+      </ul>
+      <p style="margin-bottom:0.75rem">OpenClaw itself is lightweight — 1 CPU, 1GB RAM, 10GB disk is enough. The AI models run remotely (Anthropic, OpenAI), so your server just needs to stay connected.</p>
+      <table>
+        <thead>
+          <tr><th>Provider</th><th>Starting at</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><a href="https://railway.app" target="_blank" style="color:var(--ultra-orange);text-decoration:none;font-weight:500;">Railway</a></td><td>Free tier</td><td>Easiest deployment, no Linux knowledge needed</td></tr>
+          <tr><td><a href="https://www.digitalocean.com" target="_blank" style="color:var(--ultra-orange);text-decoration:none;font-weight:500;">DigitalOcean</a></td><td>$4–6/mo</td><td>Beginner-friendly, great docs</td></tr>
+          <tr><td><a href="https://www.hetzner.com" target="_blank" style="color:var(--ultra-orange);text-decoration:none;font-weight:500;">Hetzner</a></td><td>~€4/mo</td><td>Cheapest in Europe, very reliable</td></tr>
+          <tr><td><a href="https://www.vultr.com" target="_blank" style="color:var(--ultra-orange);text-decoration:none;font-weight:500;">Vultr</a></td><td>$2.50/mo</td><td>Global locations, low entry tier</td></tr>
+          <tr><td><a href="https://www.linode.com" target="_blank" style="color:var(--ultra-orange);text-decoration:none;font-weight:500;">Linode / Akamai</a></td><td>$5/mo</td><td>Solid docs and tutorials</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -737,6 +745,24 @@
   <div class="section" id="s2">
     <div class="section-header">
       <div class="section-num">2</div>
+      <div class="section-title">Software prerequisites</div>
+      <div class="duration">2 min</div>
+    </div>
+    <div class="section-body">
+      <p class="section-summary">Make sure you have these before running anything.</p>
+      <ul style="margin:0.5rem 0 0;padding-left:1.25rem;line-height:1.9">
+        <li>Ubuntu, macOS, or Windows with WSL2</li>
+        <li>An Anthropic account with an API key — <a href="https://console.anthropic.com" target="_blank" style="color:var(--ultra-orange);text-decoration:none;">console.anthropic.com</a></li>
+        <li>A Telegram account (phone + desktop app)</li>
+        <li>Node.js 18+ (we'll install it in the next section if you don't have it)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <div class="section-num">3</div>
       <div class="section-title">Installation and first boot</div>
       <div class="duration">7 min</div>
     </div>
@@ -744,27 +770,45 @@
       <p class="section-summary">Open a terminal and run these commands in order. We'll install system dependencies, then Node.js if needed, then OpenClaw itself.</p>
 
       <h3>1. Install system dependencies (Ubuntu/WSL2 only)</h3>
-      <pre><code>sudo apt-get update && sudo apt-get install -y curl git build-essential</code></pre>
+      <div class="code-block">
+  <pre><code>sudo apt-get update && sudo apt-get install -y curl git build-essential</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <h3>2. Check if Node.js is already installed</h3>
-      <pre><code>node --version</code></pre>
+      <div class="code-block">
+  <pre><code>node --version</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
       <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">If you see a version number (v18 or higher), skip the next step.</p>
 
       <h3>3. Install Node.js (only if needed)</h3>
-      <pre><code>curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+      <div class="code-block">
+  <pre><code>curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt-get install -y nodejs</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <h3>4. Install OpenClaw</h3>
-      <pre><code>npm install -g openclaw
+      <div class="code-block">
+  <pre><code>npm install -g openclaw
 openclaw --version</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <h3>5. Run the setup wizard</h3>
-      <pre><code>openclaw onboard</code></pre>
+      <div class="code-block">
+  <pre><code>openclaw onboard</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
       <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">The wizard asks where to store your workspace, which AI provider to use, and your API key. Accept defaults unless you have a reason not to. Skip the channels step — we'll set up Telegram next.</p>
 
       <h3>6. Start the gateway and verify</h3>
-      <pre><code>openclaw gateway start
+      <div class="code-block">
+  <pre><code>openclaw gateway start
 openclaw health</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <div class="callout callout-todo">
         <strong>Your turn</strong>
@@ -782,9 +826,9 @@ openclaw health</code></pre>
   </div>
 
   <!-- Section 3 -->
-  <div class="section" id="s3">
+  <div class="section" id="s4">
     <div class="section-header">
-      <div class="section-num">3</div>
+      <div class="section-num">4</div>
       <div class="section-title">Your workspace: the files that matter</div>
       <div class="duration">10 min</div>
     </div>
@@ -796,7 +840,8 @@ openclaw health</code></pre>
         If you already have files in <code>~/clawd/</code>, copying the starter pack will overwrite any files with the same names. Back up first: <code>cp -r ~/clawd/ ~/clawd-backup/</code>
       </div>
 
-      <pre><code>clawd/
+      <div class="code-block">
+  <pre><code>clawd/
 ├── IDENTITY.md   ← Name and vibe (6 lines)
 ├── SOUL.md       ← Personality and tone
 ├── USER.md       ← About you: timezone, language, priorities
@@ -804,6 +849,8 @@ openclaw health</code></pre>
 ├── TOOLS.md      ← Your configured services
 └── memory/
     └── MEMORY.md ← Long-term memory (starts empty)</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <div class="callout callout-todo">
         <strong>Your turn — open and edit these now</strong>
@@ -823,9 +870,9 @@ openclaw health</code></pre>
   </div>
 
   <!-- Section 4 -->
-  <div class="section" id="s4">
+  <div class="section" id="s5">
     <div class="section-header">
-      <div class="section-num">4</div>
+      <div class="section-num">5</div>
       <div class="section-title">Connect Telegram as your communication channel</div>
       <div class="duration">8 min</div>
     </div>
@@ -834,22 +881,37 @@ openclaw health</code></pre>
 
       <h3>1. Create your bot in Telegram</h3>
       <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Open Telegram, search for <a href="https://t.me/BotFather" target="_blank" style="color:var(--ultra-orange);text-decoration:none;font-weight:500;"><code>@BotFather</code></a>, and send:</p>
-      <pre><code>/newbot</code></pre>
+      <div class="code-block">
+  <pre><code>/newbot</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
       <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">BotFather will ask for a display name and a username (must end in <code>bot</code>). Then it gives you an API token. Copy it.</p>
 
       <h3>2. Connect to OpenClaw</h3>
-      <pre><code>openclaw channels add --channel telegram --token YOUR_TOKEN_HERE</code></pre>
+      <div class="code-block">
+  <pre><code>openclaw channels add --channel telegram --token YOUR_TOKEN_HERE</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <h3>3. Verify the connection</h3>
-      <pre><code>openclaw channels status</code></pre>
+      <div class="code-block">
+  <pre><code>openclaw channels status</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
       <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Now open Telegram, find your bot, and send it a message. You should get a reply within a few seconds.</p>
 
       <h3>4. Get your chat ID</h3>
-      <pre><code>openclaw directory self --channel telegram</code></pre>
+      <div class="code-block">
+  <pre><code>openclaw directory self --channel telegram</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
       <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Save this number. You'll need it for crons (scheduled tasks) later. Add it to TOOLS.md.</p>
 
       <h3>5. Set up the allowlist</h3>
-      <pre><code>openclaw configure --section channels</code></pre>
+      <div class="code-block">
+  <pre><code>openclaw configure --section channels</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
       <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Choose "pairing" for DM policy so only approved users can talk to your bot.</p>
 
       <div class="callout callout-todo">
@@ -871,9 +933,9 @@ openclaw health</code></pre>
   </div>
 
   <!-- Section 5 -->
-  <div class="section" id="s5">
+  <div class="section" id="s6">
     <div class="section-header">
-      <div class="section-num">5</div>
+      <div class="section-num">6</div>
       <div class="section-title">Your first conversation: make sure it works</div>
       <div class="duration">3 min</div>
     </div>
@@ -898,9 +960,9 @@ openclaw health</code></pre>
   </div>
 
   <!-- Section 6 -->
-  <div class="section" id="s6">
+  <div class="section" id="s7">
     <div class="section-header">
-      <div class="section-num">6</div>
+      <div class="section-num">7</div>
       <div class="section-title">Memory: how your AI remembers</div>
       <div class="duration">5 min</div>
     </div>
@@ -928,9 +990,9 @@ openclaw health</code></pre>
   </div>
 
   <!-- Section 7 -->
-  <div class="section" id="s7">
+  <div class="section" id="s8">
     <div class="section-header">
-      <div class="section-num">7</div>
+      <div class="section-num">8</div>
       <div class="section-title">Skills: ready-made capabilities</div>
       <div class="duration">4 min</div>
     </div>
@@ -938,10 +1000,16 @@ openclaw health</code></pre>
       <p class="section-summary">Skills are specialized instruction files your assistant loads automatically when a task matches. Ask it to summarize a video, it loads <code>summarize</code>. Ask it to review a pull request, it loads <code>github</code>. You don't manage this manually.</p>
 
       <h3>See what's installed</h3>
-      <pre><code>openclaw skills list</code></pre>
+      <div class="code-block">
+  <pre><code>openclaw skills list</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <h3>Get details on a specific skill</h3>
-      <pre><code>openclaw skills info summarize</code></pre>
+      <div class="code-block">
+  <pre><code>openclaw skills info summarize</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <div class="callout callout-info">
         <strong>Good ones to start with</strong>
@@ -961,9 +1029,9 @@ openclaw health</code></pre>
   </div>
 
   <!-- Section 8 -->
-  <div class="section" id="s8">
+  <div class="section" id="s9">
     <div class="section-header">
-      <div class="section-num">8</div>
+      <div class="section-num">9</div>
       <div class="section-title">Crons: your AI works while you sleep</div>
       <div class="duration">6 min</div>
     </div>
@@ -971,7 +1039,8 @@ openclaw health</code></pre>
       <p class="section-summary">Crons are scheduled tasks. Tell your assistant "every morning at 8am, send me a briefing on Telegram" and it runs in the background, no computer needed. This is where OpenClaw goes from chat assistant to personal system.</p>
 
       <h3>Test cron (fires in 1 minute, then self-destructs)</h3>
-      <pre><code>openclaw cron create \
+      <div class="code-block">
+  <pre><code>openclaw cron create \
   --name "Test Cron" \
   --at "+1m" \
   --message "Say hello! This is a test cron." \
@@ -979,15 +1048,20 @@ openclaw health</code></pre>
   --announce \
   --wake now \
   --delete-after-run</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <h3>Real cron — morning briefing</h3>
-      <pre><code>openclaw cron create \
+      <div class="code-block">
+  <pre><code>openclaw cron create \
   --name "Good Morning" \
   --cron "0 12 * * *" \
   --message "Give me a brief morning briefing: what day it is, a motivational thought, and one thing I should focus on today." \
   --to telegram:YOUR_CHAT_ID \
   --announce \
   --wake now</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <div class="callout callout-info">
         <strong>Time zones</strong>
@@ -995,8 +1069,11 @@ openclaw health</code></pre>
       </div>
 
       <h3>Manage your crons</h3>
-      <pre><code>openclaw cron list
+      <div class="code-block">
+  <pre><code>openclaw cron list
 openclaw cron delete JOB_ID</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <div class="callout callout-todo">
         <strong>Your turn</strong>
@@ -1015,9 +1092,9 @@ openclaw cron delete JOB_ID</code></pre>
   </div>
 
   <!-- Section 9 -->
-  <div class="section" id="s9">
+  <div class="section" id="s10">
     <div class="section-header">
-      <div class="section-num">9</div>
+      <div class="section-num">10</div>
       <div class="section-title">Security basics: two things to get right</div>
       <div class="duration">3 min</div>
     </div>
@@ -1050,9 +1127,9 @@ openclaw cron delete JOB_ID</code></pre>
   </div>
 
   <!-- Section 10 -->
-  <div class="section" id="s10">
+  <div class="section" id="s11">
     <div class="section-header">
-      <div class="section-num">10</div>
+      <div class="section-num">11</div>
       <div class="section-title">Your first real day: putting it to work</div>
       <div class="duration">4 min</div>
     </div>
@@ -1076,9 +1153,9 @@ openclaw cron delete JOB_ID</code></pre>
   </div>
 
   <!-- Section 11 -->
-  <div class="section" id="s11">
+  <div class="section" id="s12">
     <div class="section-header">
-      <div class="section-num">11</div>
+      <div class="section-num">12</div>
       <div class="section-title">What comes next</div>
       <div class="duration">2 min</div>
     </div>
@@ -1135,5 +1212,37 @@ openclaw cron delete JOB_ID</code></pre>
       });
     })();
   </script>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var pre = btn.closest('.code-block').querySelector('pre');
+    var text = pre.innerText || pre.textContent;
+    navigator.clipboard.writeText(text).then(function() {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(function() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  });
+});
+</script>
 </body>
 </html>
