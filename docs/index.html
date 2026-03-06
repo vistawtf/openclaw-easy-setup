@@ -285,7 +285,42 @@
       font-weight: 500;
     }
     .vista-footer a:hover { text-decoration: underline; }
-  </style>
+  
+/* Code block wrapper */
+.code-block {
+  position: relative;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(255, 82, 51, 0.08);
+  color: var(--ultra-orange);
+  border: 1px solid rgba(255, 82, 51, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.code-block:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn.copied {
+  background: rgba(47, 158, 68, 0.08);
+  color: #2f9e44;
+  border-color: rgba(47, 158, 68, 0.2);
+}
+</style>
 </head>
 <body>
 <div class="container">
@@ -338,13 +373,44 @@
     Built on <a href="https://docs.openclaw.ai" target="_blank">OpenClaw</a> &middot; By <a href="https://vista.wtf" target="_blank">Vista</a>
   </footer>
 
+<script>
+document.querySelectorAll('.copy-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var pre = btn.closest('.code-block').querySelector('pre');
+    var text = pre.innerText || pre.textContent;
+    navigator.clipboard.writeText(text).then(function() {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(function() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  });
+});
+</script>
+
   <script>
     (function() {
       var html = document.documentElement;
       var stored = localStorage.getItem('theme');
       var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       if (stored === 'dark' || (!stored && prefersDark)) html.classList.add('dark');
-
       function syncIcons() {
         var isDark = html.classList.contains('dark');
         document.querySelectorAll('.theme-toggle').forEach(function(btn) {
@@ -352,7 +418,6 @@
           btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
         });
       }
-
       document.addEventListener('DOMContentLoaded', function() {
         syncIcons();
         document.querySelectorAll('.theme-toggle').forEach(function(btn) {
