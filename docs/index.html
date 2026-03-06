@@ -84,6 +84,69 @@
       line-height: 1.6;
     }
 
+    /* Feature highlights grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.75rem;
+      margin: 1.75rem 0 2.5rem;
+    }
+
+    .feature-card {
+      grid-column: span 2;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.15s, transform 0.15s;
+      cursor: default;
+    }
+
+    .feature-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    html.dark .feature-card {
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    html.dark .feature-card:hover {
+      border-color: rgba(255,255,255,0.30);
+    }
+
+    /* First two cards span 3 cols each (2-col row) */
+    .feature-card:nth-child(1),
+    .feature-card:nth-child(2) {
+      grid-column: span 3;
+    }
+
+    .feature-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-top: 0.6rem;
+    }
+
+    .feature-desc {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--foreground);
+      line-height: 1.5;
+      margin-top: 0.4rem;
+    }
+
+    @media (max-width: 640px) {
+      .features-grid {
+        display: flex;
+        flex-direction: column;
+      }
+      .feature-card {
+        grid-column: span 1;
+      }
+    }
+
     .cards {
       display: grid;
       gap: 1rem;
@@ -341,12 +404,52 @@
     <p>A pre-configured workspace for OpenClaw. Persistent memory, Telegram integration, scheduled tasks, and a nightly self-improvement loop.</p>
   </div>
 
-  <div style="margin: 1.5rem 0 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem 2rem; max-width: 560px;">
-    <div style="display:flex; gap: 0.6rem; align-items: baseline;"><span style="color: var(--ultra-orange); font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Always available</span><span style="color: var(--muted); font-size: 0.85rem;">Main chat stays free while long tasks run in the background.</span></div>
-    <div style="display:flex; gap: 0.6rem; align-items: baseline;"><span style="color: var(--ultra-orange); font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Learns overnight</span><span style="color: var(--muted); font-size: 0.85rem;">Picks one friction point per night and fixes it automatically.</span></div>
-    <div style="display:flex; gap: 0.6rem; align-items: baseline;"><span style="color: var(--ultra-orange); font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Actual personality</span><span style="color: var(--muted); font-size: 0.85rem;">No sycophantic openers, no filler, no AI writing patterns.</span></div>
-    <div style="display:flex; gap: 0.6rem; align-items: baseline;"><span style="color: var(--ultra-orange); font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Smart memory</span><span style="color: var(--muted); font-size: 0.85rem;">Everything filed in the right place, automatically.</span></div>
-    <div style="display:flex; gap: 0.6rem; align-items: baseline;"><span style="color: var(--ultra-orange); font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Ships ready</span><span style="color: var(--muted); font-size: 0.85rem;">15 operational rules so you don't learn them the hard way.</span></div>
+  <div class="features-grid">
+    <!-- Row 1: 2 cards -->
+    <div class="feature-card">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ultra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+      <div class="feature-label">Always on</div>
+      <div class="feature-desc">Long tasks run in background. Main chat stays free.</div>
+    </div>
+    <div class="feature-card">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ultra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="23 4 23 10 17 10"/>
+        <polyline points="1 20 1 14 7 14"/>
+        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+      </svg>
+      <div class="feature-label">Self-improving</div>
+      <div class="feature-desc">Nightly loop finds one friction point and fixes it automatically.</div>
+    </div>
+    <!-- Row 2: 3 cards -->
+    <div class="feature-card">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ultra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        <line x1="8" y1="9" x2="16" y2="9"/>
+        <line x1="8" y1="13" x2="12" y2="13"/>
+        <line x1="16" y1="11" x2="16.01" y2="11" stroke-width="3" stroke-linecap="round"/>
+        <line x1="5" y1="5" x2="19" y2="19" stroke="var(--ultra-orange)" stroke-width="2"/>
+      </svg>
+      <div class="feature-label">No AI voice</div>
+      <div class="feature-desc">Hard rules against filler, sycophancy, and significance inflation.</div>
+    </div>
+    <div class="feature-card">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ultra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+      </svg>
+      <div class="feature-label">Memory routing</div>
+      <div class="feature-desc">Every fact files itself in the right place. Nothing lost to chat scroll.</div>
+    </div>
+    <div class="feature-card">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ultra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <div class="feature-label">Pre-hardened</div>
+      <div class="feature-desc">15 operational rules covering the failures most setups discover too late.</div>
+    </div>
   </div>
 
   <div class="cards">
