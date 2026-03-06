@@ -9,12 +9,9 @@ description: |
   attributions, em dash overuse, rule of three, AI vocabulary words, negative
   parallelisms, and excessive conjunctive phrases.
 allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Grep
-  - Glob
-  - AskUserQuestion
+  - read
+  - write
+  - edit
 ---
 
 # Humanizer: Remove AI Writing Patterns
