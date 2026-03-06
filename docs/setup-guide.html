@@ -818,7 +818,7 @@
         <p class="section-summary">ChatGPT forgets you after every conversation. OpenClaw gives a model persistent memory, tools, and communication channels — turning a chatbot into an assistant that actually knows you. By the end of this workshop, you'll have one running on Telegram.</p>
         <div class="callout callout-info">
           <strong>Cost heads up</strong>
-          OpenClaw itself is free and open source. The AI models behind it (Anthropic, OpenAI) cost money. For moderate personal use, expect roughly $10–30/month.
+          OpenClaw itself is free and open source. The AI models behind it cost money — providers like Anthropic and OpenAI charge per use. For moderate personal use, expect roughly $10–30/month.
         </div>
       </div>
     </div>
@@ -838,7 +838,7 @@
           <li><strong>Availability</strong> — crons and heartbeats stop when your laptop sleeps. A server runs 24/7.</li>
           <li><strong>Separation of concerns</strong> — the agent's workspace is isolated and easier to back up and harden</li>
         </ul>
-        <p style="margin-bottom:0.75rem">OpenClaw itself is lightweight — 1 CPU, 1GB RAM, 10GB disk is enough. The AI models run remotely (Anthropic, OpenAI), so your server just needs to stay connected.</p>
+        <p style="margin-bottom:0.75rem">OpenClaw itself is lightweight — 1 CPU, 1GB RAM, 10GB disk is enough. The AI models run remotely on your chosen provider's servers, so your machine just needs to stay connected.</p>
         <table>
           <thead>
             <tr><th>Provider</th><th>Starting at</th><th>Notes</th></tr>
@@ -865,7 +865,7 @@
         <p class="section-summary">Make sure you have these before running anything.</p>
         <ul style="margin:0.5rem 0 0;padding-left:1.25rem;line-height:1.9">
           <li>Ubuntu, macOS, or Windows with WSL2</li>
-          <li>An Anthropic account with an API key — <a href="https://console.anthropic.com" target="_blank" style="color:var(--ultra-orange);text-decoration:none;">console.anthropic.com</a></li>
+          <li>An account with an AI provider — we recommend <a href="https://console.anthropic.com" target="_blank" style="color:var(--ultra-orange);text-decoration:none;">Anthropic (Claude)</a>, but OpenAI and others work too</li>
           <li>A Telegram account (phone + desktop app)</li>
           <li>Node.js 18+ (we'll install it in the next section if you don't have it)</li>
         </ul>
@@ -925,9 +925,9 @@ openclaw --version</code></pre>
         <ul style="font-size:0.9rem;color:var(--muted);margin:0.25rem 0 0.75rem;padding-left:1.25rem;line-height:1.9">
           <li><strong>Acknowledge</strong> that OpenClaw is a personal tool with broad system access</li>
           <li><strong>Quickstart or manual</strong> — quickstart is fine</li>
-          <li><strong>AI provider</strong> — choose your provider (we recommend Anthropic/Claude)</li>
-          <li><strong>Auth method</strong> — follow the on-screen instructions for your provider. For Anthropic: Personal Access Token if you have a Claude.ai subscription, or an API key from <a href="https://console.anthropic.com" target="_blank" style="color:var(--ultra-orange);text-decoration:none;">console.anthropic.com</a></li>
-          <li><strong>Model</strong> — follow the on-screen instructions; Claude Sonnet is a solid default if using Anthropic</li>
+          <li><strong>AI provider</strong> — pick one from the list (Claude is a good starting point)</li>
+          <li><strong>Auth method</strong> — follow the on-screen instructions for your chosen provider</li>
+          <li><strong>Model</strong> — pick the default or Claude Sonnet if you went with Anthropic</li>
           <li><strong>Channel</strong> — select Telegram, paste the bot token from BotFather</li>
           <li><strong>Skills and hooks</strong> — skip both</li>
         </ul>
