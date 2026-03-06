@@ -944,13 +944,13 @@ openclaw --version</code></pre>
   </div>
         <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.4rem">This is common on VPS setups where systemd user services aren't available.</p>
 
-        <h3>7. Test it and get your chat ID</h3>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Open Telegram, find your bot, and send it a message. You should get a reply within a few seconds. Then grab your chat ID — you'll need it for crons later:</p>
+        <h3>7. Send your first message and pair your account</h3>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Open Telegram, find your bot, and send it any message. The bot will reply with a pairing command — something like:</p>
         <div class="code-block">
-    <pre><code>openclaw directory self --channel telegram</code></pre>
+    <pre><code>openclaw pairing approve telegram 123456789</code></pre>
     <button class="copy-btn" aria-label="Copy code">Copy</button>
   </div>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Save that number in TOOLS.md.</p>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Copy that exact command from Telegram and run it in your terminal. Then send another message — you should get a real reply from your assistant.</p>
 
         <div class="callout callout-todo">
           <strong>End state</strong>
@@ -958,8 +958,7 @@ openclaw --version</code></pre>
             <li>OpenClaw installed (<code>openclaw --version</code> shows a number)</li>
             <li>Gateway running (<code>openclaw health</code> is green)</li>
             <li>Bot created in Telegram</li>
-            <li>Sent a test message and got a reply</li>
-            <li>Chat ID saved in TOOLS.md</li>
+            <li>Sent a test message and got a reply from your assistant</li>
           </ul>
         </div>
 
