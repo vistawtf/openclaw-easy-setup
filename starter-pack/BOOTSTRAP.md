@@ -182,6 +182,22 @@ Send this summary message (replace unfilled placeholders with "not set"):
 >
 > What do you want to work on first?"
 
+## Final step: restart the gateway
+
+Before finishing, run this so the new workspace files take full effect:
+
+```bash
+pkill -f "openclaw gateway"; sleep 2; nohup openclaw gateway > /dev/null 2>&1 &
+```
+
+Then send this message to the user in Telegram:
+
+> "I'm restarting to load your new config. Message me again in about 10 seconds."
+
+Wait for their reply after the restart to confirm everything is working. Only then delete `BOOTSTRAP.md`.
+
+---
+
 Only delete `BOOTSTRAP.md` after confirming all steps completed successfully.
 
 ---

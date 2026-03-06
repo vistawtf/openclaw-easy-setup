@@ -765,13 +765,14 @@
     <a href="#s2" data-section="s2"><span class="nav-num">2</span> Prerequisites</a>
     <a href="#s3" data-section="s3"><span class="nav-num">3</span> Install + Telegram</a>
     <a href="#s4" data-section="s4"><span class="nav-num">4</span> Workspace</a>
-    <a href="#s5" data-section="s5"><span class="nav-num">5</span> First chat</a>
-    <a href="#s6" data-section="s6"><span class="nav-num">6</span> Memory</a>
-    <a href="#s7" data-section="s7"><span class="nav-num">7</span> Skills</a>
-    <a href="#s8" data-section="s8"><span class="nav-num">8</span> Crons</a>
-    <a href="#s9" data-section="s9"><span class="nav-num">9</span> Security</a>
-    <a href="#s10" data-section="s10"><span class="nav-num">10</span> First day</a>
-    <a href="#s11" data-section="s11"><span class="nav-num">11</span> What's next</a>
+    <a href="#s5" data-section="s5"><span class="nav-num">5</span> Starter pack</a>
+    <a href="#s6" data-section="s6"><span class="nav-num">6</span> First chat</a>
+    <a href="#s7" data-section="s7"><span class="nav-num">7</span> Memory</a>
+    <a href="#s8" data-section="s8"><span class="nav-num">8</span> Skills</a>
+    <a href="#s9" data-section="s9"><span class="nav-num">9</span> Crons</a>
+    <a href="#s10" data-section="s10"><span class="nav-num">10</span> Security</a>
+    <a href="#s11" data-section="s11"><span class="nav-num">11</span> First day</a>
+    <a href="#s12" data-section="s12"><span class="nav-num">12</span> What's next</a>
   </nav>
   <div class="sidebar-footer">
     <div class="footer-label">Also in this series</div>
@@ -972,48 +973,76 @@ openclaw --version</code></pre>
     <div class="section" id="s4">
       <div class="section-header">
         <div class="section-num">4</div>
-        <div class="section-title">Your workspace: the files that matter</div>
-        <div class="duration">10 min</div>
+        <div class="section-title">How your workspace works</div>
+        <div class="duration">4 min</div>
       </div>
       <div class="section-body">
-        <p class="section-summary">Your workspace is a folder (usually <code>~/clawd/</code>) containing plain text files. Your assistant reads them at the start of every conversation. This is what gives it memory, personality, and context about you.</p>
-
-        <div class="callout callout-warn">
-          <strong>Back up first</strong>
-          If you already have files in <code>~/clawd/</code>, copying the starter pack will overwrite any files with the same names. Back up first: <code>cp -r ~/clawd/ ~/clawd-backup/</code>
-        </div>
+        <p class="section-summary">OpenClaw reads a folder of plain text files at the start of every conversation. These files are your assistant's memory, personality, and context about you. In the next step you'll install the starter pack — a set of pre-built files to get you started fast.</p>
 
         <div class="code-block">
-    <pre><code>clawd/
-├── IDENTITY.md   ← Name and vibe (6 lines)
-├── SOUL.md       ← Personality and tone
+    <pre><code>~/clawd/
+├── IDENTITY.md   ← Your assistant's name and vibe
+├── SOUL.md       ← Personality, tone, and how it communicates
 ├── USER.md       ← About you: timezone, language, priorities
-├── AGENTS.md     ← The rulebook: what to do and how
-├── TOOLS.md      ← Your configured services
+├── AGENTS.md     ← Rules: what it does and how
+├── TOOLS.md      ← Your configured services and API keys
 └── memory/
-    └── MEMORY.md ← Long-term memory (starts empty)</code></pre>
+    └── MEMORY.md ← Long-term memory (grows over time)</code></pre>
     <button class="copy-btn" aria-label="Copy code">Copy</button>
   </div>
 
-        <div class="callout callout-todo">
-          <strong>Your turn — open and edit these now</strong>
-          <ul class="todo-list">
-            <li><strong>IDENTITY.md</strong> — give your assistant a name</li>
-            <li><strong>USER.md</strong> — set your timezone and preferred language</li>
-            <li><strong>SOUL.md</strong> — read through it, adjust anything that doesn't feel right</li>
-            <li><strong>AGENTS.md</strong> — review the rules, no need to change much yet</li>
-          </ul>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.5rem 0 0">These are just text files — you can open and edit them directly anytime. The <a href="config-guide.html" style="color:var(--ultra-orange);text-decoration:none;">Config Guide</a> walks through each one in detail when you're ready.</p>
+      </div>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section" id="s5">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <div class="section-title">Install the starter pack</div>
+        <div class="duration">5 min</div>
+      </div>
+      <div class="section-body">
+        <p class="section-summary">The starter pack gives you a complete, ready-to-use workspace: personality, memory system, rules, and a nightly self-improvement loop. Two ways to install it.</p>
+
+        <h3>Easy path — let your assistant do it</h3>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Open Telegram and send your bot this message:</p>
+        <div class="code-block">
+    <pre><code>Install the OpenClaw starter pack from https://github.com/vistawtf/openclaw-easy-setup — clone it and copy the starter-pack folder contents into ~/clawd/, then restart the gateway so the new files load.</code></pre>
+    <button class="copy-btn" aria-label="Copy code">Copy</button>
+  </div>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Your assistant will clone the repo, copy the files, and restart itself. Message it again in about 10 seconds — it should respond with the new personality and kick off a short onboarding chat.</p>
+
+        <h3>Terminal path — if you want to review the files first</h3>
+        <div class="code-block">
+    <pre><code>cd ~ && git clone https://github.com/vistawtf/openclaw-easy-setup.git
+cp -r openclaw-easy-setup/starter-pack/. ~/clawd/</code></pre>
+    <button class="copy-btn" aria-label="Copy code">Copy</button>
+  </div>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Then restart the gateway:</p>
+        <div class="code-block">
+    <pre><code>pkill -f "openclaw gateway" && nohup openclaw gateway &</code></pre>
+    <button class="copy-btn" aria-label="Copy code">Copy</button>
+  </div>
+
+        <div class="callout callout-warn">
+          <strong>Back up first if you have existing files</strong>
+          <code>cp -r ~/clawd/ ~/clawd-backup/</code> before copying — the starter pack overwrites files with the same names.
         </div>
 
-        <div class="callout callout-info">
-          <strong>The most important file</strong>
-          SOUL.md tells your assistant how not to sound like a generic AI. Without it, you have ChatGPT with memory. With it, you have an assistant with an actual personality.
+        <div class="callout callout-todo">
+          <strong>End state</strong>
+          <ul class="todo-list">
+            <li>Starter pack files are in <code>~/clawd/</code></li>
+            <li>Gateway restarted</li>
+            <li>Assistant responded in Telegram with the new personality</li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <!-- Section 5 -->
-    <div class="section" id="s5">
+    <!-- Section 6 -->
+    <div class="section" id="s6">
       <div class="section-header">
         <div class="section-num">5</div>
         <div class="section-title">Your first conversation: make sure it works</div>
@@ -1039,8 +1068,8 @@ openclaw --version</code></pre>
       </div>
     </div>
 
-    <!-- Section 6 -->
-    <div class="section" id="s6">
+    <!-- Section 7 -->
+    <div class="section" id="s7">
       <div class="section-header">
         <div class="section-num">5</div>
         <div class="section-title">Memory: how your AI remembers</div>
@@ -1069,8 +1098,8 @@ openclaw --version</code></pre>
       </div>
     </div>
 
-    <!-- Section 7 -->
-    <div class="section" id="s7">
+    <!-- Section 8 -->
+    <div class="section" id="s8">
       <div class="section-header">
         <div class="section-num">5</div>
         <div class="section-title">Skills: ready-made capabilities</div>
@@ -1108,8 +1137,8 @@ openclaw --version</code></pre>
       </div>
     </div>
 
-    <!-- Section 8 -->
-    <div class="section" id="s8">
+    <!-- Section 9 -->
+    <div class="section" id="s9">
       <div class="section-header">
         <div class="section-num">5</div>
         <div class="section-title">Crons: your AI works while you sleep</div>
@@ -1171,8 +1200,8 @@ openclaw cron delete JOB_ID</code></pre>
       </div>
     </div>
 
-    <!-- Section 9 -->
-    <div class="section" id="s9">
+    <!-- Section 10 -->
+    <div class="section" id="s10">
       <div class="section-header">
         <div class="section-num">5</div>
         <div class="section-title">Security basics: two things to get right</div>
@@ -1213,8 +1242,8 @@ openclaw cron delete JOB_ID</code></pre>
       </div>
     </div>
 
-    <!-- Section 10 -->
-    <div class="section" id="s10">
+    <!-- Section 11 -->
+    <div class="section" id="s11">
       <div class="section-header">
         <div class="section-num">5</div>
         <div class="section-title">Your first real day: putting it to work</div>
@@ -1239,8 +1268,8 @@ openclaw cron delete JOB_ID</code></pre>
       </div>
     </div>
 
-    <!-- Section 11 -->
-    <div class="section" id="s11">
+    <!-- Section 12 -->
+    <div class="section" id="s12">
       <div class="section-header">
         <div class="section-num">5</div>
         <div class="section-title">What comes next</div>
