@@ -27,40 +27,27 @@ A ready-to-use workspace for a personal AI assistant that runs on your infrastru
 ## Prerequisites
 
 - Node.js 18+
-- Anthropic API key ([console.anthropic.com](https://console.anthropic.com))
+- An API key from your AI provider (Anthropic, OpenAI, etc.)
 - Telegram account
 
 ## Quickstart
 
-### Option A: Already have OpenClaw running
-
-If you already have OpenClaw installed and connected to Telegram:
-
-> **Heads up:** This will overwrite any existing files in `~/clawd/` with the same names. If you have a custom `SOUL.md`, `AGENTS.md`, or other config files you want to keep, back them up first: `cp -r ~/clawd/ ~/clawd-backup/`
-
-1. Copy the `starter-pack/` files to your `~/clawd/` workspace
-2. Message your bot: **"set me up"**
-3. The assistant reads `BOOTSTRAP.md` and guides you through setup via conversation — no terminal needed
-
-### Option B: Starting from scratch
-
 ```bash
-# 1. Install OpenClaw
+# 1. Install OpenClaw (if you haven't already)
 npm install -g openclaw
+openclaw onboard   # follow the wizard: AI provider, Telegram bot token, model
 
 # 2. Clone this repo and copy the starter pack
 git clone https://github.com/vistawtf/openclaw-easy-setup.git
-cp -r openclaw-easy-setup/starter-pack/ ~/clawd/
+cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/
 
-# 3. Start the gateway
-openclaw gateway start
-
-# 4. Connect Telegram
-# First: open @BotFather on Telegram, send /newbot, copy the token
-openclaw channels add --channel telegram --token YOUR_BOT_TOKEN
+# 3. Restart the gateway so the new files load
+pkill -f "openclaw gateway" && nohup openclaw gateway &
 ```
 
-Then message your bot on Telegram — it will walk you through the rest.
+Then message your bot on Telegram — `BOOTSTRAP.md` will guide your assistant through a short onboarding chat to personalize your workspace.
+
+> **Heads up:** Copying the starter pack overwrites files with the same names. Back up first if you have existing config: `cp -r ~/.openclaw/workspace/ ~/.openclaw/workspace-backup/`
 
 ## Skills
 
