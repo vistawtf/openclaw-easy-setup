@@ -27,20 +27,20 @@ A ready-to-use workspace for a personal AI assistant that runs on your infrastru
 ## Install
 
 ```bash
-# 1. Install OpenClaw and run the setup wizard
+# 1. Install OpenClaw
 npm install -g openclaw
-openclaw onboard   # follow the prompts: AI provider, Telegram bot token, model
 
-# 2. Clone this repo and copy the starter pack into your workspace
+# 2. Copy the starter pack into your workspace
 cd ~ && git clone https://github.com/vistawtf/openclaw-easy-setup.git
 mkdir -p ~/.openclaw/workspace/
 cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/
 
-# 3. Restart the gateway so the new files load
-pkill -f "openclaw gateway" && nohup openclaw gateway &
-```
+# 3. Run the setup wizard
+openclaw onboard   # AI provider, Telegram bot token, model
 
-> **Note:** Copying the starter pack overwrites any files with the same names. Back up first if you have an existing workspace: `cp -r ~/.openclaw/workspace/ ~/.openclaw/workspace-backup/`
+# 4. Start the gateway
+nohup openclaw gateway &
+```
 
 Then message your bot on Telegram. `BOOTSTRAP.md` will guide your assistant through a short onboarding chat to personalize your setup.
 
