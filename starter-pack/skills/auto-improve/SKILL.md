@@ -28,7 +28,7 @@ AUTO-IMPROVE:
    Ship it. Document in memory/auto-improve-log.md.
 
 2. HYGIENE CHECKS:
-   - Notion: duplicates, overdue tasks, missing dates, stale tasks (>2 weeks overdue)
+   - Task manager: duplicates, overdue tasks, missing dates, stale tasks (>2 weeks overdue)
    - Cron: zombie jobs (fired but not deleted), disabled leftovers, error states, duplicates
    - Workspace: empty files, stale temp files, scattered docs that should be consolidated
    Report findings in memory/auto-improve-log.md. Auto-fix safe issues, flag risky ones.
@@ -81,7 +81,7 @@ Each night, identify and fix ONE concrete problem. Pick the highest-impact, lowe
 
 Run these checks every night:
 
-**Task Manager (Notion/Linear/etc):**
+**Task Manager (whichever you use — Notion, Linear, Todoist, etc):**
 - Flag duplicate tasks
 - List tasks overdue >1 week with suggested new dates or deletion
 - Identify tasks missing dates
