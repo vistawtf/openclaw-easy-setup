@@ -42,15 +42,13 @@ Daily files = raw notes. MEMORY.md = curated wisdom.
 
 ## What to Check (add what matters to you)
 
-Uncomment and configure the checks you want:
+Add the checks that apply to your setup. Remove or ignore what doesn't:
 
-```
 - Email — any urgent unread messages?
 - Calendar — upcoming events in next 24-48h?
 - Weather — relevant if you might go outside?
 - GitHub — any failing CI or PR reviews waiting?
 - Monitoring — any services down?
-```
 
 ## Communication Rules
 - 1-2 line summaries max

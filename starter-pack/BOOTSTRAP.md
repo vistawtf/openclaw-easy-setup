@@ -183,7 +183,7 @@ Send this summary message (replace unfilled placeholders with "not set"):
 Before finishing, you MUST restart the gateway so the new workspace files take full effect. **Use your `exec` tool to run this command yourself. Do NOT ask the user to run it:**
 
 ```bash
-pkill -f "openclaw gateway"; sleep 2; nohup openclaw gateway > /dev/null 2>&1 &
+openclaw gateway restart
 ```
 
 To be explicit: call the `exec` tool with the above as the `command` parameter. The user does not need to do anything — you have full terminal access.
