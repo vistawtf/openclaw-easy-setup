@@ -944,15 +944,13 @@ openclaw --version</code></pre>
   </div>
         <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.4rem">This is common on VPS setups where systemd user services aren't available.</p>
 
-        <h3>7. Send your first message</h3>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Open Telegram, find your bot, and send it a message. The wizard already paired your account during setup, so you should get a reply within a few seconds.</p>
-
-        <h3>7. Get your chat ID</h3>
+        <h3>7. Test it and get your chat ID</h3>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Open Telegram, find your bot, and send it a message. You should get a reply within a few seconds. Then grab your chat ID — you'll need it for crons later:</p>
         <div class="code-block">
     <pre><code>openclaw directory self --channel telegram</code></pre>
     <button class="copy-btn" aria-label="Copy code">Copy</button>
   </div>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Save this number — you'll need it when setting up crons later. Add it to TOOLS.md.</p>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Save that number in TOOLS.md.</p>
 
         <div class="callout callout-todo">
           <strong>End state</strong>
