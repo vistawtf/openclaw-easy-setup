@@ -915,14 +915,29 @@ openclaw --version</code></pre>
     <pre><code>openclaw onboard</code></pre>
     <button class="copy-btn" aria-label="Copy code">Copy</button>
   </div>
-        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">The wizard asks where to store your workspace, which AI provider to use, and your API key. Accept defaults unless you have a reason not to. Skip the channels step — we'll set up Telegram next.</p>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">The wizard walks you through everything in one go. Here's what it asks:</p>
+        <ul style="font-size:0.9rem;color:var(--muted);margin:0.25rem 0 0.75rem;padding-left:1.25rem;line-height:1.9">
+          <li><strong>Acknowledge</strong> that OpenClaw is a personal tool with broad system access</li>
+          <li><strong>Quickstart or manual</strong> — quickstart is fine for most people</li>
+          <li><strong>AI provider</strong> — choose Anthropic</li>
+          <li><strong>Auth method</strong> — if you have a Claude.ai subscription, use a Personal Access Token; otherwise use an API key from <a href="https://console.anthropic.com" target="_blank" style="color:var(--ultra-orange);text-decoration:none;">console.anthropic.com</a></li>
+          <li><strong>Model</strong> — Claude Sonnet is a good default</li>
+          <li><strong>Channel</strong> — select Telegram, then paste your bot token (from @BotFather)</li>
+          <li><strong>Skills and hooks</strong> — skip both for now</li>
+        </ul>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">The wizard sets up the gateway service automatically at the end.</p>
 
-        <h3>6. Start the gateway and verify</h3>
+        <h3>6. Verify the gateway is running</h3>
         <div class="code-block">
-    <pre><code>openclaw gateway start
-openclaw health</code></pre>
+    <pre><code>openclaw health</code></pre>
     <button class="copy-btn" aria-label="Copy code">Copy</button>
   </div>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">The wizard starts the gateway automatically. If <code>openclaw health</code> shows an error, start it manually:</p>
+        <div class="code-block">
+    <pre><code>nohup openclaw gateway &</code></pre>
+    <button class="copy-btn" aria-label="Copy code">Copy</button>
+  </div>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">This is common on VPS setups where systemd user services aren't available. The <code>nohup</code> prefix keeps the process running after you close the terminal.</p>
 
         <div class="callout callout-todo">
           <strong>Your turn</strong>
