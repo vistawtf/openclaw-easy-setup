@@ -321,43 +321,6 @@
   border-color: rgba(47, 158, 68, 0.2);
 }
 
-    /* Feature badges */
-    .feature-badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--ultra-orange);
-      background: rgba(255, 82, 51, 0.08);
-      border: 1px solid rgba(255, 82, 51, 0.2);
-      border-radius: 20px;
-      padding: 0.3rem 0.75rem;
-      cursor: default;
-      position: relative;
-      transition: background 0.15s;
-    }
-    .feature-badge:hover { background: rgba(255, 82, 51, 0.14); }
-    .feature-badge::after {
-      content: attr(data-tip);
-      position: absolute;
-      bottom: calc(100% + 8px);
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--foreground);
-      color: var(--background);
-      font-size: 0.78rem;
-      font-weight: 400;
-      line-height: 1.5;
-      padding: 0.5rem 0.75rem;
-      border-radius: 6px;
-      width: 220px;
-      white-space: normal;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.15s;
-      z-index: 10;
-    }
-    .feature-badge:hover::after { opacity: 1; }
-
     /* ===== TYPOGRAPHY HIERARCHY ===== */
     h1 { font-size: 2rem; font-weight: 700; color: var(--foreground); line-height: 1.2; margin: 0 0 1rem; }
     h2 { font-size: 1.4rem; font-weight: 700; color: var(--foreground); line-height: 1.3; margin: 2rem 0 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
@@ -378,12 +341,12 @@
     <p>A pre-configured workspace for OpenClaw. Persistent memory, Telegram integration, scheduled tasks, and a nightly self-improvement loop.</p>
   </div>
 
-  <div style="margin: 1.5rem 0 2.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
-    <span class="feature-badge" data-tip="Long tasks run in the background automatically. The main chat stays free while work happens in parallel.">Always available</span>
-    <span class="feature-badge" data-tip="A nightly loop picks one friction point from the day and fixes it — no prompting, no maintenance required.">Learns overnight</span>
-    <span class="feature-badge" data-tip="Explicit rules against AI writing patterns — no sycophantic openers, no filler, no significance inflation.">Actual personality</span>
-    <span class="feature-badge" data-tip="Every piece of information gets filed in the right place. Nothing disappears into a chat log you'll never find again.">Smart memory routing</span>
-    <span class="feature-badge" data-tip="15 operational rules covering quality gates, scheduling, task handoffs, repo hygiene — things most people discover by hitting the failure they prevent.">Ships ready</span>
+  <div style="margin: 1.5rem 0 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem 2rem; max-width: 560px;">
+    <div style="display:flex; gap: 0.6rem; align-items: baseline;"><span style="color: var(--ultra-orange); font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Always available</span><span style="color: var(--muted); font-size: 0.85rem;">Main chat stays free while long tasks run in the background.</span></div>
+    <div style="display:flex; gap: 0.6rem; align-items: baseline;"><span style="color: var(--ultra-orange); font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Learns overnight</span><span style="color: var(--muted); font-size: 0.85rem;">Picks one friction point per night and fixes it automatically.</span></div>
+    <div style="display:flex; gap: 0.6rem; align-items: baseline;"><span style="color: var(--ultra-orange); font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Actual personality</span><span style="color: var(--muted); font-size: 0.85rem;">No sycophantic openers, no filler, no AI writing patterns.</span></div>
+    <div style="display:flex; gap: 0.6rem; align-items: baseline;"><span style="color: var(--ultra-orange); font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Smart memory</span><span style="color: var(--muted); font-size: 0.85rem;">Everything filed in the right place, automatically.</span></div>
+    <div style="display:flex; gap: 0.6rem; align-items: baseline;"><span style="color: var(--ultra-orange); font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Ships ready</span><span style="color: var(--muted); font-size: 0.85rem;">15 operational rules so you don't learn them the hard way.</span></div>
   </div>
 
   <div class="cards">
