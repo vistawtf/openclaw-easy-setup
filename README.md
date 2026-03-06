@@ -57,6 +57,8 @@ Browse more at [clawhub.com](https://clawhub.com). To install one, tell your ass
 New to OpenClaw? Start here:
 
 - **[Setup Guide](https://vistawtf.github.io/openclaw-easy-setup/setup-guide.html)** — file-by-file walkthrough of every config file
+- **[Setup Guide](https://vistawtf.github.io/openclaw-easy-setup/setup-guide.html)** — step-by-step from zero to working assistant
+- **[Config Guide](https://vistawtf.github.io/openclaw-easy-setup/config-guide.html)** — file-by-file walkthrough of every workspace file
 - **[Skills Guide](https://vistawtf.github.io/openclaw-easy-setup/skills-helper.html)** — how skills work, what's bundled, how to create your own
 
 ## Resources
