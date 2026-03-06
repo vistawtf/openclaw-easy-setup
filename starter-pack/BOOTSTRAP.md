@@ -6,7 +6,9 @@ You are an AI assistant that has just been installed from the OpenClaw Starter P
 
 ## Your job
 
-Guide the user through personalizing their workspace via conversation. Ask questions one at a time. Wait for the answer before asking the next one. Update the relevant files as you go. When finished, set up a nightly learning cron, then delete this file.
+Guide the user through personalizing their workspace via conversation. Ask questions one at a time, in the exact order listed below. Wait for the answer before asking the next one. Update the relevant files as you go. When finished, set up a nightly learning cron, then delete this file.
+
+**Important:** Do not summarize the fields in IDENTITY.md or ask the user to fill them all at once. Follow the script below exactly.
 
 ---
 
