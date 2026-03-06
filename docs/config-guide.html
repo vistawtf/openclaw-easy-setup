@@ -747,36 +747,17 @@
       </div>
     </div>
     <div class="section-body">
-      <p>OpenClaw ships with minimal defaults. The assistant barely knows how to behave out of the box — no personality, no memory routing rules, no quality standards, no cron patterns. Users who configure it from scratch typically spend weeks (or months) figuring out what to add and why.</p>
+      <p>OpenClaw ships with minimal defaults — no personality, no memory routing, no quality standards. Users who start from scratch typically spend weeks figuring out what to add and why.</p>
 
-      <p>The starter pack ships with files that are already configured based on what actually works. Here's what that means concretely:</p>
+      <p>The starter pack skips that. When you run the setup wizard, <code>BOOTSTRAP.md</code> walks your assistant through a short onboarding conversation that personalizes the key files for you before you even open them. What you get after that:</p>
 
-      <h3>SOUL.md — real personality, not generic corporate-speak</h3>
-      <p>OpenClaw's default SOUL.md is a blank template. The starter pack's SOUL.md gives the assistant a genuine communication style: no sycophantic openers ("Great question!"), no padded answers, no filler phrases. It has a full list of AI writing patterns to avoid — em dashes, significance inflation, rule-of-three lists, copula avoidance — that make AI output readable. It includes language handling for regional dialects (because "Spanish" defaults to Castilian otherwise) and explicit model escalation rules so it uses the right model for the right task without wasting tokens.</p>
-      <p>You could write this from scratch. It would take months of noticing what bothers you and adding rules one at a time. The starter pack starts with the version that's already been through that iteration.</p>
-
-      <h3>AGENTS.md — 15 rules covering the things you'd otherwise have to discover yourself</h3>
-      <p>A default AGENTS.md has almost nothing. The starter pack's version has 15 operational rules covering:</p>
       <ul>
-        <li><strong>Memory routing</strong> — which types of information go where (daily logs, long-term memory, project context, solutions library)</li>
-        <li><strong>Task management</strong> — Notion as canonical source of truth, with exact property names and required fields</li>
-        <li><strong>Execution routing</strong> — the 2-3 minute rule for when to spawn a subagent vs. work directly, so main stays available</li>
-        <li><strong>Quality gates</strong> — what the AI must verify before reporting a task done (prevents false "done" reports)</li>
-        <li><strong>Date/time verification</strong> — mandatory before any scheduling logic (AI models hallucinate dates without this)</li>
-        <li><strong>Cron reliability</strong> — the exact flags required to prevent silent cron failures</li>
-        <li><strong>Handoff protocol</strong> — how completed subagent work gets documented so context doesn't get lost</li>
-        <li><strong>Repo hygiene</strong> — what never to commit, always run <code>git status</code> before <code>git add -A</code></li>
-        <li><strong>Compound engineering</strong> — search prior patterns first, write plan before spawning subagents, document solutions after</li>
+        <li><strong>SOUL.md</strong> — a real communication style: no sycophantic openers, no padding, no filler. Includes anti-patterns to avoid (em dashes, significance inflation, rule-of-three lists) and model escalation rules so it uses the right model for each task.</li>
+        <li><strong>AGENTS.md</strong> — 15 operational rules covering memory routing, execution routing, quality gates, cron reliability, handoff protocol, and more. Things you'd otherwise discover by hitting the failure each rule prevents.</li>
+        <li><strong>OPS.md, HEARTBEAT.md, SECURITY.md</strong> — sensible defaults for the operational patterns most people need eventually.</li>
       </ul>
-      <p>None of this is in OpenClaw's defaults. You'd discover why each rule exists by hitting the failure it prevents.</p>
 
-      <h3>This guide isn't "how to fill in blanks"</h3>
-      <p>It's "how to understand what's already configured and customize it for your situation." The files are opinionated on purpose. Most of what's in them you'll want to keep. The parts you'll customize are the ones specific to your context: your name, your timezone, your projects, your preferred communication style.</p>
-
-      <div class="callout callout-tip">
-        <strong>Recommended approach</strong>
-        Read each file before editing it. Understand what's already there. Then add or adjust the sections that are specific to you — the defaults handle the universal behaviors. Adding rules you don't need yet makes the files longer without making the AI smarter.
-      </div>
+      <p>This guide is about understanding what's already there and adjusting the parts specific to you — your name, timezone, projects, preferred tone. The universal behaviors are already handled.</p>
     </div>
   </div>
 
@@ -1251,58 +1232,19 @@ chmod 600 ~/.config/notion/api_key</code></pre>
       </div>
     </div>
     <div class="section-body">
-      <h3>Week 1 checklist</h3>
-      <ul class="checklist">
-        <li>Fill in IDENTITY.md, USER.md, SOUL.md, AGENTS.md</li>
-        <li>Connect a messaging channel (Telegram recommended)</li>
-        <li>Send your AI a message — verify it reads your files on startup</li>
-        <li>Add your first service to TOOLS.md</li>
-        <li>Run the security hardening script</li>
+      <p>Once your config files are set, a few things worth doing when you're ready:</p>
+
+      <ul>
+        <li>Connect services to TOOLS.md as you need them (Brave Search, Notion, GitHub)</li>
+        <li>Set up a cron or two — a daily briefing, a weekly review</li>
+        <li>Install skills from <a href="https://clawhub.com" style="color:var(--ultra-orange);">clawhub.com</a> as new use cases come up</li>
+        <li>Build custom skills for workflows specific to your domain</li>
+        <li>Curate memory/MEMORY.md periodically — the daily logs are raw notes, MEMORY.md is where the useful patterns live</li>
       </ul>
 
-      <h3>Weeks 2-3</h3>
-      <ul class="checklist">
-        <li>Add rules to AGENTS.md as you discover what you need</li>
-        <li>Set up your first cron (e.g., daily summary at 9am)</li>
-        <li>Install 2-3 skills from the <a href="https://clawhub.com" style="color:var(--ultra-orange);">marketplace</a></li>
-        <li>Configure HEARTBEAT.md if you want proactive checks</li>
-      </ul>
+      <p>The config files improve over time. Add rules to AGENTS.md when you notice a pattern. Adjust SOUL.md when the tone isn't right. The more specific they get, the more useful the assistant becomes.</p>
 
-      <h3>Month 2+</h3>
-      <ul class="checklist">
-        <li>Create custom skills for your specific domain or workflow</li>
-        <li>Connect more services (Notion, GitHub, Brave Search)</li>
-        <li>Set up model escalation rules in SOUL.md (Haiku for light tasks, Opus for deep analysis)</li>
-        <li>Review and curate memory/MEMORY.md</li>
-      </ul>
-
-      <h3>Recommended integrations to add first</h3>
-      <table>
-        <tr>
-          <th>Service</th>
-          <th>What it unlocks</th>
-        </tr>
-        <tr>
-          <td><strong>Telegram</strong></td>
-          <td>Main communication channel — message your AI from anywhere</td>
-        </tr>
-        <tr>
-          <td><strong>Brave Search</strong></td>
-          <td>Your AI can search the web in real time</td>
-        </tr>
-        <tr>
-          <td><strong>Notion</strong></td>
-          <td>Automated task management from chat</td>
-        </tr>
-        <tr>
-          <td><strong>GitHub</strong></td>
-          <td>Issues, PRs, CI status from chat</td>
-        </tr>
-      </table>
-
-      <p>For a closer look at the bundled skills and how to create your own, see the <a href="skills-helper.html" style="color:var(--ultra-orange);">Skills Guide</a>.</p>
-
-      <p>One last thing: use your AI daily for the first week. The more you interact, the faster it learns your patterns via MEMORY.md. Daily use in week one matters more than occasional use over a month.</p>
+      <p>For a closer look at bundled skills and how to create your own, see the <a href="skills-helper.html" style="color:var(--ultra-orange);">Skills Guide</a>.</p>
     </div>
   </div>
 
