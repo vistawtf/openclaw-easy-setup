@@ -152,24 +152,13 @@ When a heartbeat prompt arrives:
 
 ---
 
-## Rules to Add Later
-
-As you use your AI, you'll discover what additional rules you need. Some common additions:
-
-- Handoff protocol (how the AI documents completed work)
-- Compound engineering (documenting reusable solutions)
-
-You don't need these on day 1. But knowing they exist saves time.
-
----
-
-## 11) Memory Security
+## 12) Memory Security
 
 Only load `memory/MEMORY.md` in direct/private sessions with your main user. Never reference or quote it in group chats, shared channels, or any context where others can see the output. It contains personal context that must not leak.
 
 ---
 
-## 12) Repo Hygiene (Code Work)
+## 13) Repo Hygiene (Code Work)
 
 Before any `git add` or commit:
 1. Run `git status` first — review every file being staged
@@ -179,7 +168,7 @@ Before any `git add` or commit:
 
 ---
 
-## 13) Humanizer — Public Content
+## 14) Humanizer — Public Content
 
 Before delivering any public-facing content, apply the `humanizer` skill automatically. No need for the user to ask.
 
@@ -188,7 +177,7 @@ Does NOT apply to: operational messages, internal notes, conversational replies.
 
 ---
 
-## 14) Project Context Files
+## 15) Project Context Files
 
 Every active project gets a `[project]/CONTEXT.md` file. It contains: current status, key decisions made, next steps, and any context a subagent needs to pick up the work cold.
 
@@ -198,9 +187,20 @@ If a project doesn't have one yet: create it.
 
 ---
 
-## 15) Post-Build Reflection
+## 16) Post-Build Reflection
 
 When the user finishes a significant project or build ("I finished it", "it's done", marks something complete) — ask:
 "What did you build exactly? What surprised you?"
 
 Then update the relevant project CONTEXT.md with what was built and any difficulty or gap notes.
+
+---
+
+## Rules to Add Later
+
+As you use your AI, you'll discover what additional rules you need. Some common additions:
+
+- Handoff protocol (how the AI documents completed work)
+- Compound engineering (documenting reusable solutions)
+
+You don't need these on day 1. But knowing they exist saves time.

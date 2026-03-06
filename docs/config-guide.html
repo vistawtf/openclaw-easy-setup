@@ -704,9 +704,6 @@
         <li><strong>Avatar</strong> (optional) — A URL or local path to an image, used in some UIs.</li>
       </ul>
 
-      <h3>Leave as-is</h3>
-      <p>The <code>Creature: AI assistant</code> line — don't overthink it.</p>
-
       <div class="callout callout-tip">
         <strong>Tip</strong>
         Choose a name you'll use consistently. Some users name it after a character they like (Jarvis, HAL, Friday). Others pick something neutral (Sage, Pilot). Either works — just pick one.
@@ -1043,7 +1040,7 @@ chmod 600 ~/.config/notion/api_key</code></pre>
       <h3>Quick secret scan</h3>
       <p>Run this before committing or sharing anything:</p>
       <div class="code-block">
-  <pre><code>grep -rn "sk-ant\|sk-or\|sk-proj\|ghp_\|gsk_\|xoxb-\|xoxp-" ~/clawd/</code></pre>
+  <pre><code>grep -rn "sk-ant\|sk-or\|sk-proj\|ghp_\|gsk_\|xoxb-\|xoxp-" ~/.openclaw/workspace/</code></pre>
   <button class="copy-btn" aria-label="Copy code">Copy</button>
 </div>
       <p>If this returns anything, you have a key in the wrong place.</p>

@@ -44,7 +44,7 @@ echo "Done. Review any findings above."
 - [ ] No API keys in any workspace file
   ```bash
   # Quick scan for common key patterns
-  grep -rn "sk-ant\|sk-or\|sk-proj\|ghp_\|gsk_\|xoxb-\|xoxp-" ~/clawd/
+  grep -rn "sk-ant\|sk-or\|sk-proj\|ghp_\|gsk_\|xoxb-\|xoxp-" ~/.openclaw/workspace/
   ```
 - [ ] `~/.config/` directories: `chmod 700` (dirs), `chmod 600` (files)
 - [ ] `~/.openclaw/`: `chmod 700` (dir), `chmod 600` (config files)

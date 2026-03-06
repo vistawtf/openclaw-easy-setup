@@ -162,7 +162,7 @@ Send this summary message (replace unfilled placeholders with "not set"):
 > - **Skills:** [list or 'none yet — browse clawhub.com when ready']
 > - **Auto-Improve:** [enabled/skipped]
 >
-> Your workspace files are set. You can open and edit any of them directly — they're just text files in your `~/clawd/` folder.
+> Your workspace files are set. You can open and edit any of them directly — they're just text files in your `~/.openclaw/workspace/` folder.
 >
 > A few things worth doing this week:
 > - Run `openclaw security audit` in your terminal to check your setup
