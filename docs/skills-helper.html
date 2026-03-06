@@ -624,14 +624,20 @@
       </table>
 
       <h3>auto-improve</h3>
-      <p>This is the "overnight learning loop." When paired with a nightly cron job, your AI wakes up at (e.g.) 4am, picks one thing to improve, runs hygiene checks on your workspace, and extracts patterns from the day's work. On Sundays it generates a weekly report with concrete improvement proposals.</p>
-      <p>The bootstrap wizard offers to set this up for you. You can also configure it manually — the full cron prompt and log format are in <code>skills/auto-improve/SKILL.md</code>.</p>
+      <p>This is the self-improvement loop. It runs nightly at 4am UTC via a cron job set up during bootstrap. Each run, it picks one friction point from the day's interactions — a workflow that took too many steps, a config rule that was missing, a pattern the AI keeps getting wrong — and fixes it autonomously.</p>
+      <p>Changes are logged in <code>memory/auto-improve-log.md</code>. Every Sunday it generates a weekly report in <code>memory/auto-improve-reports/</code> summarizing what changed and what's still worth fixing.</p>
+      <p>The key thing: it improves based on <em>your</em> specific usage, not a generic template. The longer you use OpenClaw, the more precisely it calibrates to your setup. In week one it's useful. In month six it's operating on months of learned patterns specific to you.</p>
+      <p>The bootstrap wizard offers to set the cron up for you. If you skipped it, the exact cron command is in <code>skills/auto-improve/SKILL.md</code>.</p>
 
       <h3>humanizer</h3>
-      <p>Based on Wikipedia's "Signs of AI writing" guide. It catches patterns that most people miss: copula avoidance ("serves as" instead of "is"), synonym cycling, false ranges, inline-header vertical lists, and more. Works on any text you paste or ask the AI to write.</p>
+      <p>Rewrites AI-sounding text to read like a person wrote it. Based on Wikipedia's "Signs of AI writing" guide — which is the most comprehensive public catalog of these patterns.</p>
+      <p>What it detects and fixes: em dash overuse (replacing with commas or periods), the "rule of three" (lists of exactly three that don't need to be), significance inflation ("pivotal", "transformative", "testament to"), negative parallelisms ("it's not just X, it's Y" — just say Y), filler phrases ("in order to", "due to the fact that"), hedging preambles ("it's worth noting that"), copula avoidance ("serves as", "functions as" instead of just "is"), and synonym cycling.</p>
+      <p>Use it before publishing anything public: articles, emails, website copy, social posts. The assistant applies it automatically to public-facing content — you can also trigger it manually by saying "humanize this" or "make this sound less AI-written".</p>
 
       <h3>skill-creator</h3>
-      <p>Once you're comfortable with how skills work, this one helps you build your own. It covers the full lifecycle: understanding what the skill should do, planning reusable resources (scripts, references, assets), writing the SKILL.md with proper frontmatter, and packaging for distribution. Best used after you've been working with your AI for a few weeks and notice repeated workflows you want to codify.</p>
+      <p>Guides you through building your own custom skills. Skills are markdown files with a frontmatter block (name and description) plus plain-language instructions — the AI reads them when the task matches.</p>
+      <p>The skill-creator covers the full process: figuring out what the skill should do and what triggers it, planning any supporting resources (reference files, scripts, example outputs), writing the SKILL.md with the right structure, and testing that it triggers reliably.</p>
+      <p>Best time to use it: after you've been working with OpenClaw for a few weeks and notice you keep explaining the same context over and over. That repeated context is a skill waiting to be written. Tell your AI "I want to create a new skill for [X]" and it takes it from there.</p>
 
       <div class="callout callout-info">
         <strong>Skill directory structure</strong>
@@ -656,20 +662,20 @@
       <div class="step-number">3</div>
       <div class="section-title">
         <h2>Finding more skills</h2>
-        <div class="meta">The ClawhHub marketplace and community</div>
+        <div class="meta">The ClawHub marketplace and community</div>
       </div>
     </div>
     <div class="section-body">
-      <p>The <a href="https://clawhub.com" style="color:var(--ultra-orange);">ClawhHub marketplace</a> is where the community shares skills. Browse by category or search for what you need.</p>
+      <p>The <a href="https://clawhub.com" style="color:var(--ultra-orange);">ClawHub marketplace</a> is where the community shares skills. Browse by category or search for what you need.</p>
 
-      <h3>Installing a skill from ClawhHub</h3>
+      <h3>Installing a skill from ClawHub</h3>
       <p>The easiest way: tell your assistant what you need. For example:</p>
       <ul>
         <li>"I want a skill for summarizing web pages and YouTube videos"</li>
         <li>"Install the github skill"</li>
         <li>"I need help with spreadsheets — is there a skill for that?"</li>
       </ul>
-      <p>Your AI will help you find and install the right skill. You can also paste a ClawhHub skill link directly into chat.</p>
+      <p>Your AI will help you find and install the right skill. You can also paste a ClawHub skill link directly into chat.</p>
 
       <h3>Popular community skills</h3>
       <table>
@@ -760,7 +766,7 @@ Keep it under 5 lines total.</code></pre>
       <a href="config-guide.html">Config Guide</a>
     </p>
     <p style="margin-top: 0.5rem;">
-      <a href="https://clawhub.com">ClawhHub Marketplace</a> ·
+      <a href="https://clawhub.com">ClawHub Marketplace</a> ·
       <a href="https://docs.openclaw.ai">OpenClaw Docs</a>
     </p>
     <p style="margin-top: 0.75rem; color: var(--muted-light);">
