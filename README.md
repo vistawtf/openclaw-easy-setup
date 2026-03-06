@@ -22,41 +22,46 @@ A ready-to-use workspace for a personal AI assistant that runs on your infrastru
 
 - Node.js 18+
 - Anthropic API key ([console.anthropic.com](https://console.anthropic.com))
-- Telegram account (for messaging your assistant)
+- Telegram account
 
 ## Quickstart
 
-```bash
-# 1. Clone this repo
-git clone https://github.com/vistawtf/openclaw-easy-setup.git
-cd openclaw-easy-setup
+### Option A: Terminal setup
 
-# 2. Copy starter pack to your workspace
-cp -r starter-pack/ ~/clawd/
+```bash
+# 1. Install OpenClaw (if you haven't already)
+npm install -g openclaw
+
+# 2. Clone this repo and copy the starter pack
+git clone https://github.com/vistawtf/openclaw-easy-setup.git
+cp -r openclaw-easy-setup/starter-pack/ ~/clawd/
 
 # 3. Start the gateway
 openclaw gateway start
 
 # 4. Connect Telegram
-# First: message @BotFather on Telegram, send /newbot, copy the token
+# First: open @BotFather on Telegram, send /newbot, copy the token
 openclaw channels add --channel telegram --token YOUR_BOT_TOKEN
 ```
 
-Then message your bot on Telegram. It will detect `BOOTSTRAP.md` and walk you through setup.
+Then message your bot on Telegram — it will walk you through the rest.
 
-Don't have OpenClaw? Install it first: `npm install -g openclaw`
+### Option B: No terminal after install
+
+If you already have OpenClaw running and connected to Telegram:
+
+1. Copy the `starter-pack/` files to your `~/clawd/` workspace
+2. Message your bot: **"set me up"**
+3. The assistant reads `BOOTSTRAP.md` and guides you through setup via conversation — no more terminal needed
 
 ## Skills
 
-Three skills are bundled: **auto-improve** (overnight self-improvement), **humanizer** (removes AI writing patterns), and **skill-creator** (build your own skills).
+Three skills are bundled: **auto-improve** (overnight self-improvement), **humanizer** (removes AI writing patterns), **skill-creator** (build your own skills).
 
 Browse more at [clawhub.com](https://clawhub.com). To install one, tell your assistant what you need or paste the skill link in chat.
 
 ## Guides
 
-New to OpenClaw? Start here:
-
-- **[Setup Guide](https://vistawtf.github.io/openclaw-easy-setup/setup-guide.html)** — file-by-file walkthrough of every config file
 - **[Setup Guide](https://vistawtf.github.io/openclaw-easy-setup/setup-guide.html)** — step-by-step from zero to working assistant
 - **[Config Guide](https://vistawtf.github.io/openclaw-easy-setup/config-guide.html)** — file-by-file walkthrough of every workspace file
 - **[Skills Guide](https://vistawtf.github.io/openclaw-easy-setup/skills-helper.html)** — how skills work, what's bundled, how to create your own
@@ -66,3 +71,7 @@ New to OpenClaw? Start here:
 - [OpenClaw Docs](https://docs.openclaw.ai)
 - [ClawhHub Marketplace](https://clawhub.com)
 - [Community Discord](https://discord.gg/openclaw)
+
+---
+
+> **Note for your assistant:** The `docs/` folder contains guides for humans. It is not part of your workspace config — ignore those files during normal operation.
