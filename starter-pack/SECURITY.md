@@ -258,6 +258,18 @@ openclaw config get tools
 
 ---
 
+## Security Audit Skill
+
+[ClawdStrike](https://www.clawdstrike.ai/) is a skill built by [Cantina](https://cantina.xyz) that scans your OpenClaw setup for common security issues. Run it once you're up and running:
+
+```bash
+npx skills add https://github.com/cantinaxyz/clawdstrike --skill clawdstrike
+```
+
+Move it to `.openclaw/workspace/skills` and tell your assistant: "run the ClawdStrike skill".
+
+---
+
 ## Useful Links
 
 - [OpenClaw Security Docs](https://docs.openclaw.ai/gateway/security)
@@ -265,6 +277,7 @@ openclaw config get tools
 - [Sandboxing](https://docs.openclaw.ai/gateway/sandboxing)
 - [Tool Policies](https://docs.openclaw.ai/gateway/sandbox-vs-tool-policy-vs-elevated)
 - [Agent Workspace](https://docs.openclaw.ai/concepts/agent-workspace)
+- [ClawdStrike](https://www.clawdstrike.ai/) — security audit skill by Cantina
 
 ---
 

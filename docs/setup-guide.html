@@ -1196,6 +1196,13 @@ openclaw cron delete JOB_ID</code></pre>
           Run <code>openclaw security audit</code> anytime to check your setup. SECURITY.md in the starter pack has the full guide: file permissions, secrets management, tool policies, Docker sandboxing.
         </div>
 
+        <div class="callout callout-info">
+          <strong>ClawdStrike — security audit skill</strong>
+          <a href="https://www.clawdstrike.ai/" target="_blank" style="color:var(--ultra-orange);text-decoration:none;font-weight:500;">ClawdStrike</a> is a skill built by <a href="https://cantina.xyz" target="_blank" style="color:var(--ultra-orange);text-decoration:none;">Cantina</a> that scans your OpenClaw setup for common security issues. Worth running once you're up and running.
+          <pre style="margin-top:0.6rem;"><code>npx skills add https://github.com/cantinaxyz/clawdstrike --skill clawdstrike</code></pre>
+          Move it to <code>.openclaw/workspace/skills</code> and tell your assistant to run the ClawdStrike skill.
+        </div>
+
         <div class="callout callout-todo">
           <strong>Your turn</strong>
           <ul class="todo-list">
