@@ -3,14 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Setup Guide — OpenClaw Starter Pack">
-  <meta property="og:description" content="Step-by-step from zero to working assistant. Install OpenClaw, connect Telegram, configure your workspace, and run your first cron job.">
-  <meta property="og:url" content="https://vistawtf.github.io/openclaw-easy-setup/setup-guide.html">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Setup Guide — OpenClaw Starter Pack">
-  <meta name="twitter:description" content="Step-by-step from zero to working assistant. Install OpenClaw, connect Telegram, configure your workspace, and run your first cron job.">
-  <meta name="description" content="Step-by-step from zero to working assistant. Install OpenClaw, connect Telegram, configure your workspace, and run your first cron job.">
   <title>OpenClaw Setup Guide — From Zero to AI Assistant</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,8 +77,13 @@
       display: flex;
       align-items: center;
       gap: 0.35rem;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;
     }
+    .nav-inner::-webkit-scrollbar { display: none; }
 
     .nav-title {
       font-family: 'Inter', sans-serif;
