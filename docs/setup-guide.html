@@ -136,6 +136,30 @@
       color: var(--ultra-orange);
     }
 
+
+    .sidebar-footer {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .sidebar-footer a {
+      display: block;
+      padding: 0.3rem 0;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .sidebar-footer a:hover { color: var(--ultra-orange); }
+    .sidebar-footer .footer-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted-light);
+      margin-bottom: 0.4rem;
+    }
+
     /* ===================== */
     /* MOBILE HAMBURGER      */
     /* ===================== */
@@ -750,6 +774,12 @@
     <a href="#s11" data-section="s11"><span class="nav-num">11</span> First day</a>
     <a href="#s12" data-section="s12"><span class="nav-num">12</span> What's next</a>
   </nav>
+  <div class="sidebar-footer">
+    <div class="footer-label">Also in this series</div>
+    <a href="index.html">← Back to index</a>
+    <a href="config-guide.html">Config Guide</a>
+    <a href="skills-helper.html">Skills Guide</a>
+  </div>
 </aside>
 
 <!-- Mobile top bar (hamburger + title + theme toggle) -->
@@ -767,14 +797,6 @@
 <!-- Main content area -->
 <div class="main-content">
   <div class="container">
-
-    <div class="breadcrumb">
-      <a href="index.html">← Back to index</a>
-      <span class="sep">|</span>
-      <span class="label">Also in this series:</span>
-      <a class="sibling" href="config-guide.html">Config Guide</a>
-      <a class="sibling" href="skills-helper.html">Skills Guide</a>
-    </div>
 
     <div class="header">
       <h1>OpenClaw: from zero to AI assistant</h1>

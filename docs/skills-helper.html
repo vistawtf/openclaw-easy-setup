@@ -443,19 +443,58 @@
       .section-header { padding: 0.85rem 1.1rem; }
       .vista-footer { font-size: 0.75rem; padding: 1.25rem 1rem; text-align: center; }
     }
-  </style>
+  
+/* Code block wrapper */
+.code-block {
+  position: relative;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(255, 82, 51, 0.08);
+  color: var(--ultra-orange);
+  border: 1px solid rgba(255, 82, 51, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.code-block:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn.copied {
+  background: rgba(47, 158, 68, 0.08);
+  color: #2f9e44;
+  border-color: rgba(47, 158, 68, 0.2);
+}
+</style>
 </head>
 <body>
-<button class="theme-toggle" aria-label="Switch to dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
-<div class="container">
-
-  <div class="breadcrumb">
-    <a href="index.html">← Back to index</a>
-    <span class="sep">|</span>
-    <span class="label">Also in this series:</span>
-    <a class="sibling" href="setup-guide.html">Setup Guide</a>
-    <a class="sibling" href="config-guide.html">Config Guide</a>
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-brand">Skills Guide</span>
+    <button class="theme-toggle" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   </div>
+  <div class="sidebar-links">
+    <a href="index.html">← Back to index</a>
+    <a href="setup-guide.html">Setup Guide</a>
+    <a href="config-guide.html">Config Guide</a>
+  </div>
+</aside>
+<div class="main-content">
+
+<div class="container">
 
   <!-- Header -->
   <div class="header">
@@ -540,13 +579,16 @@
       <div class="callout callout-info">
         <strong>Skill directory structure</strong>
         Each skill lives in its own folder under <code>skills/</code>:
-        <pre style="margin-top: 0.5rem; margin-bottom: 0; border: none; background: transparent; color: inherit; padding: 0; font-size: 0.8125rem;">skills/
+        <div class="code-block">
+  <pre style="margin-top: 0.5rem; margin-bottom: 0; border: none; background: transparent; color: inherit; padding: 0; font-size: 0.8125rem;">skills/
 ├── auto-improve/
 │   └── SKILL.md
 ├── humanizer/
 │   └── SKILL.md
 └── skill-creator/
     └── SKILL.md</pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
       </div>
     </div>
   </div>
@@ -626,7 +668,8 @@
       </ol>
 
       <h3>Minimal example</h3>
-      <pre><code>---
+      <div class="code-block">
+  <pre><code>---
 name: daily-standup
 description: Generate a daily standup update from recent work logs and git activity. Use when the user asks for a standup, daily update, or status report.
 ---
@@ -640,6 +683,8 @@ Format as:
 - **Blockers:** anything stuck
 
 Keep it under 5 lines total.</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <p>The bundled <strong>skill-creator</strong> skill walks you through the full process with best practices for structure, progressive disclosure, and testing. Just tell your AI: "I want to create a new skill."</p>
 
@@ -671,13 +716,44 @@ Keep it under 5 lines total.</code></pre>
     Built on <a href="https://docs.openclaw.ai" target="_blank">OpenClaw</a> &middot; By <a href="https://vista.wtf" target="_blank">Vista</a>
   </footer>
 
+<script>
+document.querySelectorAll('.copy-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var pre = btn.closest('.code-block').querySelector('pre');
+    var text = pre.innerText || pre.textContent;
+    navigator.clipboard.writeText(text).then(function() {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(function() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  });
+});
+</script>
+
   <script>
     (function() {
       var html = document.documentElement;
       var stored = localStorage.getItem('theme');
       var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       if (stored === 'dark' || (!stored && prefersDark)) html.classList.add('dark');
-
       function syncIcons() {
         var isDark = html.classList.contains('dark');
         document.querySelectorAll('.theme-toggle').forEach(function(btn) {
@@ -685,7 +761,6 @@ Keep it under 5 lines total.</code></pre>
           btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
         });
       }
-
       document.addEventListener('DOMContentLoaded', function() {
         syncIcons();
         document.querySelectorAll('.theme-toggle').forEach(function(btn) {
@@ -698,5 +773,6 @@ Keep it under 5 lines total.</code></pre>
       });
     })();
   </script>
+</div><!-- /main-content -->
 </body>
 </html>

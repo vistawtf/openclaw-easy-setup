@@ -548,19 +548,58 @@
       .section-header { padding: 0.85rem 1.1rem; }
       .vista-footer { font-size: 0.75rem; padding: 1.25rem 1rem; text-align: center; }
     }
-  </style>
+  
+/* Code block wrapper */
+.code-block {
+  position: relative;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(255, 82, 51, 0.08);
+  color: var(--ultra-orange);
+  border: 1px solid rgba(255, 82, 51, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.code-block:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn.copied {
+  background: rgba(47, 158, 68, 0.08);
+  color: #2f9e44;
+  border-color: rgba(47, 158, 68, 0.2);
+}
+</style>
 </head>
 <body>
-<button class="theme-toggle" aria-label="Switch to dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
-<div class="container">
-
-  <div class="breadcrumb">
-    <a href="index.html">← Back to index</a>
-    <span class="sep">|</span>
-    <span class="label">Also in this series:</span>
-    <a class="sibling" href="setup-guide.html">Setup Guide</a>
-    <a class="sibling" href="skills-helper.html">Skills Guide</a>
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-brand">Config Guide</span>
+    <button class="theme-toggle" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   </div>
+  <div class="sidebar-links">
+    <a href="index.html">← Back to index</a>
+    <a href="setup-guide.html">Setup Guide</a>
+    <a href="skills-helper.html">Skills Guide</a>
+  </div>
+</aside>
+<div class="main-content">
+
+<div class="container">
 
   <!-- Header -->
   <div class="header">
@@ -679,18 +718,25 @@
       <h3>What to customize</h3>
 
       <p>How you talk — add your style preferences after the existing rules. Examples:</p>
-      <pre><code>"Be concise but warm — like texting a smart friend"
+      <div class="code-block">
+  <pre><code>"Be concise but warm — like texting a smart friend"
 "Use analogies from sports to explain complex ideas"
 "Challenge my assumptions when you see weak logic"
 "Default to bullet points over paragraphs"</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <p>Opinions — decide how direct you want the AI to be:</p>
-      <pre><code>"Sugar-coat nothing — treat me like a peer"
+      <div class="code-block">
+  <pre><code>"Sugar-coat nothing — treat me like a peer"
 "Be diplomatic but honest — I'm sensitive to bluntness"
 "Challenge me on strategy, be gentle on personal stuff"</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <p>Language — set your language rules clearly:</p>
-      <pre><code># English only:
+      <div class="code-block">
+  <pre><code># English only:
 "Always respond in English."
 
 # Bilingual:
@@ -700,11 +746,16 @@
 "Use Argentine voseo: tenés, querés, podés."
 "Use Mexican tuteo. Occasional 'güey' is fine."
 "Use Colombian tuteo with usted for formal contexts."</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <p>Vibe — the overall character in one line:</p>
-      <pre><code>"Like a smart coworker who respects my time"
+      <div class="code-block">
+  <pre><code>"Like a smart coworker who respects my time"
 "The engineer friend who always has a better way"
 "Calm advisor, not an eager intern"</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <h3>What not to touch</h3>
       <p>The <strong>Linguistic patterns to avoid</strong> section — keep it exactly as-is. These rules suppress the most common AI writing artifacts (em dashes, rule-of-three, significance inflation, etc.). They work universally and improve every response.</p>
@@ -741,8 +792,11 @@
       <h3>What to review and customize</h3>
 
       <p>Section 2, Memory Routing: the table defines where different types of information get saved. The defaults work well. You can add rows as you add projects. Example:</p>
-      <pre><code>| Project notes | myproject/CONTEXT.md |
+      <div class="code-block">
+  <pre><code>| Project notes | myproject/CONTEXT.md |
 | Code patterns | memory/solutions/code/ |</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <p>Section 3, Task Management: if you use Notion, fill in your database ID and uncomment the section. If you don't use Notion, delete it — simpler is better.</p>
 
@@ -781,9 +835,12 @@
 
       <h3>API key storage</h3>
       <p>Store credentials in <code>~/.config/&lt;service&gt;/</code>, not in this file. TOOLS.md only documents <em>where</em> keys live and how to use them.</p>
-      <pre><code>mkdir -p ~/.config/notion
+      <div class="code-block">
+  <pre><code>mkdir -p ~/.config/notion
 echo "YOUR_API_KEY" > ~/.config/notion/api_key
 chmod 600 ~/.config/notion/api_key</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <h3>What to add here</h3>
       <ul>
@@ -879,20 +936,26 @@ chmod 600 ~/.config/notion/api_key</code></pre>
 
       <h3>What to customize</h3>
       <p>The "When to Alert Me" and "When to Stay Quiet" sections are sensible defaults. The part you'll want to configure is "What to Check" — add the specific things you want your AI to monitor:</p>
-      <pre><code>- Email — any urgent unread messages?
+      <div class="code-block">
+  <pre><code>- Email — any urgent unread messages?
 - Calendar — upcoming events in next 24-48h?
 - GitHub — any failing CI or PR reviews waiting?
 - Services — is my app responding to health checks?</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <h3>When to set this up</h3>
       <p>Skip it for week 1. Once you're comfortable with the basics, set up a heartbeat cron via:</p>
-      <pre><code>openclaw cron create \
+      <div class="code-block">
+  <pre><code>openclaw cron create \
   --name "Heartbeat" \
   --cron "*/15 * * * *" \
   --message "Run heartbeat check per HEARTBEAT.md" \
   --to telegram:YOUR_CHAT_ID \
   --announce \
   --wake now</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
     </div>
   </div>
 
@@ -922,7 +985,10 @@ chmod 600 ~/.config/notion/api_key</code></pre>
 
       <h3>Quick secret scan</h3>
       <p>Run this before committing or sharing anything:</p>
-      <pre><code>grep -rn "sk-ant\|sk-or\|sk-proj\|ghp_\|gsk_\|xoxb-\|xoxp-" ~/clawd/</code></pre>
+      <div class="code-block">
+  <pre><code>grep -rn "sk-ant\|sk-or\|sk-proj\|ghp_\|gsk_\|xoxb-\|xoxp-" ~/clawd/</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
       <p>If this returns anything, you have a key in the wrong place.</p>
 
       <h3>If a key is ever exposed</h3>
@@ -933,13 +999,16 @@ chmod 600 ~/.config/notion/api_key</code></pre>
 
       <h3>Tool access restriction</h3>
       <p>By default, the AI has broad access. You can restrict it in <code>~/.openclaw/openclaw.json</code>:</p>
-      <pre><code>{
+      <div class="code-block">
+  <pre><code>{
   tools: {
     fs: { workspaceOnly: true },      // limit file access to workspace only
     exec: { security: "allowlist" },  // restrict shell commands
     elevated: { enabled: false },     // no host-level execution
   }
 }</code></pre>
+  <button class="copy-btn" aria-label="Copy code">Copy</button>
+</div>
 
       <h3>For teams</h3>
       <p>OpenClaw is designed as a personal assistant tool with one trust boundary per gateway. If multiple people need access:</p>
@@ -1108,13 +1177,44 @@ chmod 600 ~/.config/notion/api_key</code></pre>
     Built on <a href="https://docs.openclaw.ai" target="_blank">OpenClaw</a> &middot; By <a href="https://vista.wtf" target="_blank">Vista</a>
   </footer>
 
+<script>
+document.querySelectorAll('.copy-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var pre = btn.closest('.code-block').querySelector('pre');
+    var text = pre.innerText || pre.textContent;
+    navigator.clipboard.writeText(text).then(function() {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(function() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  });
+});
+</script>
+
   <script>
     (function() {
       var html = document.documentElement;
       var stored = localStorage.getItem('theme');
       var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       if (stored === 'dark' || (!stored && prefersDark)) html.classList.add('dark');
-
       function syncIcons() {
         var isDark = html.classList.contains('dark');
         document.querySelectorAll('.theme-toggle').forEach(function(btn) {
@@ -1122,7 +1222,6 @@ chmod 600 ~/.config/notion/api_key</code></pre>
           btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
         });
       }
-
       document.addEventListener('DOMContentLoaded', function() {
         syncIcons();
         document.querySelectorAll('.theme-toggle').forEach(function(btn) {
@@ -1135,5 +1234,6 @@ chmod 600 ~/.config/notion/api_key</code></pre>
       });
     })();
   </script>
+</div><!-- /main-content -->
 </body>
 </html>
