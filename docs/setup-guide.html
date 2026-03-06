@@ -386,19 +386,6 @@
       letter-spacing: -0.01em;
     }
 
-    .duration {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--ultra-orange);
-      background: rgba(255, 82, 51, 0.08);
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-
     .section-body {
       padding: 1.25rem 1.5rem;
     }
@@ -823,7 +810,6 @@
       <div class="section-header">
         <div class="section-num">0</div>
         <div class="section-title">Why: what OpenClaw is and what you'll build</div>
-        <div class="duration">3 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">ChatGPT forgets you after every conversation. OpenClaw gives a model persistent memory, tools, and communication channels — turning a chatbot into an assistant that actually knows you. By the end of this workshop, you'll have one running on Telegram.</p>
@@ -839,7 +825,6 @@
       <div class="section-header">
         <div class="section-num">1</div>
         <div class="section-title">Your environment: where to run OpenClaw</div>
-        <div class="duration">3 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">OpenClaw runs as a persistent process — it needs a machine that stays on. Your AI assistant has access to files, shell, and network on whatever machine it runs on, so where you run it matters.</p>
@@ -870,7 +855,6 @@
       <div class="section-header">
         <div class="section-num">2</div>
         <div class="section-title">Software prerequisites</div>
-        <div class="duration">2 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">Make sure you have these before running anything.</p>
@@ -888,7 +872,6 @@
       <div class="section-header">
         <div class="section-num">3</div>
         <div class="section-title">Install OpenClaw</div>
-        <div class="duration">4 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">Install system dependencies and OpenClaw itself. The starter pack comes next — install it before running the setup wizard.</p>
@@ -924,7 +907,6 @@ openclaw --version</code></pre>
       <div class="section-header">
         <div class="section-num">4</div>
         <div class="section-title">Install the starter pack</div>
-        <div class="duration">3 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">Install the starter pack before running the setup wizard — OpenClaw will detect it and use it as your workspace automatically.</p>
@@ -945,7 +927,6 @@ cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/</code></pre>
       <div class="section-header">
         <div class="section-num">5</div>
         <div class="section-title">Run the setup wizard</div>
-        <div class="duration">8 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">The wizard configures your AI provider, connects Telegram, and starts the gateway. Run it now that the starter pack is in place.</p>
@@ -1001,7 +982,6 @@ cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/</code></pre>
       <div class="section-header">
         <div class="section-num">6</div>
         <div class="section-title">Meet your assistant</div>
-        <div class="duration">5 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">Almost there. First, approve the Telegram pairing request — then send your bot a message and the onboarding begins.</p>
@@ -1052,7 +1032,6 @@ cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/</code></pre>
       <div class="section-header">
         <div class="section-num">7</div>
         <div class="section-title">Auto-improve: it gets better while you sleep</div>
-        <div class="duration">3 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">The starter pack includes a nightly self-improvement loop. Every night at 4am UTC, your assistant picks one friction point from the day, fixes it, and logs what it did.</p>
@@ -1086,7 +1065,6 @@ openclaw cron delete &lt;id&gt;  # remove auto-improve if you want to pause it</
       <div class="section-header">
         <div class="section-num">8</div>
         <div class="section-title">Memory: how your AI remembers</div>
-        <div class="duration">5 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">Your assistant doesn't inherently remember yesterday. The files in your workspace are its memory. When it "remembers" something, it wrote to a file. When it recalls something, it read one.</p>
@@ -1116,7 +1094,6 @@ openclaw cron delete &lt;id&gt;  # remove auto-improve if you want to pause it</
       <div class="section-header">
         <div class="section-num">9</div>
         <div class="section-title">Skills: ready-made capabilities</div>
-        <div class="duration">4 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">Skills are specialized instruction files your assistant loads automatically when a task matches. Ask it to summarize a video, it loads <code>summarize</code>. Ask it to review a pull request, it loads <code>github</code>. You don't manage this manually.</p>
@@ -1155,7 +1132,6 @@ openclaw cron delete &lt;id&gt;  # remove auto-improve if you want to pause it</
       <div class="section-header">
         <div class="section-num">10</div>
         <div class="section-title">Crons: your AI works while you sleep</div>
-        <div class="duration">6 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">Crons are scheduled tasks. Tell your assistant "every morning at 8am, send me a briefing on Telegram" and it runs in the background, no computer needed. This is where OpenClaw goes from chat assistant to personal system.</p>
@@ -1218,7 +1194,6 @@ openclaw cron delete JOB_ID</code></pre>
       <div class="section-header">
         <div class="section-num">11</div>
         <div class="section-title">Security basics: two things to get right</div>
-        <div class="duration">3 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">Security goes deep, but today you only need two rules. Everything else is in SECURITY.md when you're ready for it.</p>
@@ -1260,7 +1235,6 @@ openclaw cron delete JOB_ID</code></pre>
       <div class="section-header">
         <div class="section-num">12</div>
         <div class="section-title">Your first real day: putting it to work</div>
-        <div class="duration">4 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">Everything's set up. Try these in Telegram right now — they all work with just what we built today.</p>
@@ -1286,7 +1260,6 @@ openclaw cron delete JOB_ID</code></pre>
       <div class="section-header">
         <div class="section-num">13</div>
         <div class="section-title">What comes next</div>
-        <div class="duration">2 min</div>
       </div>
       <div class="section-body">
         <p class="section-summary">None of this is urgent today. But knowing it exists saves time later.</p>
