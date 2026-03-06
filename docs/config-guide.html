@@ -360,68 +360,6 @@
     </div>
   </div>
 
-  <!-- ===================== DEDICATED SERVER ===================== -->
-  <div class="section" style="border-color: #ffd8d8;">
-    <div class="section-header" style="background: #fffafa;">
-      <div class="step-number" style="background: #c92a2a;">!</div>
-      <div class="section-title">
-        <h2>Run OpenClaw on a dedicated machine</h2>
-        <div class="meta">Not your personal laptop — a server or VPS</div>
-      </div>
-      <span class="tag tag-required">Important</span>
-    </div>
-    <div class="section-body">
-      <div class="callout callout-danger">
-        <strong>Do not run OpenClaw on your personal work laptop.</strong>
-        The agent has access to the machine it runs on — files, shell, network. Running it on a dedicated server gives you three things:
-        <ul style="margin-top: 0.5rem; margin-bottom: 0;">
-          <li><strong>Security</strong> — your personal files, work accounts, and browser sessions aren't exposed to the agent</li>
-          <li><strong>Availability</strong> — your laptop sleeps, a server doesn't. Crons, heartbeats, and overnight tasks need uptime</li>
-          <li><strong>Separation of concerns</strong> — the agent's workspace is isolated from everything else you do</li>
-        </ul>
-      </div>
-
-      <p>A spare machine you repurpose (old laptop, Raspberry Pi, home server) works great. If you don't have one, a VPS costs less than a coffee subscription:</p>
-
-      <table>
-        <tr>
-          <th>Provider</th>
-          <th>Starting at</th>
-          <th>Notes</th>
-        </tr>
-        <tr>
-          <td><strong><a href="https://railway.app" style="color:#3b5bdb;text-decoration:none;">Railway</a></strong></td>
-          <td>Free tier</td>
-          <td>Easiest deployment, no Linux knowledge needed</td>
-        </tr>
-        <tr>
-          <td><strong><a href="https://www.digitalocean.com" style="color:#3b5bdb;text-decoration:none;">DigitalOcean</a></strong></td>
-          <td>$4-6/mo</td>
-          <td>Beginner-friendly, great docs</td>
-        </tr>
-        <tr>
-          <td><strong><a href="https://www.hetzner.com" style="color:#3b5bdb;text-decoration:none;">Hetzner</a></strong></td>
-          <td>~€4/mo</td>
-          <td>Cheapest option in Europe, very reliable</td>
-        </tr>
-        <tr>
-          <td><strong><a href="https://www.vultr.com" style="color:#3b5bdb;text-decoration:none;">Vultr</a></strong></td>
-          <td>$2.50/mo</td>
-          <td>Global locations, low entry tier</td>
-        </tr>
-        <tr>
-          <td><strong><a href="https://www.linode.com" style="color:#3b5bdb;text-decoration:none;">Linode / Akamai</a></strong></td>
-          <td>$5/mo</td>
-          <td>Solid docs and tutorials</td>
-        </tr>
-      </table>
-
-      <div class="callout callout-info">
-        <strong>Minimum specs</strong>
-        OpenClaw itself is lightweight. 1 CPU, 1GB RAM, and 10GB disk is enough. The AI models run remotely (Anthropic, OpenAI), so your server just needs to stay connected. Install the same way: <code>npm install -g openclaw</code>. See <a href="https://docs.openclaw.ai">docs.openclaw.ai</a> for deployment details.
-      </div>
-    </div>
-  </div>
 
   <!-- ===================== STEP 1: IDENTITY ===================== -->
   <div class="section">
