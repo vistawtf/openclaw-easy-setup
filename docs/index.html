@@ -3,14 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="OpenClaw Starter Pack">
-  <meta property="og:description" content="A production-ready workspace for a personal AI assistant. Persistent memory, Telegram integration, scheduled tasks, and overnight self-improvement.">
-  <meta property="og:url" content="https://vistawtf.github.io/openclaw-easy-setup/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="OpenClaw Starter Pack">
-  <meta name="twitter:description" content="A production-ready workspace for a personal AI assistant. Persistent memory, Telegram integration, scheduled tasks, and overnight self-improvement.">
-  <meta name="description" content="A production-ready workspace for a personal AI assistant. Persistent memory, Telegram integration, scheduled tasks, and overnight self-improvement.">
   <title>OpenClaw Starter Pack</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,15 +20,15 @@
       --medium-orange: #FF7043;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
+    html.dark {
         --background: #111111;
         --foreground: #E4E2D8;
         --surface: #161616;
         --border: #2a2a2a;
         --border-hover: #575757;
+        --muted: #999999;
+        --muted-light: #888888;
       }
-    }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -111,9 +103,7 @@
                   transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @media (prefers-color-scheme: dark) {
-      .card { background: var(--surface); }
-    }
+    html.dark .card { background: var(--surface); }
 
     .card:hover {
       border-color: var(--border-hover);
@@ -168,9 +158,7 @@
       transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @media (prefers-color-scheme: dark) {
-      .also-section { background: var(--surface); }
-    }
+    html.dark .also-section { background: var(--surface); }
 
     .also-section h3 {
       font-family: 'Inter', sans-serif;
@@ -224,10 +212,40 @@
       .also-links { flex-direction: column; }
       .also-links a { text-align: center; }
     }
+
+    /* Dark mode text contrast fixes */
+    html.dark .card p { color: var(--muted); }
+    html.dark .header p { color: var(--muted); }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      font-size: 1rem;
+      line-height: 1;
+      color: var(--foreground);
+      transition: border-color 0.25s, background 0.25s;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+    .theme-toggle:hover {
+      border-color: var(--border-hover);
+      background: var(--surface);
+    }
+
+    /* Scroll margin for sticky nav / anchor offset */
+    [id] {
+      scroll-margin-top: 60px;
+    }
   </style>
 </head>
 <body>
 <div class="container">
+
+  <div style="display:flex;justify-content:flex-end;margin-bottom:0.5rem;"><button class="theme-toggle" aria-label="Toggle dark mode">🌙</button></div>
 
   <div class="header">
     <h1>OpenClaw Starter Pack</h1>
@@ -271,5 +289,34 @@
   </div>
 
 </div>
+
+<script>
+  (function() {
+    var html = document.documentElement;
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (stored === 'dark' || (!stored && prefersDark)) {
+      html.classList.add('dark');
+    }
+    function updateToggleIcons() {
+      var btns = document.querySelectorAll('.theme-toggle');
+      var isDark = html.classList.contains('dark');
+      btns.forEach(function(btn) {
+        btn.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
+        btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      });
+    }
+    window.addEventListener('DOMContentLoaded', function() {
+      updateToggleIcons();
+      document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          html.classList.toggle('dark');
+          localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+          updateToggleIcons();
+        });
+      });
+    });
+  })();
+</script>
 </body>
 </html>

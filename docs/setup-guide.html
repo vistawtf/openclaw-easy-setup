@@ -20,14 +20,14 @@
       --medium-orange: #FF7043;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --background: #111111;
-        --foreground: #E4E2D8;
-        --surface: #161616;
-        --border: #2a2a2a;
-        --border-hover: #575757;
-      }
+    html.dark {
+      --background: #111111;
+      --foreground: #E4E2D8;
+      --surface: #161616;
+      --border: #2a2a2a;
+      --border-hover: #575757;
+      --muted: #999999;
+      --muted-light: #888888;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -200,9 +200,7 @@
       transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @media (prefers-color-scheme: dark) {
-      .section { background: var(--surface); }
-    }
+    html.dark .section { background: var(--surface); }
 
     .section:hover {
       border-color: var(--border-hover);
@@ -322,9 +320,7 @@
       color: #1a4a25;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .callout-todo { color: #a3d9a5; background: rgba(47, 158, 68, 0.08); }
-    }
+    html.dark .callout-todo { color: #a3d9a5; background: rgba(47, 158, 68, 0.08); }
 
     .callout-todo strong {
       display: block;
@@ -344,9 +340,7 @@
       color: #5c3c00;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .callout-warn { color: #ffd97a; background: rgba(245, 159, 0, 0.08); }
-    }
+    html.dark .callout-warn { color: #ffd97a; background: rgba(245, 159, 0, 0.08); }
 
     .callout-warn strong {
       display: block;
@@ -360,15 +354,13 @@
     }
 
     .callout-info {
-      background: rgba(59, 130, 246, 0.05);
-      border-color: rgba(59, 130, 246, 0.15);
-      border-left: 3px solid #3b82f6;
-      color: #1e3a5f;
+      background: rgba(255, 82, 51, 0.05);
+      border-color: rgba(255, 82, 51, 0.15);
+      border-left: 3px solid var(--ultra-orange);
+      color: #7c2d12;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .callout-info { color: #93c5fd; background: rgba(59, 130, 246, 0.08); }
-    }
+    html.dark .callout-info { color: var(--foreground); background: rgba(255, 82, 51, 0.08); }
 
     .callout-info strong {
       display: block;
@@ -378,7 +370,7 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-bottom: 0.4rem;
-      color: #3b82f6;
+      color: var(--ultra-orange);
     }
 
     /* Danger callout (for the VPS warning) */
@@ -389,9 +381,7 @@
       color: #7c1515;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .callout-danger { color: #fca5a5; background: rgba(201, 42, 42, 0.08); }
-    }
+    html.dark .callout-danger { color: #fca5a5; background: rgba(201, 42, 42, 0.08); }
 
     .callout-danger strong {
       display: block;
@@ -495,6 +485,49 @@
       .header h1 { font-size: 1.75rem; }
       .breadcrumb { font-size: 0.8125rem; }
     }
+
+    /* Dark mode text contrast fixes */
+    html.dark .section-body p,
+    html.dark .section-body li,
+    html.dark .section-body td,
+    html.dark .callout {
+      color: var(--foreground);
+    }
+    html.dark .callout-todo { color: #a3d9a5; }
+    html.dark .callout-warn,
+    html.dark .callout-warning { color: #ffd97a; }
+    html.dark .callout-danger { color: #fca5a5; }
+    html.dark .callout-info strong { color: var(--ultra-orange); }
+    html.dark .callout-tip { color: #a3d9a5; }
+    html.dark .section-summary { color: var(--muted); }
+    html.dark .section-body table td { color: var(--foreground); }
+    html.dark .section-body table td:first-child { color: var(--foreground); }
+    html.dark .header p { color: var(--muted); }
+    html.dark .card p { color: var(--muted); }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      font-size: 1rem;
+      line-height: 1;
+      color: var(--foreground);
+      transition: border-color 0.25s, background 0.25s;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+    .theme-toggle:hover {
+      border-color: var(--border-hover);
+      background: var(--surface);
+    }
+
+    /* Scroll margin for sticky nav / anchor offset */
+    [id] {
+      scroll-margin-top: 60px;
+    }
   </style>
 </head>
 <body>
@@ -514,6 +547,7 @@
     <a href="#s9">9 · Security</a>
     <a href="#s10">10 · First day</a>
     <a href="#s11">11 · What's next</a>
+    <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
   </div>
 </nav>
 
@@ -982,5 +1016,34 @@ openclaw cron delete JOB_ID</code></pre>
   </nav>
 
 </div>
+
+<script>
+  (function() {
+    var html = document.documentElement;
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (stored === 'dark' || (!stored && prefersDark)) {
+      html.classList.add('dark');
+    }
+    function updateToggleIcons() {
+      var btns = document.querySelectorAll('.theme-toggle');
+      var isDark = html.classList.contains('dark');
+      btns.forEach(function(btn) {
+        btn.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
+        btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      });
+    }
+    window.addEventListener('DOMContentLoaded', function() {
+      updateToggleIcons();
+      document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          html.classList.toggle('dark');
+          localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+          updateToggleIcons();
+        });
+      });
+    });
+  })();
+</script>
 </body>
 </html>
