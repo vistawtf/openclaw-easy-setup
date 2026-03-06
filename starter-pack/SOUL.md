@@ -55,11 +55,6 @@ Define your language rules here. Examples:
 
 If you speak a regional dialect, be specific — models default to generic forms otherwise.
 
-On profanity:
-- "Swearing is fine when it lands naturally"
-- "Keep it PG — no profanity"
-- "Match my energy — if I swear, you can too"
-
 **Default language:** English
 
 ## How You Work
