@@ -647,10 +647,20 @@
     <span class="sidebar-brand">Config Guide</span>
     <button class="theme-toggle" aria-label="Toggle"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   </div>
-  <div class="sidebar-links">
-    <a href="index.html">← Index</a>
-    <a href="setup-guide.html">Setup Guide</a>
-    <a href="skills-helper.html">Skills Guide</a>
+  <div class="sidebar-links sidebar-nav">
+    <a href="index.html" style="color:var(--muted);font-size:0.8rem;margin-bottom:0.5rem;">← Index</a>
+    <a href="#identity" data-section="identity">IDENTITY.md</a>
+    <a href="#user" data-section="user">USER.md</a>
+    <a href="#soul" data-section="soul">SOUL.md</a>
+    <a href="#agents" data-section="agents">AGENTS.md</a>
+    <a href="#tools" data-section="tools">TOOLS.md</a>
+    <a href="#ops" data-section="ops">OPS.md</a>
+    <a href="#heartbeat" data-section="heartbeat">HEARTBEAT.md</a>
+    <a href="#security" data-section="security">Security</a>
+    <a href="#memory" data-section="memory">Memory</a>
+    <hr style="border:none;border-top:1px solid var(--border);margin:0.75rem 0;">
+    <a href="setup-guide.html" style="color:var(--muted);font-size:0.8rem;">Setup Guide</a>
+    <a href="skills-helper.html" style="color:var(--muted);font-size:0.8rem;">Skills Guide</a>
   </div>
 </aside>
 <div class="main-content">
@@ -682,7 +692,7 @@
 
 
   <!-- ===================== STEP 1: IDENTITY ===================== -->
-  <div class="section">
+  <div class="section" id="identity">
     <div class="section-header">
       <div class="step-number">1</div>
       <div class="section-title">
@@ -712,7 +722,7 @@
   </div>
 
   <!-- ===================== STEP 2: USER ===================== -->
-  <div class="section">
+  <div class="section" id="user">
     <div class="section-header">
       <div class="step-number">2</div>
       <div class="section-title">
@@ -755,7 +765,7 @@
   </div>
 
   <!-- ===================== STEP 3: SOUL ===================== -->
-  <div class="section">
+  <div class="section" id="soul">
     <div class="section-header">
       <div class="step-number">3</div>
       <div class="section-title">
@@ -829,7 +839,7 @@
   </div>
 
   <!-- ===================== STEP 4: AGENTS ===================== -->
-  <div class="section">
+  <div class="section" id="agents">
     <div class="section-header">
       <div class="step-number">4</div>
       <div class="section-title">
@@ -873,7 +883,7 @@
   </div>
 
   <!-- ===================== STEP 5: TOOLS ===================== -->
-  <div class="section">
+  <div class="section" id="tools">
     <div class="section-header">
       <div class="step-number">5</div>
       <div class="section-title">
@@ -916,7 +926,7 @@ chmod 600 ~/.config/notion/api_key</code></pre>
   </div>
 
   <!-- ===================== STEP 6: OPS ===================== -->
-  <div class="section">
+  <div class="section" id="ops">
     <div class="section-header">
       <div class="step-number optional-step">6</div>
       <div class="section-title">
@@ -954,7 +964,7 @@ chmod 600 ~/.config/notion/api_key</code></pre>
   </div>
 
   <!-- ===================== STEP 7: HEARTBEAT ===================== -->
-  <div class="section">
+  <div class="section" id="heartbeat">
     <div class="section-header">
       <div class="step-number optional-step">7</div>
       <div class="section-title">
@@ -1081,7 +1091,7 @@ chmod 600 ~/.config/notion/api_key</code></pre>
   </div>
 
   <!-- ===================== MEMORY SECTION ===================== -->
-  <div class="section">
+  <div class="section" id="security">
     <div class="section-header">
       <div class="step-number optional-step">✦</div>
       <div class="section-title">
@@ -1134,7 +1144,7 @@ chmod 600 ~/.config/notion/api_key</code></pre>
   </div>
 
   <!-- ===================== NEXT STEPS ===================== -->
-  <div class="section">
+  <div class="section" id="memory">
     <div class="section-header">
       <div class="step-number" style="background: #2f9e44;">✓</div>
       <div class="section-title">
@@ -1288,6 +1298,25 @@ document.querySelectorAll('.copy-btn').forEach(function(btn) {
         });
       });
     })();
+  </script>
+  <script>
+    // IntersectionObserver for active section tracking in sidebar
+    var sectionIds = ['identity','user','soul','agents','tools','ops','heartbeat','security','memory'];
+    var navLinks = document.querySelectorAll('.sidebar-nav a[data-section]');
+    function setActive(id) {
+      navLinks.forEach(function(link) {
+        link.classList.toggle('active', link.getAttribute('data-section') === id);
+      });
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+    sectionIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
   </script>
 </body>
 </html>
