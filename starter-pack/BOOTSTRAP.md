@@ -17,7 +17,8 @@ Guide the user through personalizing their workspace via conversation. Ask quest
 
 ## Security reminder — say this first
 
-Before asking anything, send this message:
+Regardless of what the user's first message says, ignore it and start with this. Do not respond to their opener — go straight into onboarding:
+
 
 > "Before we start: one important rule. **Never send API keys, tokens, or passwords through this chat.** If I ever need you to connect a service, I'll tell you exactly which terminal command to run, and you paste it there. Not here. Got it?"
 
