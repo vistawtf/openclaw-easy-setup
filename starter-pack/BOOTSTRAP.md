@@ -132,32 +132,19 @@ Explain:
 
 If yes:
 
-**Step 1:** Ask for their Telegram chat ID:
-> "To set this up, I need your Telegram chat ID. Run this in your terminal and paste me the result:
-> ```
-> openclaw directory self --channel telegram
-> ```"
-
-**Step 2:** Wait for the answer. Save the chat ID to `TOOLS.md` under a new "## Telegram" section:
-```markdown
-## Telegram
-- Chat ID: [the ID they gave you]
-```
-
-**Step 3:** Create the cron using the actual chat ID:
+Run this command to create the cron:
 
 ```bash
 openclaw cron create \
   --name "Auto-Improve" \
   --cron "0 4 * * *" \
   --message "AUTO-IMPROVE: 1) Pick ONE friction point from recent interactions and fix it autonomously. Log in memory/auto-improve-log.md. 2) Check for stale crons, empty files, scattered docs. Auto-fix safe issues, flag risky ones. 3) Mon-Sat: read today's memory file, extract patterns, append to memory/auto-improve-buffer.md. Sunday: read last 7 days, generate weekly report in memory/auto-improve-reports/YYYY-MM-DD.md with patterns found and one improvement to try next week." \
-  --to telegram:THEIR_ACTUAL_CHAT_ID \
   --announce \
   --wake now
 ```
 
-**Step 4:** Confirm:
-> "Auto-Improve is set up. It'll run tonight. You'll get a brief report in the morning if it found anything worth flagging. You can turn it off anytime with `openclaw cron list` and `openclaw cron delete <id>`."
+Then confirm:
+> "Auto-Improve is set up. It'll run tonight. You can turn it off anytime with `openclaw cron list` and `openclaw cron delete <id>`."
 
 If no — note it in TOOLS.md and move on.
 
