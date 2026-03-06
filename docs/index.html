@@ -240,6 +240,22 @@
     [id] {
       scroll-margin-top: 60px;
     }
+
+    .vista-footer {
+      margin-top: 3rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted-light);
+      letter-spacing: 0.02em;
+    }
+    .vista-footer a {
+      color: var(--ultra-orange);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .vista-footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -318,5 +334,8 @@
     });
   })();
 </script>
+  <footer class="vista-footer">
+    Built on <a href="https://docs.openclaw.ai" target="_blank">OpenClaw</a> &middot; By <a href="https://vista.wtf" target="_blank">Vista</a>
+  </footer>
 </body>
 </html>
