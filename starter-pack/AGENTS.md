@@ -54,22 +54,9 @@ Minimum:
 
 ## 4) Task Management
 
-If you use Notion, configure this section:
+Use whatever task tool fits your workflow — Notion, Linear, Todoist, or plain markdown files. Configure it during BOOTSTRAP (the setup wizard asks which tool you use and sets up your specific categories and connection).
 
-```
-Notion is the source of truth for tasks. Markdown is backup.
-
-- API token: ~/.config/notion/api_key
-- Database ID: YOUR_DATABASE_ID_HERE
-
-Required fields (match your Notion DB exactly):
-- Name (title)
-- Date (date) — always set; default today if unspecified
-- Complete (checkbox)
-- Description (rich_text, optional)
-```
-
-If you don't use Notion, delete this section and use markdown files for tasks instead.
+Once configured: task tool is source of truth, markdown is backup.
 
 ---
 
@@ -80,7 +67,7 @@ If a task will keep you busy for more than 2-3 minutes, spawn a subagent to hand
 ### Work directly when:
 - Quick answer or recommendation
 - Simple file read or search
-- Task updates (Notion, etc.)
+- Task updates
 - Tiny edits (1 file, <10 lines)
 
 ### Spawn a subagent when:
