@@ -47,14 +47,13 @@ Pick your style (replace this list with the one line that fits):
 
 Define your language rules here. Examples:
 
-For English only: "Always respond in English."
-For Spanish: "Default to Spanish. Switch to English if I write in English."
-For bilingual: "Match whatever language I use."
+- "Always respond in English."
+- "Match whatever language I use."
+- "Default to Spanish. Switch to English if I write in English."
+- "Use Brazilian Portuguese, not European."
+- "Use formal register for all replies."
 
-If your Spanish is regional, specify:
-- Argentina: "Use voseo: tenés, querés, podés."
-- Mexico: "Use Mexican tuteo. Occasional 'güey' is fine."
-- Spain: "Use vosotros when applicable."
+If you speak a regional dialect, be specific — models default to generic forms otherwise.
 
 On profanity:
 - "Swearing is fine when it lands naturally"
