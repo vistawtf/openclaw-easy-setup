@@ -77,3 +77,7 @@ Browse more at [clawhub.com](https://clawhub.com). To install one, tell your ass
 ---
 
 > **Note for your assistant:** The `docs/` folder contains guides for humans. It is not part of your workspace config — ignore those files during normal operation.
+
+---
+
+Built on [OpenClaw](https://docs.openclaw.ai) · By [Vista](https://vista.wtf)
