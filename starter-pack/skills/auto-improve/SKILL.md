@@ -9,45 +9,18 @@ Autonomous overnight improvement system. Every night: fix ONE thing, clean up, l
 
 ## Setup
 
-Create a cron job at your preferred overnight hour (e.g., 4AM UTC):
+BOOTSTRAP.md sets this up automatically during first-run onboarding. If you skipped that step or need to recreate the cron, run:
 
+```bash
+openclaw cron create \
+  --name "Auto-Improve" \
+  --cron "0 4 * * *" \
+  --message "AUTO-IMPROVE: 1) Pick ONE friction point from recent interactions and fix it autonomously. Log in memory/auto-improve-log.md. 2) Check for stale crons, empty files, scattered docs. Auto-fix safe issues, flag risky ones. 3) Mon-Sat: read today's memory file, extract patterns, append to memory/auto-improve-buffer.md. Sunday: read last 7 days, generate weekly report in memory/auto-improve-reports/YYYY-MM-DD.md with patterns found and improvement proposals." \
+  --announce \
+  --wake now
 ```
-Schedule: 0 4 * * * (UTC)
-Session: main
-Payload: systemEvent with the Auto-Improve prompt (see below)
-```
 
-### Cron Prompt
-
-```
-AUTO-IMPROVE:
-
-1. FRICTION FIX: Pick ONE friction point from recent work and fix it autonomously.
-   Options: (a) workspace cleanup, (b) memory consolidation, (c) file organization,
-   (d) research/data prep, (e) proactive tooling, (f) documentation gaps.
-   Ship it. Document in memory/auto-improve-log.md.
-
-2. HYGIENE CHECKS:
-   - Task manager: duplicates, overdue tasks, missing dates, stale tasks (>2 weeks overdue)
-   - Cron: zombie jobs (fired but not deleted), disabled leftovers, error states, duplicates
-   - Workspace: empty files, stale temp files, scattered docs that should be consolidated
-   Report findings in memory/auto-improve-log.md. Auto-fix safe issues, flag risky ones.
-
-3. LEARNING LOOP:
-   - Mon-Sat: Read today's memory file, extract patterns/insights, append to memory/auto-improve-buffer.md
-   - Sunday: Deep weekly analysis. Read buffer + last 7 days of memory files.
-     Generate report in memory/auto-improve-reports/YYYY-MM-DD.md with:
-     - Patterns identified
-     - Concrete improvement proposals (new skills, workflows, automation)
-     - Priority (high/medium/low)
-     Clear buffer after.
-
-RULES:
-- Only low-risk changes (never touch production code)
-- Document everything in memory/auto-improve-log.md
-- One friction fix per night (stay focused)
-- Flag anything risky for human review instead of acting
-```
+`0 4 * * *` = 4am UTC. Adjust to your timezone's quiet hours. Add `--to telegram:YOUR_CHAT_ID` to route results to a specific chat. See OPS.md → Cron Golden Defaults for full flag reference.
 
 ### Required Files
 
