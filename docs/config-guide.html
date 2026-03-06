@@ -438,13 +438,11 @@
     .footer a { color: var(--ultra-orange); text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      body { padding: 1rem 0.75rem; }
-      .section-header { padding: 1rem 1.25rem; }
-      .section-body { padding: 1.25rem; }
-      .header h1 { font-size: 1.75rem; }
-      .breadcrumb { font-size: 0.8125rem; }
+    /* Mobile: code blocks */
+    pre {
+      overflow-x: auto;
+      white-space: pre;
+      word-break: normal;
     }
 
     /* Dark mode text contrast fixes */
@@ -511,10 +509,49 @@
       font-weight: 500;
     }
     .vista-footer a:hover { text-decoration: underline; }
+
+    /* ===== RESPONSIVE — must come after base styles ===== */
+    @media (max-width: 768px) {
+      /* Theme toggle: move into page flow on mobile */
+      .theme-toggle {
+        position: static;
+        margin: 1rem 1rem 0 auto;
+        display: block;
+        box-shadow: none;
+        min-height: 44px;
+        min-width: 44px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      .section-header { padding: 1rem 1.25rem; }
+      .section-body { padding: 1.25rem; }
+      .header h1 { font-size: 1.75rem; }
+      .breadcrumb { font-size: 0.8125rem; }
+
+      /* Mobile: tables scroll */
+      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+      /* Progress pills wrap */
+      .progress-steps { gap: 0.35rem; }
+      .step-pill { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 1rem; }
+      .header h1 { font-size: clamp(1.5rem, 6vw, 2.25rem); }
+      .header p { font-size: 0.95rem; }
+      .section-title h2 { font-size: clamp(1.1rem, 4vw, 1.4rem); }
+      .section-body h3 { font-size: 0.875rem; }
+      .section-body { padding: 1rem 1.1rem; }
+      .section-header { padding: 0.85rem 1.1rem; }
+      .vista-footer { font-size: 0.75rem; padding: 1.25rem 1rem; text-align: center; }
+    }
   </style>
 </head>
 <body>
-<button class="theme-toggle" aria-label="Switch to dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+<button class="theme-toggle" aria-label="Switch to dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
 <div class="container">
 
   <div class="breadcrumb">
@@ -1067,37 +1104,36 @@ chmod 600 ~/.config/notion/api_key</code></pre>
   </div>
 
 </div>
-
-<script>
-  (function() {
-    var html = document.documentElement;
-    var stored = localStorage.getItem('theme');
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (stored === 'dark' || (!stored && prefersDark)) {
-      html.classList.add('dark');
-    }
-    function updateToggleIcons() {
-      var btns = document.querySelectorAll('.theme-toggle');
-      var isDark = html.classList.contains('dark');
-      btns.forEach(function(btn) {
-        btn.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
-        btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-      });
-    }
-    window.addEventListener('DOMContentLoaded', function() {
-      updateToggleIcons();
-      document.querySelectorAll('.theme-toggle').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          html.classList.toggle('dark');
-          localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-          updateToggleIcons();
-        });
-      });
-    });
-  })();
-</script>
   <footer class="vista-footer">
     Built on <a href="https://docs.openclaw.ai" target="_blank">OpenClaw</a> &middot; By <a href="https://vista.wtf" target="_blank">Vista</a>
   </footer>
+
+  <script>
+    (function() {
+      var html = document.documentElement;
+      var stored = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (stored === 'dark' || (!stored && prefersDark)) html.classList.add('dark');
+
+      function syncIcons() {
+        var isDark = html.classList.contains('dark');
+        document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+          btn.innerHTML = isDark ? '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+          btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        syncIcons();
+        document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            syncIcons();
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
