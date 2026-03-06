@@ -1,6 +1,6 @@
 # OpenClaw Starter Pack
 
-A ready-to-use workspace for a personal AI assistant that runs on your infrastructure, remembers context across sessions, works through Telegram, runs scheduled tasks, and improves itself overnight. Built on [OpenClaw](https://docs.openclaw.ai).
+A ready-to-use workspace for a personal AI assistant that runs on your infrastructure, remembers context across sessions, works through Telegram, runs scheduled tasks, and improves itself overnight. Built on [OpenClaw](https://docs.openclaw.ai) by [Vista](https://vista.wtf).
 
 ## Guides
 
