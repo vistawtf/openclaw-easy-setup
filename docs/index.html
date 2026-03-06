@@ -321,6 +321,43 @@
   border-color: rgba(47, 158, 68, 0.2);
 }
 
+    /* Feature badges */
+    .feature-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ultra-orange);
+      background: rgba(255, 82, 51, 0.08);
+      border: 1px solid rgba(255, 82, 51, 0.2);
+      border-radius: 20px;
+      padding: 0.3rem 0.75rem;
+      cursor: default;
+      position: relative;
+      transition: background 0.15s;
+    }
+    .feature-badge:hover { background: rgba(255, 82, 51, 0.14); }
+    .feature-badge::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--foreground);
+      color: var(--background);
+      font-size: 0.78rem;
+      font-weight: 400;
+      line-height: 1.5;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      width: 220px;
+      white-space: normal;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 10;
+    }
+    .feature-badge:hover::after { opacity: 1; }
+
     /* ===== TYPOGRAPHY HIERARCHY ===== */
     h1 { font-size: 2rem; font-weight: 700; color: var(--foreground); line-height: 1.2; margin: 0 0 1rem; }
     h2 { font-size: 1.4rem; font-weight: 700; color: var(--foreground); line-height: 1.3; margin: 2rem 0 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
@@ -341,27 +378,12 @@
     <p>A pre-configured workspace for OpenClaw. Persistent memory, Telegram integration, scheduled tasks, and a nightly self-improvement loop.</p>
   </div>
 
-  <div style="margin: 2rem 0 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
-    <div style="padding: 1.25rem; border: 1px solid var(--border); border-radius: 10px; background: var(--surface);">
-      <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ultra-orange); margin-bottom: 0.5rem;">Always available</div>
-      <p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.6;">Long tasks run in the background automatically. The main chat stays free while work happens in parallel.</p>
-    </div>
-    <div style="padding: 1.25rem; border: 1px solid var(--border); border-radius: 10px; background: var(--surface);">
-      <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ultra-orange); margin-bottom: 0.5rem;">Learns overnight</div>
-      <p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.6;">A nightly loop picks one friction point from the day and fixes it — no prompting, no maintenance required.</p>
-    </div>
-    <div style="padding: 1.25rem; border: 1px solid var(--border); border-radius: 10px; background: var(--surface);">
-      <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ultra-orange); margin-bottom: 0.5rem;">Actual personality</div>
-      <p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.6;">Explicit rules against AI writing patterns — no sycophantic openers, no filler, no significance inflation. It talks like a person.</p>
-    </div>
-    <div style="padding: 1.25rem; border: 1px solid var(--border); border-radius: 10px; background: var(--surface);">
-      <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ultra-orange); margin-bottom: 0.5rem;">Smart memory routing</div>
-      <p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.6;">Every piece of information gets filed in the right place. Nothing disappears into a chat log you'll never find again.</p>
-    </div>
-    <div style="padding: 1.25rem; border: 1px solid var(--border); border-radius: 10px; background: var(--surface);">
-      <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ultra-orange); margin-bottom: 0.5rem;">Ships ready</div>
-      <p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.6;">15 operational rules covering quality gates, scheduling, task handoffs, repo hygiene — lessons most people learn by hitting the failure they prevent.</p>
-    </div>
+  <div style="margin: 1.5rem 0 2.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+    <span class="feature-badge" data-tip="Long tasks run in the background automatically. The main chat stays free while work happens in parallel.">Always available</span>
+    <span class="feature-badge" data-tip="A nightly loop picks one friction point from the day and fixes it — no prompting, no maintenance required.">Learns overnight</span>
+    <span class="feature-badge" data-tip="Explicit rules against AI writing patterns — no sycophantic openers, no filler, no significance inflation.">Actual personality</span>
+    <span class="feature-badge" data-tip="Every piece of information gets filed in the right place. Nothing disappears into a chat log you'll never find again.">Smart memory routing</span>
+    <span class="feature-badge" data-tip="15 operational rules covering quality gates, scheduling, task handoffs, repo hygiene — things most people discover by hitting the failure they prevent.">Ships ready</span>
   </div>
 
   <div class="cards">
