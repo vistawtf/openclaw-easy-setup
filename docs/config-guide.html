@@ -583,21 +583,69 @@
   color: #2f9e44;
   border-color: rgba(47, 158, 68, 0.2);
 }
+
+    :root { --sidebar-width: 200px; }
+    body { margin: 0; }
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: var(--background);
+      border-right: 1px solid var(--border);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-header {
+      padding: 1.25rem 1rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      gap: 0.5rem;
+    }
+    .sidebar-brand {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--muted-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .sidebar-links { flex: 1; padding: 0.75rem 0; }
+    .sidebar-links a {
+      display: block;
+      padding: 0.45rem 1rem;
+      font-size: 0.8125rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar-links a:hover { color: var(--foreground); background: rgba(255,82,51,0.04); }
+    .sidebar-links a.active { color: var(--foreground); font-weight: 600; border-left-color: var(--ultra-orange); background: rgba(255,82,51,0.06); }
+    .main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main-content { margin-left: 0; }
+    }
 </style>
 </head>
 <body>
 <aside class="sidebar">
   <div class="sidebar-header">
     <span class="sidebar-brand">Config Guide</span>
-    <button class="theme-toggle" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+    <button class="theme-toggle" aria-label="Toggle"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   </div>
   <div class="sidebar-links">
-    <a href="index.html">← Back to index</a>
+    <a href="index.html">← Index</a>
     <a href="setup-guide.html">Setup Guide</a>
     <a href="skills-helper.html">Skills Guide</a>
   </div>
 </aside>
 <div class="main-content">
+
 
 <div class="container">
 
@@ -1208,6 +1256,7 @@ document.querySelectorAll('.copy-btn').forEach(function(btn) {
   });
 });
 </script>
+</div><!-- /main-content -->
 
   <script>
     (function() {
@@ -1217,15 +1266,15 @@ document.querySelectorAll('.copy-btn').forEach(function(btn) {
       if (stored === 'dark' || (!stored && prefersDark)) html.classList.add('dark');
       function syncIcons() {
         var isDark = html.classList.contains('dark');
-        document.querySelectorAll('.theme-toggle').forEach(function(btn) {
-          btn.innerHTML = isDark ? '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-          btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+        document.querySelectorAll('.theme-toggle').forEach(function(b) {
+          b.innerHTML = isDark ? '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+          b.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
         });
       }
       document.addEventListener('DOMContentLoaded', function() {
         syncIcons();
-        document.querySelectorAll('.theme-toggle').forEach(function(btn) {
-          btn.addEventListener('click', function() {
+        document.querySelectorAll('.theme-toggle').forEach(function(b) {
+          b.addEventListener('click', function() {
             html.classList.toggle('dark');
             localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
             syncIcons();
@@ -1234,6 +1283,5 @@ document.querySelectorAll('.copy-btn').forEach(function(btn) {
       });
     })();
   </script>
-</div><!-- /main-content -->
 </body>
 </html>
