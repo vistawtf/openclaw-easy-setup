@@ -980,7 +980,7 @@ openclaw --version</code></pre>
         <p class="section-summary">OpenClaw reads a folder of plain text files at the start of every conversation. These files are your assistant's memory, personality, and context about you. In the next step you'll install the starter pack — a set of pre-built files to get you started fast.</p>
 
         <div class="code-block">
-    <pre><code>~/clawd/
+    <pre><code>~/.openclaw/workspace/
 ├── IDENTITY.md   ← Your assistant's name and vibe
 ├── SOUL.md       ← Personality, tone, and how it communicates
 ├── USER.md       ← About you: timezone, language, priorities
@@ -1008,7 +1008,7 @@ openclaw --version</code></pre>
         <h3>Easy path — let your assistant do it</h3>
         <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Open Telegram and send your bot this message:</p>
         <div class="code-block">
-    <pre><code>Install the OpenClaw starter pack from https://github.com/vistawtf/openclaw-easy-setup — clone it and copy the starter-pack folder contents into ~/clawd/, then restart the gateway so the new files load.</code></pre>
+    <pre><code>Install the OpenClaw starter pack from https://github.com/vistawtf/openclaw-easy-setup — clone it and copy the starter-pack folder contents into ~/.openclaw/workspace/, then restart the gateway so the new files load.</code></pre>
     <button class="copy-btn" aria-label="Copy code">Copy</button>
   </div>
         <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Your assistant will clone the repo, copy the files, and restart itself. Message it again in about 10 seconds — it should respond with the new personality and kick off a short onboarding chat.</p>
@@ -1016,7 +1016,7 @@ openclaw --version</code></pre>
         <h3>Terminal path — if you want to review the files first</h3>
         <div class="code-block">
     <pre><code>cd ~ && git clone https://github.com/vistawtf/openclaw-easy-setup.git
-cp -r openclaw-easy-setup/starter-pack/. ~/clawd/</code></pre>
+cp -r openclaw-easy-setup/starter-pack/. ~/.openclaw/workspace/</code></pre>
     <button class="copy-btn" aria-label="Copy code">Copy</button>
   </div>
         <p style="font-size:0.9rem;color:var(--muted);margin:0.4rem 0 0.75rem">Then restart the gateway:</p>
@@ -1027,13 +1027,13 @@ cp -r openclaw-easy-setup/starter-pack/. ~/clawd/</code></pre>
 
         <div class="callout callout-warn">
           <strong>Back up first if you have existing files</strong>
-          <code>cp -r ~/clawd/ ~/clawd-backup/</code> before copying — the starter pack overwrites files with the same names.
+          <code>cp -r ~/.openclaw/workspace/ ~/.openclaw/workspace-backup/</code> before copying — the starter pack overwrites files with the same names.
         </div>
 
         <div class="callout callout-todo">
           <strong>End state</strong>
           <ul class="todo-list">
-            <li>Starter pack files are in <code>~/clawd/</code></li>
+            <li>Starter pack files are in <code>~/.openclaw/workspace/</code></li>
             <li>Gateway restarted</li>
             <li>Assistant responded in Telegram with the new personality</li>
           </ul>
