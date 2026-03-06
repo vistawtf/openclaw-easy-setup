@@ -58,197 +58,7 @@
       margin: 0 auto;
     }
 
-    .header {
-      text-align: center;
-      margin-bottom: 3rem;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .header h1 {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 2.75rem;
-      font-weight: 400;
-      color: var(--foreground);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-    }
-
-    .header p {
-      margin-top: 1rem;
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 560px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-    }
-
-
-
-    .cards {
-      display: grid;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.5rem 1.75rem;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                  box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    html.dark .card { background: var(--surface); }
-
-    .card:hover {
-      border-color: var(--border-hover);
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04), 0 10px 20px -2px rgba(0,0,0,0.06);
-      transform: translateY(-1px);
-    }
-
-    .card-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--ultra-orange);
-      margin-bottom: 0.5rem;
-    }
-
-    .card h2 {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--foreground);
-      margin-bottom: 0.4rem;
-      letter-spacing: -0.01em;
-    }
-
-    .card p {
-      font-size: 0.9375rem;
-      color: var(--muted);
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    .card-arrow {
-      display: inline-block;
-      margin-top: 0.75rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--ultra-orange);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .card:hover .card-arrow {
-      transform: translateX(3px);
-    }
-
-    .also-section {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem 1.75rem;
-      transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    html.dark .also-section { background: var(--surface); }
-
-    .also-section h3 {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted-light);
-      margin-bottom: 0.75rem;
-    }
-
-    .also-links {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .also-links a {
-      display: inline-block;
-      padding: 0.4rem 0.85rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--ultra-orange);
-      text-decoration: none;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .also-links a:hover {
-      border-color: var(--border-hover);
-      background: rgba(255, 82, 51, 0.05);
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-      color: var(--muted-light);
-      font-size: 0.8125rem;
-    }
-
-    .footer a { color: var(--ultra-orange); text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
-
-    /* Mobile: code blocks */
-    pre {
-      overflow-x: auto;
-      white-space: pre;
-      word-break: normal;
-    }
-
-    @media (max-width: 768px) {
-      .theme-toggle {
-        min-height: 44px;
-        min-width: 44px;
-        padding: 0.4rem 0.6rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      body { padding: 2rem 0.75rem; }
-      .header h1 { font-size: 2rem; }
-      .also-links { flex-direction: column; }
-      .also-links a { text-align: center; min-height: 44px; display: flex; align-items: center; justify-content: center; }
-
-      /* Mobile: tables scroll */
-      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    }
-
-    @media (max-width: 480px) {
-      body { padding: 1.5rem 1rem; }
-      .container { padding: 0; }
-      .header h1 { font-size: clamp(1.5rem, 6vw, 2.25rem); }
-      .header p { font-size: 0.95rem; }
-      .card { padding: 1.25rem 1.25rem; }
-      .card h2 { font-size: clamp(1.1rem, 4vw, 1.4rem); }
-      .also-section { padding: 1rem 1.25rem; }
-      .vista-footer { font-size: 0.75rem; padding: 1.25rem 1rem; text-align: center; }
-    }
-
-    /* Dark mode text contrast fixes */
-    html.dark .card p { color: var(--muted); }
-    html.dark .header p { color: var(--muted); }
-
-    /* Theme toggle button */
+    /* ===== THEME TOGGLE ===== */
     .theme-toggle {
       background: none;
       border: 1px solid var(--border);
@@ -267,11 +77,207 @@
       background: var(--surface);
     }
 
-    /* Scroll margin for sticky nav / anchor offset */
-    [id] {
-      scroll-margin-top: 60px;
+    /* ===== HERO ===== */
+    .hero {
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
     }
 
+    .hero h1 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 2.75rem;
+      font-weight: 400;
+      color: var(--foreground);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-hook {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--foreground);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 580px;
+      line-height: 1.6;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-direction: row;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: #FF5233;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.55rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--ultra-orange);
+      border: 1px solid var(--ultra-orange);
+      border-radius: 6px;
+      padding: 0.55rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-secondary:hover { background: rgba(255, 82, 51, 0.06); }
+
+    /* ===== SECTION LABEL ===== */
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ===== VALUE PROPS ===== */
+    .value-props {
+      margin-bottom: 3rem;
+    }
+
+    .prop-list {
+      list-style: none;
+    }
+
+    .prop-item {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0;
+      border-left: 2px solid var(--ultra-orange);
+      padding-left: 1rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .prop-title {
+      font-weight: 600;
+      color: var(--foreground);
+      font-size: 0.9375rem;
+      min-width: 160px;
+      flex-shrink: 0;
+    }
+
+    .prop-desc {
+      color: var(--muted);
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+
+    /* ===== GUIDE CARDS ===== */
+    .guides {
+      margin-bottom: 2.5rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .guide-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+
+    .guide-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--ultra-orange);
+    }
+
+    .guide-card-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--foreground);
+      margin-bottom: 0.4rem;
+    }
+
+    .guide-card-desc {
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .guide-card-link {
+      color: var(--ultra-orange);
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-decoration: none;
+    }
+
+    /* ===== ALSO AVAILABLE ===== */
+    .also-available {
+      margin-bottom: 2.5rem;
+    }
+
+    .also-links-inline {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .also-links-inline a {
+      color: var(--muted);
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .also-links-inline a:hover { color: var(--foreground); }
+
+    .also-sep {
+      color: var(--muted);
+      font-size: 0.875rem;
+      user-select: none;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted-light);
+      font-size: 0.8125rem;
+    }
+
+    .footer a { color: var(--ultra-orange); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* ===== VISTA FOOTER ===== */
     .vista-footer {
       margin-top: 3rem;
       padding: 1.5rem 0;
@@ -287,104 +293,181 @@
       font-weight: 500;
     }
     .vista-footer a:hover { text-decoration: underline; }
-  
-/* Code block wrapper */
-.code-block {
-  position: relative;
-}
 
-.copy-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  padding: 0.25rem 0.65rem;
-  font-size: 0.7rem;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: rgba(255, 82, 51, 0.08);
-  color: var(--ultra-orange);
-  border: 1px solid rgba(255, 82, 51, 0.2);
-  border-radius: 4px;
-  cursor: pointer;
-  line-height: 1;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
+    /* ===== CODE BLOCK ===== */
+    .code-block {
+      position: relative;
+    }
 
-.code-block:hover .copy-btn {
-  opacity: 1;
-}
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: rgba(255, 82, 51, 0.08);
+      color: var(--ultra-orange);
+      border: 1px solid rgba(255, 82, 51, 0.2);
+      border-radius: 4px;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
 
-.copy-btn.copied {
-  background: rgba(47, 158, 68, 0.08);
-  color: #2f9e44;
-  border-color: rgba(47, 158, 68, 0.2);
-}
+    .code-block:hover .copy-btn {
+      opacity: 1;
+    }
 
-    /* ===== TYPOGRAPHY HIERARCHY ===== */
-    h1 { font-size: 2rem; font-weight: 700; color: var(--foreground); line-height: 1.2; margin: 0 0 1rem; }
-    h2 { font-size: 1.4rem; font-weight: 700; color: var(--foreground); line-height: 1.3; margin: 2rem 0 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
-    h3 { font-size: 1.05rem; font-weight: 600; color: var(--foreground); line-height: 1.4; margin: 1.5rem 0 0.5rem; }
-    h4 { font-size: 0.9375rem; font-weight: 600; color: var(--foreground); margin: 1rem 0 0.4rem; }
-    .section-title { font-size: 1.6rem !important; font-weight: 700 !important; color: var(--foreground) !important; line-height: 1.25 !important; }
-    .section-num { font-size: 0.75rem; font-weight: 700; color: var(--ultra-orange); background: rgba(255,82,51,0.1); border-radius: 4px; padding: 0.15rem 0.5rem; }
-    .section-summary { font-size: 1rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.5rem; }
-</style>
+    .copy-btn.copied {
+      background: rgba(47, 158, 68, 0.08);
+      color: #2f9e44;
+      border-color: rgba(47, 158, 68, 0.2);
+    }
+
+    /* ===== MISC ===== */
+    pre {
+      overflow-x: auto;
+      white-space: pre;
+      word-break: normal;
+    }
+
+    [id] { scroll-margin-top: 60px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .theme-toggle {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0.4rem 0.6rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 2rem 0.75rem; }
+
+      .hero h1 { font-size: 2rem; }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .prop-item {
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+
+      .prop-title {
+        min-width: unset;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 1.5rem 1rem; }
+      .hero h1 { font-size: clamp(1.5rem, 6vw, 2.25rem); }
+      .vista-footer { font-size: 0.75rem; padding: 1.25rem 1rem; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 <div class="container">
 
-  <div style="display:flex;justify-content:flex-end;margin-bottom:0.5rem;"><button class="theme-toggle" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div>
+  <!-- Theme toggle -->
+  <div style="display:flex;justify-content:flex-end;margin-bottom:0.5rem;">
+    <button class="theme-toggle" aria-label="Toggle dark mode">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
 
-  <div class="header">
+  <!-- Section 1: Hero -->
+  <section class="hero">
     <h1>OpenClaw Starter Pack</h1>
-    <p>A pre-configured workspace for OpenClaw. Persistent memory, Telegram integration, scheduled tasks, and a nightly self-improvement loop.</p>
-  </div>
+    <p class="hero-hook">Skip the first 50 hours of setup.</p>
+    <p class="hero-desc">Pre-configured workspace with memory routing, self-improvement loops, and 15 operational rules for the failures most setups discover too late.</p>
+    <div class="hero-ctas">
+      <a href="setup-guide.html" class="btn-primary">Get started →</a>
+      <a href="https://github.com/vistawtf/openclaw-easy-setup" target="_blank" class="btn-secondary">GitHub ↗</a>
+    </div>
+  </section>
 
+  <!-- Section 2: Value Props -->
+  <section class="value-props">
+    <p class="section-label">What's different</p>
+    <ul class="prop-list">
+      <li class="prop-item">
+        <span class="prop-title">Always on</span>
+        <span class="prop-desc">Long tasks run in background. Main chat stays free.</span>
+      </li>
+      <li class="prop-item">
+        <span class="prop-title">Self-improving</span>
+        <span class="prop-desc">Nightly loop finds one friction point and fixes it automatically.</span>
+      </li>
+      <li class="prop-item">
+        <span class="prop-title">No AI voice</span>
+        <span class="prop-desc">Hard rules against filler, sycophancy, and significance inflation.</span>
+      </li>
+      <li class="prop-item">
+        <span class="prop-title">Memory routing</span>
+        <span class="prop-desc">Every fact files itself in the right place. Nothing lost to chat scroll.</span>
+      </li>
+      <li class="prop-item">
+        <span class="prop-title">Pre-hardened</span>
+        <span class="prop-desc">15 operational rules covering the failures most setups discover too late.</span>
+      </li>
+    </ul>
+  </section>
 
+  <!-- Section 3: Guide Cards -->
+  <section class="guides">
+    <p class="section-label">Guides</p>
+    <div class="cards-grid">
+      <a href="setup-guide.html" class="guide-card">
+        <div class="guide-card-title">Setup Guide</div>
+        <p class="guide-card-desc">Zero to working assistant. Install, connect Telegram, run your first cron.</p>
+        <span class="guide-card-link">Open →</span>
+      </a>
+      <a href="config-guide.html" class="guide-card">
+        <div class="guide-card-title">Config Guide</div>
+        <p class="guide-card-desc">Every workspace file explained. SOUL.md through SECURITY.md.</p>
+        <span class="guide-card-link">Open →</span>
+      </a>
+      <a href="skills-helper.html" class="guide-card">
+        <div class="guide-card-title">Skills Guide</div>
+        <p class="guide-card-desc">Built-in skills, ClawHub marketplace, and building your own.</p>
+        <span class="guide-card-link">Open →</span>
+      </a>
+    </div>
+  </section>
 
-  <div class="cards">
-    <a href="setup-guide.html" class="card">
-      <div class="card-label">Just starting?</div>
-      <h2>Setup Guide</h2>
-      <p>Step-by-step from zero to working assistant. Install OpenClaw, connect Telegram, configure your workspace, and run your first cron job.</p>
-      <span class="card-arrow">Open the setup guide →</span>
-    </a>
-
-    <a href="config-guide.html" class="card">
-      <div class="card-label">Configuring your workspace files?</div>
-      <h2>Config Guide</h2>
-      <p>File-by-file walkthrough of every config file. IDENTITY.md, SOUL.md, USER.md, AGENTS.md, TOOLS.md, OPS.md, HEARTBEAT.md, and SECURITY.md.</p>
-      <span class="card-arrow">Open the config guide →</span>
-    </a>
-
-    <a href="skills-helper.html" class="card">
-      <div class="card-label">Working with skills?</div>
-      <h2>Skills Guide</h2>
-      <p>What's included, how to find more, how to build your own. Covers the three bundled skills, the ClawHub marketplace, and creating custom skills.</p>
-      <span class="card-arrow">Open the skills guide →</span>
-    </a>
-  </div>
-
-  <div class="also-section">
-    <h3>Also available</h3>
-    <div class="also-links">
+  <!-- Section 4: Also Available -->
+  <section class="also-available">
+    <div class="also-links-inline">
       <a href="https://github.com/vistawtf/openclaw-easy-setup" target="_blank">GitHub Repo</a>
+      <span class="also-sep">·</span>
       <a href="https://docs.openclaw.ai" target="_blank">OpenClaw Docs</a>
+      <span class="also-sep">·</span>
       <a href="https://clawhub.com" target="_blank">ClawHub Marketplace</a>
     </div>
-  </div>
+  </section>
 
+  <!-- Section 5: Footer -->
   <div class="footer">
     <p>OpenClaw Starter Pack — <a href="https://vistawtf.github.io/openclaw-easy-setup">vistawtf.github.io/openclaw-easy-setup</a></p>
   </div>
 
 </div>
-  <footer class="vista-footer">
-    Built on <a href="https://docs.openclaw.ai" target="_blank">OpenClaw</a> &middot; By <a href="https://vista.wtf" target="_blank">Vista</a>
-  </footer>
+
+<footer class="vista-footer">
+  Built on <a href="https://docs.openclaw.ai" target="_blank">OpenClaw</a> &middot; By <a href="https://vista.wtf" target="_blank">Vista</a>
+</footer>
 
 <script>
 document.querySelectorAll('.copy-btn').forEach(function(btn) {
@@ -418,30 +501,30 @@ document.querySelectorAll('.copy-btn').forEach(function(btn) {
 });
 </script>
 
-  <script>
-    (function() {
-      var html = document.documentElement;
-      var stored = localStorage.getItem('theme');
-      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (stored === 'dark' || (!stored && prefersDark)) html.classList.add('dark');
-      function syncIcons() {
-        var isDark = html.classList.contains('dark');
-        document.querySelectorAll('.theme-toggle').forEach(function(btn) {
-          btn.innerHTML = isDark ? '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-          btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
-        });
-      }
-      document.addEventListener('DOMContentLoaded', function() {
-        syncIcons();
-        document.querySelectorAll('.theme-toggle').forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            html.classList.toggle('dark');
-            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-            syncIcons();
-          });
+<script>
+  (function() {
+    var html = document.documentElement;
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (stored === 'dark' || (!stored && prefersDark)) html.classList.add('dark');
+    function syncIcons() {
+      var isDark = html.classList.contains('dark');
+      document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+        btn.innerHTML = isDark ? '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+        btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+      });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      syncIcons();
+      document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          html.classList.toggle('dark');
+          localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+          syncIcons();
         });
       });
-    })();
-  </script>
+    });
+  })();
+</script>
 </body>
 </html>
