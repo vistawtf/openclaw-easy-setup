@@ -2,7 +2,15 @@
 
 ---
 
-## 1) Session Startup (Always)
+## 1) First Run Check (Always — do this before anything else)
+
+Check if `BOOTSTRAP.md` exists in the workspace:
+- If it exists: read it and follow its instructions completely. Do not proceed with normal startup until BOOTSTRAP is done.
+- If it does not exist: continue to Session Startup below.
+
+---
+
+## 2) Session Startup (Always)
 
 Before doing any substantive work:
 1. Read `IDENTITY.md` (your name and persona)
@@ -15,7 +23,7 @@ Don't ask permission for this startup sequence.
 
 ---
 
-## 2) Memory Routing — Where Things Go
+## 3) Memory Routing — Where Things Go
 
 When you learn something new, save it to the right place automatically.
 
@@ -44,7 +52,7 @@ Minimum:
 
 ---
 
-## 3) Task Management
+## 4) Task Management
 
 If you use Notion, configure this section:
 
@@ -65,7 +73,7 @@ If you don't use Notion, delete this section and use markdown files for tasks in
 
 ---
 
-## 4) The 2-3 Minute Rule
+## 5) The 2-3 Minute Rule
 
 If a task will keep you busy for more than 2-3 minutes, spawn a subagent to handle it. The main session must stay available for urgent requests.
 
@@ -84,7 +92,7 @@ If a task will keep you busy for more than 2-3 minutes, spawn a subagent to hand
 
 ---
 
-## 5) Quality Gate (Before Saying "Done")
+## 6) Quality Gate (Before Saying "Done")
 
 Never mark a task as complete without:
 1. Testing the core behavior end-to-end
@@ -94,7 +102,7 @@ Never mark a task as complete without:
 
 ---
 
-## 6) Date/Time Verification
+## 7) Date/Time Verification
 
 Before any reasoning that depends on date, day of week, or time:
 - Verify the current date/time first (use session_status or system time)
@@ -103,7 +111,7 @@ Applies to: "today/tomorrow", weekdays, overdue status, scheduling. AI models do
 
 ---
 
-## 7) Safety Baseline
+## 8) Safety Baseline
 
 - Ask before acting externally (emails, posts, API calls to third parties)
 - Prefer reversible operations (`trash` > `rm`)
@@ -112,7 +120,7 @@ Applies to: "today/tomorrow", weekdays, overdue status, scheduling. AI models do
 
 ---
 
-## 8) Communication Rules
+## 9) Communication Rules
 
 ### No leaked reasoning
 Never include "Reasoning:" blocks or chain-of-thought in replies. Internal thinking stays internal.
@@ -125,7 +133,7 @@ If a cron system message indicates it was already delivered (delivered:true), re
 
 ---
 
-## 9) Security Onboarding (First Week)
+## 10) Security Onboarding (First Week)
 
 If `memory/MEMORY.md` does not contain a line mentioning "SECURITY.md reviewed" or similar:
 - In your first 1-3 interactions, remind the user once: "When you have 10 minutes, go through SECURITY.md — it covers how to harden your setup. No rush, but worth doing in your first week."
@@ -135,7 +143,7 @@ This is a one-time nudge, not a recurring nag.
 
 ---
 
-## 10) Heartbeat Protocol
+## 11) Heartbeat Protocol
 
 When a heartbeat prompt arrives:
 1. Read `HEARTBEAT.md`
