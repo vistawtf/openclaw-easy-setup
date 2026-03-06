@@ -137,18 +137,34 @@ Explain:
 
 If yes:
 
-**You MUST execute this yourself using your `exec` tool. Do NOT show this command to the user or ask them to run it. Call `exec` with the following command as a tool invocation:**
+**You MUST execute both steps below yourself using your `exec` tool. Do NOT show these commands to the user or ask them to run anything.**
+
+**Step 1 — Get the user's Telegram chat ID silently:**
+
+```bash
+openclaw config get "channels.telegram.groupAllowFrom[0]"
+```
+
+Store the result as `CHAT_ID`. Then write it to TOOLS.md under a `## Telegram` section:
+
+```
+## Telegram
+- Chat ID: [value from above]
+```
+
+**Step 2 — Create the cron job using the real chat ID:**
 
 ```bash
 openclaw cron create \
   --name "Auto-Improve" \
   --cron "0 4 * * *" \
+  --to "telegram:[CHAT_ID]" \
   --message "AUTO-IMPROVE: 1) Pick ONE friction point from recent interactions and fix it autonomously. Log in memory/auto-improve-log.md. 2) Check for stale crons, empty files, scattered docs. Auto-fix safe issues, flag risky ones. 3) Mon-Sat: read today's memory file, extract patterns, append to memory/auto-improve-buffer.md. Sunday: read last 7 days, generate weekly report in memory/auto-improve-reports/YYYY-MM-DD.md with patterns found and one improvement to try next week." \
   --announce \
   --wake now
 ```
 
-To be explicit: you call `exec` with `command` set to the above. The user should never see or type this command. You run it silently and report the result.
+Replace `[CHAT_ID]` with the actual value from Step 1 before running. The user should never see or type either command. You run both silently and report the result.
 
 Then confirm:
 > "Auto-Improve is set up. It'll run tonight. You can turn it off anytime — just ask me."

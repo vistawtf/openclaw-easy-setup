@@ -118,7 +118,7 @@ openclaw cron create \
   --wake now
 ```
 
-Replace `YOUR_CHAT_ID` with your actual Telegram chat ID (message `@userinfobot` on Telegram — it replies with your ID instantly). Keep active crons to 15 or fewer.
+Replace `YOUR_CHAT_ID` with your Telegram chat ID. If you ran the BOOTSTRAP onboarding, it's already saved in TOOLS.md. Otherwise, run: `openclaw config get "channels.telegram.groupAllowFrom[0]"` — it prints your ID directly. Keep active crons to 15 or fewer.
 
 ## Sections to Add Later
 
