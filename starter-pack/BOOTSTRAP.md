@@ -168,7 +168,7 @@ openclaw cron create \
   --name "Auto-Improve" \
   --cron "0 4 * * *" \
   --to "telegram:[CHAT_ID]" \
-  --message "AUTO-IMPROVE: 1) Pick ONE friction point from recent interactions and fix it autonomously. Log in memory/auto-improve-log.md. 2) Check for stale crons, empty files, scattered docs. Auto-fix safe issues, flag risky ones. 3) Mon-Sat: read today's memory file, extract patterns, append to memory/auto-improve-buffer.md. Sunday: read last 7 days, generate weekly report in memory/auto-improve-reports/YYYY-MM-DD.md with patterns found and one improvement to try next week." \
+  --message "AUTO-IMPROVE: Run the auto-improve skill." \
   --announce \
   --wake now
 ```

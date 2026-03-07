@@ -5,142 +5,178 @@ description: Autonomous overnight improvement system that fixes one friction poi
 
 # Auto-Improve
 
-Autonomous overnight improvement system. Every night: fix ONE thing, clean up, learn from the day. Weekly: deep analysis with improvement proposals.
+Autonomous overnight improvement system. Every night: fix ONE thing, clean up, learn from the day. Weekly: a real report on what's working and what isn't.
 
 ## Setup
 
-BOOTSTRAP.md sets this up automatically during first-run onboarding. If you skipped that step or need to recreate the cron, run:
+### Step 1: Copy the scripts
+
+Copy the two helper scripts from this skill into your workspace:
+
+```bash
+cp skills/auto-improve/scripts/auto-improve-bootstrap-day.sh scripts/
+cp skills/auto-improve/scripts/auto-improve-capture.sh scripts/
+chmod +x scripts/auto-improve-bootstrap-day.sh scripts/auto-improve-capture.sh
+```
+
+### Step 2: Create the cron job
+
+The bootstrap wizard does this for you. To set it up manually:
 
 ```bash
 openclaw cron create \
   --name "Auto-Improve" \
   --cron "0 4 * * *" \
-  --message "AUTO-IMPROVE: 1) Pick ONE friction point from recent interactions and fix it autonomously. Log in memory/auto-improve-log.md. 2) Check for stale crons, empty files, scattered docs. Auto-fix safe issues, flag risky ones. 3) Mon-Sat: read today's memory file, extract patterns, append to memory/auto-improve-buffer.md. Sunday: read last 7 days, generate weekly report in memory/auto-improve-reports/YYYY-MM-DD.md with patterns found and improvement proposals." \
+  --message "AUTO-IMPROVE: Run the auto-improve skill." \
   --announce \
   --wake now
 ```
 
-`0 4 * * *` = 4am UTC. Adjust to your timezone's quiet hours. Add `--to telegram:YOUR_CHAT_ID` to route results to a specific chat. See OPS.md → Cron Golden Defaults for full flag reference.
+### Required files (created automatically on first run)
 
-### Required Files
+- `memory/auto-improve-log.md` — running log of all nightly work
+- `memory/auto-improve-buffer.md` — daily learning extracts (cleared each Sunday)
+- `memory/auto-improve-reports/` — weekly reports
 
-Create these on first run:
+---
 
-- `memory/auto-improve-log.md` — Running log of all nightly work
-- `memory/auto-improve-buffer.md` — Daily learning extracts (cleared weekly)
-- `memory/auto-improve-reports/` — Directory for weekly analysis reports
+## Cron Prompt
 
-## How It Works
+When the cron fires, follow these steps in order:
 
-### 1. Friction Fix (Primary Task)
+### 1. Bootstrap the day
 
-Each night, identify and fix ONE concrete problem. Pick the highest-impact, lowest-risk item.
+```bash
+bash scripts/auto-improve-bootstrap-day.sh
+```
 
-**Good friction fixes:**
-- Archive stale files cluttering the workspace
-- Create CONTEXT.md files for projects (faster session ramp-up)
-- Document missing API keys or config gaps
-- Consolidate scattered files into single reference docs
-- Implement previously approved improvements
-- Update outdated documentation
+Creates today's memory file if it doesn't exist.
 
-**Bad friction fixes (avoid):**
-- Modifying production code
-- Changing configs without approval
-- Anything that could break running services
-- Multiple fixes in one night (scope creep)
+### 2. Friction Fix
 
-### 2. Hygiene Checks
+Pick ONE friction point from recent work and fix it. Choose the highest-impact, lowest-risk item:
 
-Run these checks every night:
+- Workspace cleanup (stale files, scattered docs)
+- Memory consolidation (merge duplicate notes, archive old logs)
+- Documentation gaps (something you had to re-figure out this week)
+- Proactive tooling (a script that would save recurring manual work)
+- Configuration (missing API key docs, undocumented setup steps)
 
-**Task Manager (whichever you use — Notion, Linear, Todoist, etc):**
-- Flag duplicate tasks
-- List tasks overdue >1 week with suggested new dates or deletion
-- Identify tasks missing dates
-- Flag stale tasks (>2 weeks overdue, no progress)
+Ship it. Log it in `memory/auto-improve-log.md`.
 
-**Cron Jobs:**
-- Delete zombie jobs (one-shot jobs that fired but weren't cleaned up)
-- Report jobs with error status
-- Flag potential duplicates
+**Good fixes:** archive clutter, document a rediscovered process, create a reference file.
+**Bad fixes:** touching production code, changing configs without approval, doing two things at once.
+
+### 3. Hygiene Checks
+
+Run these checks every night. Auto-fix safe issues. Flag risky ones.
+
+**Cron jobs:**
+- `openclaw cron list` — look for zombie jobs (one-shot jobs that already fired but weren't deleted), error states, duplicates
+- Delete confirmed zombies. Flag anything ambiguous.
 
 **Workspace:**
-- Identify empty or near-empty files
-- Flag temp files older than 7 days
-- Suggest consolidation for scattered related files
+- Empty or near-empty files (< 3 lines of content)
+- Temp files older than 7 days
+- Scattered notes that belong together
 
-Auto-fix safe issues (delete empty temp files, remove zombie crons). Flag anything ambiguous for morning review.
+**Task manager (if configured):**
+- Tasks overdue > 2 weeks with no progress — flag for human review
+- Tasks missing dates
 
-### 3. Learning Loop
+### 4. Learning Capture (Mon-Sat)
 
-**Daily (Mon-Sat) — lightweight extraction:**
-- Read the day's memory/journal file
-- Extract: recurring requests, repeated workflows, pain points, mistakes, preferences
-- Append findings to buffer file
-- Cost: ~2-5K tokens
+```bash
+bash scripts/auto-improve-capture.sh
+```
 
-**Weekly (Sunday) — deep analysis:**
-- Read buffer + all memory files from the past 7 days
-- Generate structured report with:
-  - Patterns identified (what keeps coming up?)
-  - Improvement proposals (specific, actionable)
-  - Priority ranking
-- Clear buffer for next week
-- Notify human in next morning briefing
-- Cost: ~20-30K tokens
+Extracts content from yesterday's memory file and appends it to `memory/auto-improve-buffer.md`. If the log was empty, prints `NO_INSIGHTS` and moves on — that's fine.
 
-**Approval flow:**
-- Human reviews weekly report when convenient
-- Approves/rejects/modifies each proposal
-- Agent implements only approved changes
-- Track applied changes in log
+### 5. Weekly Report (Sunday only)
 
-## Log Format
+On Sundays, generate the weekly report instead of running the capture script.
 
-Each entry in `memory/auto-improve-log.md`:
+**Do this manually (no script needed):**
+
+1. Read `memory/auto-improve-buffer.md` (the week's accumulated learnings)
+2. Read the last 7 daily memory files (`memory/YYYY-MM-DD.md`)
+3. Write a report to `memory/auto-improve-reports/YYYY-MM-DD.md` with this structure:
+
+```markdown
+# Weekly Report — [week range]
+
+## What happened this week
+[3-5 honest bullets. Not a list of events — actual judgment.
+"Vista had no activity" beats "Vista: 0 log entries."]
+
+## Patterns
+[What keeps coming up? Recurring friction, repeated questions, consistent gaps.]
+
+## One thing to try next week
+[Single concrete proposal. Not a wishlist — one thing, with a reason.]
+
+## Nightly builds this week
+[Brief: what got fixed each night, any nights that were empty]
+```
+
+4. Clear the buffer for the new week:
+
+```bash
+cat > memory/auto-improve-buffer.md << 'EOF'
+# Auto-Improve Learning Buffer
+*Daily extracts, cleared after each Sunday weekly report.*
+
+---
+EOF
+```
+
+### 6. Log the run
+
+Append to `memory/auto-improve-log.md`:
 
 ```markdown
 ### YYYY-MM-DD
 **Friction Fixed:** [one-line summary]
 **What I did:**
-1. [step]
-2. [step]
+- [step 1]
+- [step 2]
 
-**Hygiene:**
-- [findings and actions]
-
-**Learning:** [extracted to buffer / weekly report generated]
-
-**Ready to use:** [what's different now]
+**Hygiene:** [findings and actions taken]
+**Learning:** [APPENDED / NO_INSIGHTS / weekly report generated]
 ```
-
-## Morning Integration
-
-Pair Auto-Improve with a morning digest cron job. Include in the morning prompt:
-
-```
-Check memory/auto-improve-log.md for last night's work.
-Summarize in 1-2 sentences what was fixed/improved.
-On Mondays, also check for weekly reports in memory/auto-improve-reports/.
-```
-
-This way the human wakes up to a clean summary of overnight work.
-
-## Customization
-
-Adapt these to your setup:
-- **Task manager:** Replace Notion references with your tool (Linear, Todoist, etc.)
-- **Schedule:** Adjust cron time to your timezone's quiet hours
-- **Hygiene scope:** Add/remove checks based on your tools (GitHub issues, Slack, etc.)
-- **Learning focus:** Tune extraction patterns to your domain
-
-## Cost Estimate
-
-- **Daily:** ~5-10K tokens (friction fix + hygiene + daily learning)
-- **Weekly (Sunday):** ~20-30K additional tokens (deep analysis)
-- **Monthly total:** ~200-350K tokens
 
 ---
 
-*Originally developed as an organic workflow, packaged as a skill for the OpenClaw community.*
+## Design Principles
+
+**Bash for checks, agent for judgment.**
+Repetitive verification (file exists?, how many days old?) belongs in scripts. Judgment (is this worth fixing?, what does this pattern mean?) belongs to the agent. Don't use 5K tokens to do what a `find` command does in 0.
+
+**One fix per night.**
+Scope creep kills overnight systems. One thing done well beats three things half-done.
+
+**Flag, don't act, when uncertain.**
+If a fix could break something or requires human context, write it to the log as a flag and skip it. The human reviews in the morning.
+
+**Weekly report = judgment, not data dump.**
+The report is valuable when it tells the human something they didn't already know. A list of log entries is not a report. Patterns, gaps, and one concrete recommendation — that's the report.
+
+---
+
+## Cost Estimate
+
+- **Daily:** ~5-10K tokens
+- **Weekly (Sunday):** ~15-20K tokens (reading 7 logs + buffer + generating report)
+- **Monthly total:** ~180-280K tokens
+
+---
+
+## Customization
+
+- **Task manager:** Notion references in hygiene checks can be replaced with Linear, Todoist, or skipped entirely
+- **Schedule:** Change the cron time to your timezone's quiet hours
+- **Report language:** The weekly report can be in any language — just write the template in yours
+
+---
+
+*Originally developed as a live workflow, packaged as a skill for the OpenClaw community.*
