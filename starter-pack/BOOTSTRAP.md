@@ -178,7 +178,29 @@ Replace `[CHAT_ID]` with the actual value from Step 1 before running. The user s
 Then confirm:
 > "Auto-Improve is set up. It'll run tonight. You can turn it off anytime — just ask me."
 
-If no — note it in TOOLS.md and move on.
+Then ask:
+> "Want a morning digest too? Every morning I'd send you a one-line summary of what I fixed overnight — so you wake up knowing what changed. Takes 5 seconds to set up."
+
+If yes — create a second cron using the same CHAT_ID:
+
+```bash
+openclaw cron create \
+  --name "Morning Digest" \
+  --cron "0 8 * * *" \
+  --to "telegram:[CHAT_ID]" \
+  --message "MORNING DIGEST: Check memory/auto-improve-log.md for last night's entry. Summarize in 1-2 sentences what was fixed or improved. If it's Monday, also check memory/auto-improve-reports/ for the weekly report and include a one-line highlight." \
+  --announce \
+  --wake now
+```
+
+Adjust the hour to match their timezone (8am UTC by default — ask if they want a different time).
+
+Then confirm:
+> "Morning digest is set. I'll ping you at 8am with a quick note on what happened overnight."
+
+If no — move on.
+
+If no to Auto-Improve — skip this question entirely and note both as skipped in TOOLS.md.
 
 ---
 
@@ -193,6 +215,7 @@ Send this summary message (replace unfilled placeholders with "not set"):
 > - **Tone:** [brief description]
 > - **Skills:** [list or 'none yet — browse clawhub.com when ready']
 > - **Auto-Improve:** [enabled/skipped]
+> - **Morning Digest:** [enabled at Xam / skipped]
 >
 > Your workspace files are set. You can open and edit any of them directly — they're just text files in your `~/.openclaw/workspace/` folder.
 >
