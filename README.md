@@ -16,7 +16,7 @@ A ready-to-use workspace for a personal AI assistant that runs on your infrastru
 | `SECURITY.md` | Security checklist and hardening guide |
 | `BOOTSTRAP.md` | One-time setup wizard (auto-deletes after) |
 | `memory/MEMORY.md` | Long-term memory (grows over time) |
-| `skills/` | Bundled skills: auto-improve, humanizer, skill-creator |
+| `skills/` | Bundled skills: auto-improve, humanizer, skill-creator, voice-extractor |
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ Then message your bot on Telegram. `BOOTSTRAP.md` will guide your assistant thro
 
 ## Skills
 
-Three skills are bundled: **auto-improve** (overnight self-improvement), **humanizer** (removes AI writing patterns), **skill-creator** (build your own skills).
+Four skills are bundled: **auto-improve** (overnight self-improvement), **humanizer** (removes AI writing patterns), **skill-creator** (build your own skills), and **voice-extractor** (analyzes content to build voice/style guides).
 
 Browse more at [clawhub.com](https://clawhub.com). To install one, tell your assistant what you need or paste the skill link in chat.
 

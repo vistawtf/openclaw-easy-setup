@@ -664,7 +664,7 @@
       <div class="step-number">2</div>
       <div class="section-title">
         <h2>Skills included in this pack</h2>
-        <div class="meta">Three skills ready to use out of the box</div>
+        <div class="meta">Four skills ready to use out of the box</div>
       </div>
     </div>
     <div class="section-body">
@@ -690,6 +690,11 @@
           <td>Guides you through building your own custom skills with proper structure, frontmatter, and bundled resources</td>
           <td>When you say "create a skill", "build a skill", or want to package domain-specific knowledge</td>
         </tr>
+        <tr>
+          <td><strong>voice-extractor</strong></td>
+          <td>Analyzes an author's content (URLs or pasted text) and produces a complete voice/style guide with real DO/DON'T examples from the corpus</td>
+          <td>When you want to capture someone's writing voice, build a style guide, or create consistent brand voice documentation</td>
+        </tr>
       </table>
 
       <h3>auto-improve</h3>
@@ -708,6 +713,12 @@
       <p>The skill-creator covers the full process: figuring out what the skill should do and what triggers it, planning any supporting resources (reference files, scripts, example outputs), writing the SKILL.md with the right structure, and testing that it triggers reliably.</p>
       <p>Best time to use it: after you've been working with OpenClaw for a few weeks and notice you keep explaining the same context over and over. That repeated context is a skill waiting to be written. Tell your AI "I want to create a new skill for [X]" and it takes it from there.</p>
 
+      <h3>voice-extractor</h3>
+      <p>Analyzes content from any author and produces a complete voice and style guide. Feed it at least 5 pieces of content (URLs or pasted text) and it extracts the patterns that make that voice distinctive: sentence structure, vocabulary choices, tone markers, rhetorical habits, and more.</p>
+      <p>The output is a reusable style guide with real DO/DON'T examples pulled directly from the source material. It also generates a SKILL.md you can drop into your skills folder, so your assistant writes in that voice going forward.</p>
+      <p>Use cases: content creators who want to document their voice for consistency, agencies onboarding a new client's brand voice, teams that need multiple writers producing content that sounds like one person, or anyone who wants to clone a writing style they admire for reference.</p>
+      <p>To use it, tell your assistant "extract the voice from these articles" or "build a style guide for [author/brand]" and provide the content. The more pieces you give it, the more accurate the voice profile.</p>
+
       <div class="callout callout-info">
         <strong>Skill directory structure</strong>
         Each skill lives in its own folder under <code>skills/</code>:
@@ -717,7 +728,9 @@
 │   └── SKILL.md
 ├── humanizer/
 │   └── SKILL.md
-└── skill-creator/
+├── skill-creator/
+│   └── SKILL.md
+└── voice-extractor/
     └── SKILL.md</pre>
   <button class="copy-btn" aria-label="Copy code">Copy</button>
 </div>

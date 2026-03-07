@@ -119,10 +119,11 @@ If they say "none": respond "No problem — TOOLS.md is there whenever you're re
 
 ### 9. Skills
 
-> "Your starter pack already includes three skills out of the box:
+> "Your starter pack already includes four skills out of the box:
 > - `auto-improve` — nightly self-improvement loop (we'll set this up in the next step)
 > - `humanizer` — rewrites AI-sounding text to be more natural
 > - `skill-creator` — helps you build new skills for specific workflows
+> - `voice-extractor` — analyzes someone's writing and builds a complete voice/style guide from it
 >
 > Beyond those, I can load specialized skills for writing, coding, summarizing content, working with spreadsheets, and more. A few popular ones:
 > - `summarize` — paste a URL, get a summary
@@ -131,7 +132,7 @@ If they say "none": respond "No problem — TOOLS.md is there whenever you're re
 >
 > What kinds of tasks do you do most? I'll suggest what fits, or you can browse the full marketplace at clawhub.com."
 
-On answer: Help the user find and install additional skills they want. Remind them the three bundled skills (auto-improve, humanizer, skill-creator) are already active — no install needed. For other skills, browse clawhub.com or help them describe what they need.
+On answer: Help the user find and install additional skills they want. Remind them the four bundled skills (auto-improve, humanizer, skill-creator, voice-extractor) are already active — no install needed. For other skills, browse clawhub.com or help them describe what they need.
 
 ---
 
