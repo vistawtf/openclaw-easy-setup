@@ -8,6 +8,12 @@ description: |
   inflated symbolism, promotional language, superficial -ing analyses, vague
   attributions, em dash overuse, rule of three, AI vocabulary words, negative
   parallelisms, and excessive conjunctive phrases.
+
+## MANDATORY RULE — NO EM DASHES EVER
+After applying the humanizer, do a final scan of the output for em dashes (—).
+If ANY em dash remains, replace it with a comma or period before delivering.
+This applies to ALL content, including content written after the humanizer pass.
+Never introduce em dashes in text destined for public-facing or user-reviewed content.
 allowed-tools:
   - read
   - write
