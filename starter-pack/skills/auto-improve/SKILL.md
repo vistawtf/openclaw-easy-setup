@@ -110,7 +110,7 @@ On Sundays, generate the weekly report instead of running the capture script.
 
 ## What happened this week
 [3-5 honest bullets. Not a list of events — actual judgment.
-"Vista had no activity" beats "Vista: 0 log entries."]
+"Project X had no activity" beats "Project X: 0 log entries."]
 
 ## Patterns
 [What keeps coming up? Recurring friction, repeated questions, consistent gaps.]
