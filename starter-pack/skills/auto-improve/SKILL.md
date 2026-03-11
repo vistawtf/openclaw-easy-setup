@@ -86,11 +86,14 @@ Run these checks every night. Auto-fix safe issues. Flag risky ones.
 
 ### 4. Learning Capture (Mon-Sat)
 
-```bash
-bash scripts/auto-improve-capture.sh
-```
+Read the full content of `memory/YYYY-MM-DD.md` for today directly. As an LLM, decide what is worth keeping long-term. Criteria:
 
-Extracts content from yesterday's memory file and appends it to `memory/auto-improve-buffer.md`. If the log was empty, prints `NO_INSIGHTS` and moves on — that's fine.
+- **Keep:** decisions with lasting impact, lessons learned, patterns discovered, reusable solutions, project milestones
+- **Skip:** routine task completions, ephemeral reminders, one-off operational facts
+
+Append what passes this filter to `memory/auto-improve-buffer.md` under a `## YYYY-MM-DD` header. Skip if that date already exists.
+
+Do not rely on a bash script to filter content — read the file yourself and use judgment.
 
 ### 5. Weekly Report (Sunday only)
 
