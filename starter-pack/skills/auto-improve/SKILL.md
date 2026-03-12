@@ -15,14 +15,7 @@ Autonomous overnight improvement system. Follow this process every night.
 
 ## Setup
 
-### Step 1: Copy the bootstrap script
-
-```bash
-cp skills/auto-improve/scripts/auto-improve-bootstrap-day.sh scripts/
-chmod +x scripts/auto-improve-bootstrap-day.sh
-```
-
-### Step 2: Create the cron job
+### Step 1: Create the cron job
 
 ```bash
 openclaw cron create \
