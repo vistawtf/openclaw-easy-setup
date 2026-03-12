@@ -9,14 +9,13 @@ Autonomous overnight improvement system. Every night: fix ONE thing, clean up, l
 
 ## Setup
 
-### Step 1: Copy the scripts
+### Step 1: Copy the bootstrap script
 
-Copy the two helper scripts from this skill into your workspace:
+Copy the helper script from this skill into your workspace:
 
 ```bash
 cp skills/auto-improve/scripts/auto-improve-bootstrap-day.sh scripts/
-cp skills/auto-improve/scripts/auto-improve-capture.sh scripts/
-chmod +x scripts/auto-improve-bootstrap-day.sh scripts/auto-improve-capture.sh
+chmod +x scripts/auto-improve-bootstrap-day.sh
 ```
 
 ### Step 2: Create the cron job
